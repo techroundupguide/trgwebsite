@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#fbfaf7">
@@ -14,96 +13,87 @@
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--body);font:17px/1.72 var(--serif);-webkit-font-smoothing:antialiased}
-  .col{max-width:740px;margin:0 auto;padding:0 26px}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{background:var(--paper);color:var(--body);font:17px/1.72 var(--serif);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .col{width:100%;max-width:740px;margin:0 auto;padding:0 18px}
   a{color:inherit}
 
   header{border-bottom:3px double var(--line-2)}
-  .mast{padding:36px 0 18px;text-align:center}
-  .mono{font-size:11px;font-family:var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
-  .name{font-size:clamp(27px,6.4vw,46px);color:var(--ink);line-height:1.08;font-weight:400;
-    letter-spacing:-.015em;margin:10px 0 12px}
+  .mast{padding:28px 0 16px;text-align:center}
+  .mono{font-size:10px;font-family:var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+  .name{font-size:clamp(28px,9vw,46px);color:var(--ink);line-height:1.08;font-weight:400;letter-spacing:-.015em;margin:9px 0 10px}
   .name a{text-decoration:none}
-  .tag{font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .tag{font:9px/1.6 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--dim)}
   .tag .sec{cursor:default;user-select:none}
-  .bar{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
-    padding:12px 0 15px;border-top:1px solid var(--line);
+  .bar{display:flex;align-items:center;justify-content:center;gap:8px 16px;flex-wrap:wrap;
+    padding:11px 0 13px;border-top:1px solid var(--line);
     font:12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-  .bar a{text-decoration:none}
+  .bar a{text-decoration:none;padding:7px 0}
   .bar a:hover{color:var(--accent)}
-  .find{display:flex;align-items:center}
+  .find{display:flex;align-items:center;min-height:32px}
   .find input{width:0;opacity:0;padding:0;border:0;background:transparent;color:var(--ink);
-    font:13px/1 var(--mono);outline:none;transition:width .2s,opacity .18s,padding .2s}
-  .find.open input{width:150px;opacity:1;padding:6px 8px;border:1px solid var(--line-2);background:#fff}
+    font:16px/1 var(--mono);outline:none;transition:width .2s,opacity .18s,padding .2s}
+  .find.open input{width:min(52vw,180px);opacity:1;padding:6px 8px;border:1px solid var(--line-2);background:#fff}
   .find button{background:none;border:0;cursor:pointer;color:var(--muted);padding:5px;display:flex;line-height:0}
   .find button:hover{color:var(--accent)}
 
-  .intro{padding:40px 0 30px;border-bottom:1px solid var(--line)}
-  .intro p{font-size:19px;line-height:1.6}
-  .intro p+p{margin-top:14px;font-size:16px;color:var(--muted)}
+  .intro{padding:30px 0 24px;border-bottom:1px solid var(--line)}
+  .intro p{font-size:18px;line-height:1.55}
 
-  /* live wire */
   #wire{display:none;padding:26px 0;border-bottom:1px solid var(--line)}
-  #wire h3{font:11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dim);font-weight:400;margin-bottom:16px}
+  #wire h3{font:11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:400;margin-bottom:16px}
   #wire ul{list-style:none}
   #wire li{padding:7px 0;font-size:15.5px;line-height:1.5}
   #wire li a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
   #wire li a:hover{border-bottom-color:var(--accent);color:var(--accent)}
-  #wire .via{font:10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
-    color:var(--dim);margin-top:14px}
+  #wire .via{font:10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:14px}
 
-  .controls{padding:24px 0 4px;display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
-  .chips{display:flex;gap:6px;flex-wrap:wrap}
-  .chip{padding:5px 11px;border:1px solid var(--line-2);background:none;color:var(--muted);
-    font:11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.14s}
+  .controls{padding:20px 0 4px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .chips{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{min-height:34px;padding:7px 10px;border:1px solid var(--line-2);background:none;color:var(--muted);
+    font:10px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.14s}
   .chip:hover{color:var(--ink);border-color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .count{font:11px/1 var(--mono);letter-spacing:.08em;color:var(--dim);white-space:nowrap}
+  .count{font:11px/1 var(--mono);letter-spacing:.08em;color:var(--dim);white-space:nowrap;padding-top:8px}
 
-  .entry{padding:28px 0;border-bottom:1px solid var(--line)}
-  .dline{font:11px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-  .dline b{color:var(--accent);font-weight:400}
-  .entry h2{font-size:23px;line-height:1.28;color:var(--ink);font-weight:400;letter-spacing:-.012em;margin-bottom:9px}
-  .entry p{font-size:16.5px}
-  .entry .src{display:inline-block;margin-top:12px;font:11px/1 var(--mono);letter-spacing:.1em;
-    text-transform:uppercase;color:var(--accent);text-decoration:none;
-    border-bottom:1px solid rgba(154,86,40,.35);padding-bottom:3px}
+  .entry{padding:23px 0;border-bottom:1px solid var(--line)}
+  .dateline{font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+  .dateline b{color:var(--accent);font-weight:400}
+  .entry h2{font-size:21px;line-height:1.3;color:var(--ink);font-weight:400;letter-spacing:-.012em;margin-bottom:9px}
+  .entry p{font-size:16px;line-height:1.62}
+  .entry .src{display:inline-block;margin-top:9px;padding:8px 0 5px;font:11px/1 var(--mono);letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(154,86,40,.35)}
   .entry .src:hover{border-bottom-color:var(--accent)}
   .none{padding:40px 0;color:var(--muted);display:none}
 
-  .pager{display:flex;justify-content:space-between;align-items:center;padding:26px 0 4px;
+  .pager{display:flex;justify-content:space-between;align-items:center;padding:22px 0 2px;
     font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
   .pager button{background:none;border:1px solid var(--line-2);color:var(--ink);font:inherit;
-    padding:10px 15px;cursor:pointer;transition:.14s}
+    min-height:40px;padding:10px 13px;cursor:pointer;transition:.14s}
   .pager button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
   .pager button:disabled{color:var(--dim);border-color:var(--line);cursor:default}
   .pager .where{color:var(--muted)}
 
-  .block{padding:48px 0 8px;border-top:3px double var(--line-2);margin-top:42px}
-  .block h3{font:13px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
-    color:var(--dim);font-weight:400;margin-bottom:22px}
-  .ref{padding:18px 0;border-bottom:1px solid var(--line);display:grid;
-    grid-template-columns:1fr auto;gap:16px;align-items:baseline}
-  .ref h4{font-size:18px;color:var(--ink);font-weight:400;line-height:1.35;margin-bottom:5px}
-  .ref p{font-size:15px;color:var(--muted)}
-  .ref a{font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
-    color:var(--accent);text-decoration:none;white-space:nowrap}
-  @media(max-width:560px){.ref{grid-template-columns:1fr}}
+  .block{padding:38px 0 6px;border-top:3px double var(--line-2);margin-top:32px}
+  .block h3{font:12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:400;margin-bottom:16px}
+  .ref{padding:17px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:10px;align-items:baseline}
+  .ref h4{font-size:17px;color:var(--ink);font-weight:400;line-height:1.35;margin-bottom:5px}
+  .ref p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+  .ref a{font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+    text-decoration:none;white-space:nowrap;display:inline-block;padding:7px 0}
   .block p.body{color:var(--muted);font-size:16px}
   .block p.body+p.body{margin-top:13px}
 
-  footer{border-top:1px solid var(--line);padding:28px 0 60px;
-    font:11px/1.9 var(--mono);letter-spacing:.08em;color:var(--dim);text-align:center;margin-top:42px}
+  footer{border-top:1px solid var(--line);padding:24px 0 48px;font:11px/1.9 var(--mono);
+    letter-spacing:.08em;color:var(--dim);text-align:center;margin-top:32px}
 
-  /* ---------- alternate view ---------- */
   body.chamber{background:#0c0d0e;color:#b8b3aa}
   body.chamber header,body.chamber .intro,body.chamber #wire,body.chamber #archive,body.chamber footer{
     opacity:0;transform:scale(.985);pointer-events:none;
     transition:opacity .45s ease,transform .9s cubic-bezier(.22,1,.36,1)}
-  .veil{position:fixed;inset:0;background:rgba(4,5,6,0);display:none;
-    align-items:center;justify-content:center;padding:24px;z-index:200;overflow:auto}
+  .veil{position:fixed;inset:0;background:rgba(4,5,6,0);display:none;align-items:center;justify-content:center;
+    padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+    z-index:200;overflow:auto}
   .veil.show{display:flex;animation:chamberFade .8s cubic-bezier(.22,1,.36,1) forwards}
   .veil::before{content:"";position:absolute;inset:-10%;
     background:radial-gradient(circle at 50% 46%,rgba(255,255,255,.055),transparent 25%),
@@ -111,31 +101,28 @@
     opacity:0;animation:chamberAtmosphere 1.35s ease forwards;pointer-events:none}
   .veil::after{content:"";position:absolute;inset:0;
     background:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:5px 100%;opacity:0;mix-blend-mode:screen;
-    animation:chamberTexture 1.2s ease .25s forwards;pointer-events:none}
-  .panel{position:relative;z-index:2;max-width:520px;width:100%;
+    background-size:5px 100%;opacity:0;mix-blend-mode:screen;animation:chamberTexture 1.2s ease .25s forwards;pointer-events:none}
+  .panel{position:relative;z-index:2;max-width:520px;width:min(100%,520px);
     background:#111315;color:#aaa59d;border:1px solid rgba(214,205,190,.18);
-    border-top:1px solid rgba(214,205,190,.38);padding:36px;
+    border-top:1px solid rgba(214,205,190,.38);padding:27px 22px;
     box-shadow:0 38px 110px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.02) inset;
     opacity:0;transform:translateY(24px) scale(.97);
     animation:panelEnter 1s cubic-bezier(.16,1,.3,1) .35s forwards}
-  .panel::before{content:"";position:absolute;left:36px;right:36px;top:-1px;height:1px;
+  .panel::before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:1px;
     background:rgba(210,198,180,.72);transform:scaleX(0);transform-origin:left;
     animation:lineReveal .9s cubic-bezier(.16,1,.3,1) .6s forwards}
   .panel .t{font:10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#8e8a83}
-  .panel h3{font-size:25px;color:#e1ddd5;font-weight:400;margin:14px 0;letter-spacing:-.015em}
-  .panel p{font-size:16px;margin-bottom:13px;color:#aaa59d}
-  .panel .sig{color:#d2cec6;margin-top:20px;padding-top:16px;border-top:1px solid rgba(214,205,190,.14)}
-  .panel button{margin-top:22px;padding:10px 18px;border:1px solid rgba(214,205,190,.24);background:none;
-    color:#c9c4bb;font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  .panel h3{font-size:23px;color:#e1ddd5;font-weight:400;margin:14px 0;letter-spacing:-.015em}
+  .panel p{font-size:16px;line-height:1.62;margin-bottom:13px;color:#aaa59d}
+  .panel>button{margin-top:22px;width:100%;min-height:42px;padding:10px 18px;
+    border:1px solid rgba(214,205,190,.24);background:none;color:#c9c4bb;
+    font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
     transition:border-color .2s,color .2s,background .2s}
-  .panel button:hover{border-color:rgba(214,205,190,.6);color:#f0ece4;background:rgba(255,255,255,.035)}
-  .find.entry-state input{border-color:rgba(154,86,40,.55);box-shadow:0 0 0 3px rgba(154,86,40,.08)}
+  .panel>button:hover{border-color:rgba(214,205,190,.6);color:#f0ece4;background:rgba(255,255,255,.035)}
   @keyframes chamberFade{0%{background:rgba(4,5,6,0)}35%{background:rgba(4,5,6,.48)}100%{background:rgba(4,5,6,.94)}}
   @keyframes chamberAtmosphere{0%{opacity:0;transform:scale(1.18)}45%{opacity:.35}100%{opacity:1;transform:scale(1)}}
   @keyframes chamberTexture{0%{opacity:0}100%{opacity:.07}}
-  @keyframes panelEnter{0%{opacity:0;transform:translateY(24px) scale(.97);filter:blur(4px)}
-    55%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes panelEnter{0%{opacity:0;transform:translateY(24px) scale(.97);filter:blur(4px)}55%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
   @keyframes lineReveal{to{transform:scaleX(1)}}
   @media (prefers-reduced-motion:reduce){
     body.chamber header,body.chamber .intro,body.chamber #wire,body.chamber #archive,body.chamber footer{transition:none;transform:none}
@@ -143,64 +130,47 @@
     .veil.show{background:rgba(4,5,6,.94)}.veil::before{opacity:1}.panel{opacity:1;transform:none}.panel::before{transform:scaleX(1)}
   }
 
-  /* mobile-first layout */
-  html{font-size:16px}
-  body{overflow-x:hidden}
-  .col{width:100%;max-width:740px;padding-left:18px;padding-right:18px}
-  .mast{padding:28px 0 16px}
-  .mono{font-size:10px;letter-spacing:.24em}
-  .name{font-size:clamp(28px,9vw,46px);margin:9px 0 10px}
-  .tag{font-size:9px;letter-spacing:.11em}
-  .bar{gap:8px 16px;padding:11px 0 13px}
-  .bar a{padding:7px 0}
-  .find{min-height:32px}
-  .find input{font-size:16px}
-  .find.open input{width:min(52vw,180px)}
-  .intro{padding:30px 0 24px}
-  .intro p{font-size:18px;line-height:1.55}
-  .intro p+p{font-size:15px}
-  .controls{padding:20px 0 4px;align-items:flex-start}
-  .chips{gap:7px}
-  .chip{min-height:34px;padding:7px 10px;font-size:10px}
-  .count{padding-top:8px}
-  .entry{padding:23px 0}
-  .dline{font-size:10px}
-  .entry h2{font-size:21px;line-height:1.3}
-  .entry p{font-size:16px;line-height:1.62}
-  .entry .src{padding:8px 0 5px;margin-top:9px}
-  .pager{padding:22px 0 2px}
-  .pager button{min-height:40px;padding:10px 13px}
-  .block{padding:38px 0 6px;margin-top:32px}
-  .block h3{font-size:12px;margin-bottom:16px}
-  .ref{padding:17px 0;gap:10px}
-  .ref h4{font-size:17px}
-  .ref p{font-size:14.5px;line-height:1.55}
-  .ref a{display:inline-block;padding:7px 0}
-  footer{padding:24px 0 48px;margin-top:32px}
-  .veil{padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right))
-          max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
-  .panel{width:min(100%,520px);padding:27px 22px}
-  .panel h3{font-size:23px}
-  .panel p{font-size:16px;line-height:1.62}
-  .panel button{width:100%;min-height:42px}
+  .row{display:flex;gap:8px;margin-top:12px}
+  .row input{flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);color:inherit;font:12px var(--mono)}
+  .row button{border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;padding:10px 14px;font:10px var(--mono);cursor:pointer}
+  .stat{font:10px var(--mono);opacity:.6;margin-top:8px}
+  .msg{white-space:pre-wrap;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+
+  #slot:not(:empty){margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+  .sh{font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin:0 0 12px}
+  #slot label{display:block;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:11px}
+  #slot input,#slot textarea,#slot select{box-sizing:border-box;width:100%;margin-top:5px;
+    background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.14);color:inherit;
+    padding:9px;font:12px var(--mono);border-radius:0}
+  #slot textarea{resize:vertical}
+  #slot .go{width:100%;min-height:40px;margin-top:6px;border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.05);color:inherit;font:11px var(--mono);letter-spacing:.1em;
+    text-transform:uppercase;cursor:pointer}
+  #slot .go:hover{background:rgba(255,255,255,.09)}
+  #slot .lite{width:100%;min-height:36px;margin-top:10px;border:1px solid rgba(255,255,255,.16);
+    background:transparent;color:inherit;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .hand{margin-top:14px;padding:13px;border:1px solid rgba(154,120,60,.4);background:rgba(154,120,60,.07);font:12px/1.7 var(--mono)}
+  .hand b{color:#e6dfd2}
+  .lrow{display:grid;grid-template-columns:1fr auto;gap:10px;padding:9px 0;
+    border-top:1px solid rgba(255,255,255,.08);font:11px/1.5 var(--mono)}
+  .lrow:first-of-type{border-top:0}
+  .lrow button{font:10px var(--mono);padding:4px 8px;border:1px solid rgba(255,255,255,.16);
+    background:transparent;color:inherit;cursor:pointer}
+  .note{font:10px/1.5 var(--mono);opacity:.5;margin-top:10px}
 
   @media(min-width:700px){
     .col{padding-left:26px;padding-right:26px}
-    .mast{padding-top:36px}
-    .bar{gap:18px}
-    .intro{padding:40px 0 30px}
-    .intro p{font-size:19px}
+    .mast{padding-top:36px}.bar{gap:18px}
+    .intro{padding:40px 0 30px}.intro p{font-size:19px}
     .controls{align-items:baseline}
-    .entry{padding:28px 0}
-    .entry h2{font-size:23px}
-    .ref{grid-template-columns:1fr auto}
-    .ref a{padding:0}
-    .panel{padding:36px}
-    .panel button{width:auto}
+    .entry{padding:28px 0}.entry h2{font-size:23px}.dateline{font-size:11px}
+    .ref{grid-template-columns:1fr auto}.ref a{padding:0}
+    .panel{padding:36px}.panel::before{left:36px;right:36px}
+    .panel>button{width:auto}
   }
-
 </style>
-<style>.encrypt-tool{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}.encrypt-tool textarea,.encrypt-tool input{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:10px 11px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:inherit;font:12px/1.45 var(--mono);outline:none}.encrypt-tool textarea{resize:vertical}.encrypt-tool button{border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;padding:10px 14px;font:10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}.encrypt-note{font:10px/1.5 var(--mono);opacity:.45;margin-top:8px}.decrypt-row{display:flex;gap:8px;margin-top:12px}.decrypt-row input{flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:inherit;font:12px var(--mono)}.decrypt-row button{border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;padding:10px 14px;font:10px var(--mono)}.decrypt-status{font:10px var(--mono);opacity:.6;margin-top:8px}.decrypted-message{white-space:pre-wrap;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}</style></head>
+</head>
 <body id="top">
 
 <header>
@@ -217,7 +187,7 @@
       <input id="q" type="text" placeholder="Search" autocomplete="off" spellcheck="false" aria-label="Search the archive">
       <button id="findAction" aria-label="Search">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
       </button>
     </div>
   </div>
@@ -225,11 +195,9 @@
 
 <div class="col intro">
   <p>A running archive of technology news and research pertaining to chips and export controls, rare earths,
-     data center power, defense procurement, subsea cable, quantum, and the rules catching
-     up to all of it.</p>
+     data center power, defense procurement, subsea cable, quantum, and the rules catching up to all of it.</p>
 </div>
 
-<!-- optional feed -->
 <div class="col" id="wire">
   <h3>On the wire</h3>
   <ul id="wireList"></ul>
@@ -249,12 +217,11 @@
       <button class="chip" data-cat="infra">Infrastructure</button>
       <button class="chip" data-cat="quantum">Quantum</button>
     </div>
-    <div class="count" id="count"></div>
+    <div class="count" id="count">50 entries</div>
   </div>
 
   <div id="log">
 
-  <!-- ══════════ 1 ══════════ -->
   <div class="entry" data-cat="trade"><div class="dateline">3 Sept 2026 <b>/ Chips &amp; Trade</b></div>
     <h2>Four years of export curbs, and China built around the chokepoints</h2>
     <p>A new report traces how sweeping controls since 2022 — advanced compute, manufacturing
@@ -328,7 +295,6 @@
        safeguards alone weren't enough.</p>
     <a class="src" href="https://news4jax.com/news/local/2026/08/31/putnam-county-sheriff-pulls-plug-on-license-plate-readers-amid-privacy-debate" target="_blank" rel="noopener">Source</a></div>
 
-  <!-- ══════════ 2 ══════════ -->
   <div class="entry" data-cat="field"><div class="dateline">31 Aug 2026 <b>/ Field</b></div>
     <h2>Remote pilots, offered as a service</h2>
     <p>A firm launched remote staffing pairing pilot-management software with a bench of trained
@@ -405,7 +371,6 @@
        toward satellite-based quantum communication.</p>
     <a class="src" href="https://quantumcomputingreport.com/news/" target="_blank" rel="noopener">Source</a></div>
 
-  <!-- ══════════ 3 ══════════ -->
   <div class="entry" data-cat="quantum"><div class="dateline">19 Aug 2026 <b>/ Quantum</b></div>
     <h2>Two cryogenic modules, joined and cooled as one</h2>
     <p>New fridges designed to link hundreds of quantum chips were successfully joined and cooled
@@ -483,7 +448,6 @@
        what the fight is actually about.</p>
     <a class="src" href="https://www.michiganpublic.org/politics-government/2026-08-04/bipartisan-push-grows-for-stricter-rules-on-license-plate-reader-cameras-in-michigan" target="_blank" rel="noopener">Source</a></div>
 
-  <!-- ══════════ 4 ══════════ -->
   <div class="entry" data-cat="policy"><div class="dateline">2 Aug 2026 <b>/ Policy</b></div>
     <h2>California adds watermarking and latent-disclosure duties</h2>
     <p>New provisions layer provenance requirements for generative content on top of the state's
@@ -561,7 +525,6 @@
        small airframe.</p>
     <a class="src" href="https://www.nationaldefensemagazine.org/articles/2026/6/16/teledyne-flir-introduces-new-thermal-imaging-camera-to-europe" target="_blank" rel="noopener">Source</a></div>
 
-  <!-- ══════════ 5 ══════════ -->
   <div class="entry" data-cat="infra"><div class="dateline">31 May 2026 <b>/ Infrastructure</b></div>
     <h2>Three nations sign a pact to protect undersea cables</h2>
     <p>Officials described attacks on subsea infrastructure over the preceding eighteen months as
@@ -640,8 +603,8 @@
   <div class="none" id="none">Nothing in the archive matches that term.</div>
 
   <div class="pager" id="pager">
-    <button id="prev">← Newer</button>
-    <div class="where" id="where"></div>
+    <button id="prev" disabled="">← Newer</button>
+    <div class="where" id="where">Page 1 of 5</div>
     <button id="next">Older →</button>
   </div>
 
@@ -669,9 +632,9 @@
 
   <div class="block" id="about">
     <h3>About</h3>
-    <p class="body">Technology Roundup Guide is not a news service. Entries are
-       original summaries of publicly reported developments, linked to their sources, which
-       remain the property of their respective publishers.</p>
+    <p class="body">Technology Roundup Guide is not a news service. Entries are original summaries
+       of publicly reported developments, linked to their sources, which remain the property of
+       their respective publishers.</p>
     <p class="body">Inclusion isn't endorsement. Where an entry notes a limitation, it's
        describing what the public record supports. Dates reflect publication of the source; a
        few older entries are dated to the month.</p>
@@ -679,72 +642,26 @@
 
 </div>
 
-<footer><div class="col">Technology Roundup Guide · <span id="yr"></span></div></footer>
+<footer><div class="col">Technology Roundup Guide · <span id="yr">2026</span></div></footer>
 
 <div class="veil" id="overlay">
   <div class="panel">
     <div class="t" id="noticeLabel">Staff Notice</div>
     <h3 id="noticeTitle">Operations Update</h3>
     <div id="noticeBody"></div>
-    <div id="adminBody" hidden>
-      <div class="admin-head">Release Console</div>
-      <div class="admin-actions">
-        <button id="newRelease" type="button">New release</button>
-        <button id="exportSite" type="button">Export HTML</button>
-      </div>
-      <div id="adminSchedule"></div>
-      <div class="editor" id="editor" hidden>
-        <div class="admin-head" id="editorTitle">Edit release</div>
-        <div class="editor-grid">
-          <label>Date<input id="edDate" type="date"></label>
-          <label>Start<input id="edStart" type="time"></label>
-          <label>End<input id="edEnd" type="time"></label>
-          <label>Label<input id="edLabel" type="text" maxlength="80"></label>
-          <label class="wide">Title<input id="edTitle" type="text" maxlength="120"></label>
-        </div>
-        <textarea id="edCipher" rows="4" placeholder="Data"></textarea>
-        <div class="editor-actions">
-          <button id="saveRelease" type="button">Save release</button>
-          <button id="cancelEdit" type="button">Cancel</button>
-          <button id="deleteRelease" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="encrypt-tool">
-        <div class="admin-head">Local utility</div>
-        <textarea id="plainMessage" rows="6" placeholder="Enter plaintext here"></textarea>
-        <input id="encryptKey" type="password" autocomplete="off" placeholder="Message key">
-        <button id="encryptBtn" type="button">Build data</button>
-        <textarea id="cipherOutput" rows="5" readonly placeholder="Data appears here"></textarea>
-        <button id="copyCipher" type="button">Copy data</button>
-        <div class="encrypt-note">Plaintext is used only in this browser. It is not written into the exported site.</div>
-      </div>
-    </div>
+    <div id="slot"></div>
     <button id="close">Close</button>
   </div>
 </div>
 
-<style>
-  #adminBody{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
-  .admin-head{font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:12px}
-  .admin-actions,.editor-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
-  .admin-actions button,.editor-actions button,#copyCipher{font:11px var(--mono);padding:8px 10px;border:1px solid rgba(255,255,255,.16);background:transparent;color:inherit;cursor:pointer}
-  .admin-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.08);font:12px/1.45 var(--mono)}
-  .admin-row:first-of-type{border-top:0}.admin-date{opacity:.9}.admin-time{opacity:.55;white-space:nowrap}.admin-row button{font:10px var(--mono);padding:5px 8px;margin-left:6px}
-  .editor{margin:14px 0 18px;padding:14px;border:1px solid rgba(255,255,255,.12)}
-  .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.editor-grid label{font:10px var(--mono);opacity:.7}.editor-grid .wide{grid-column:1/-1}
-  .editor input,.editor textarea,.encrypt-tool textarea,.encrypt-tool input{box-sizing:border-box;width:100%;margin-top:5px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.14);color:inherit;padding:9px;font:12px var(--mono);border-radius:0}
-  .editor textarea{resize:vertical}.encrypt-tool{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
-  .encrypt-tool>button{font:11px var(--mono);padding:8px 10px;margin-top:8px;border:1px solid rgba(255,255,255,.16);background:transparent;color:inherit;cursor:pointer}
-  .encrypt-note{font:10px/1.5 var(--mono);opacity:.5;margin-top:9px}
-  @media(max-width:699px){.admin-row{grid-template-columns:1fr}.admin-time{white-space:normal}.editor-grid{grid-template-columns:1fr}.editor-grid .wide{grid-column:auto}}
-</style>
-
 <script>
-/* local configuration */
-const _a="cHJlY2lzZXJhcGlkZGlzY3JlZXQ=";
-const _cfg="W3siZCI6IjIwMjYtMDktMDMiLCJzIjoiMTk6MDAiLCJlIjoiMjA6MDAiLCJsIjoiU3RhZmYgTm90aWNlIiwidCI6Ik9wZXJhdGlvbnMgVXBkYXRlIiwicCI6IiJ9XQ==";
+const _d="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";
+const _cfg="W10=";
+const WIRE_QUERY='semiconductor export controls OR data center power OR subsea cable';
+const WIRE_MAX=6;
 const CLICKS=7, PER_PAGE=10;
 const RELEASES=JSON.parse(atob(_cfg));
+
 const find=document.getElementById('find'), q=document.getElementById('q'),
       btn=document.getElementById('findAction'), log=document.getElementById('log'),
       none=document.getElementById('none'), count=document.getElementById('count'),
@@ -754,200 +671,149 @@ const find=document.getElementById('find'), q=document.getElementById('q'),
       noticeLabel=document.getElementById('noticeLabel'),
       noticeTitle=document.getElementById('noticeTitle'),
       noticeBody=document.getElementById('noticeBody'),
-      adminBody=document.getElementById('adminBody');
+      slot=document.getElementById('slot');
 
-document.getElementById('yr').textContent = new Date().getFullYear();
-
+document.getElementById('yr').textContent=new Date().getFullYear();
 let page=0, cat='all', term='';
-let transitionTimer;
 
-function timeToMinutes(value){
-  const parts=value.split(':').map(Number);
-  return (parts[0] * 60) + (parts[1] || 0);
-}
-
-function dateKey(date=new Date()){
-  const y=date.getFullYear();
-  const m=String(date.getMonth()+1).padStart(2,'0');
-  const d=String(date.getDate()).padStart(2,'0');
-  return `${y}-${m}-${d}`;
+function toMin(v){const p=String(v).split(':').map(Number);return (p[0]*60)+(p[1]||0);}
+function dayKey(dt){return dt.toISOString().slice(0,10);}
+function activeItem(now){
+  now=now||new Date();
+  const k=dayKey(now), m=now.getUTCHours()*60+now.getUTCMinutes();
+  return RELEASES.find(r=>r.d===k && m>=toMin(r.s) && m<toMin(r.e));
 }
 
-function activeRelease(now=new Date()){
-  const today=dateKey(now);
-  const minutes=now.getHours()*60+now.getMinutes();
-  return RELEASES.find(item =>
-    item.d===today &&
-    minutes>=timeToMinutes(item.s) &&
-    minutes<timeToMinutes(item.e)
-  );
-}
-
-function showRelease(release){
-  noticeLabel.textContent=release.l||"Staff Notice"; noticeTitle.textContent=release.t||""; noticeBody.hidden=false; noticeBody.innerHTML='';
-  if(!release.p){const p=document.createElement('p');p.textContent='No message is currently loaded for this window.';noticeBody.appendChild(p);return;}
-  const p=document.createElement('p');p.textContent='Message available. Enter the message key to continue.';noticeBody.appendChild(p);
-  const row=document.createElement('div');row.className='decrypt-row';row.innerHTML='<input id="decryptKey" type="password" autocomplete="off" placeholder="Message key"><button id="decryptBtn" type="button">Decrypt</button>';noticeBody.appendChild(row);
-  const status=document.createElement('div');status.id='decryptStatus';status.className='decrypt-status';status.setAttribute('aria-live','polite');noticeBody.appendChild(status);
-  document.getElementById('decryptBtn').onclick=()=>decryptRelease(release,status,row);
-  document.getElementById('decryptKey').addEventListener('keydown',e=>{if(e.key==='Enter')decryptRelease(release,status,row);});
-}
-function showAdmin(){
-  noticeLabel.textContent='Archive Access'; noticeTitle.textContent='Release Console';
-  noticeBody.hidden=true; adminBody.hidden=false; renderAdmin();
-  document.body.classList.add('chamber'); veil.classList.add('show'); q.value=''; find.classList.remove('open','entry-state');
-}
-function renderAdmin(){
-  const schedule=document.getElementById('adminSchedule'); schedule.innerHTML='';
-  if(!RELEASES.length){const p=document.createElement('div');p.className='encrypt-note';p.textContent='No releases configured.';schedule.appendChild(p);return;}
-  RELEASES.forEach((item,i)=>{
-    const row=document.createElement('div'); row.className='admin-row';
-    const a=document.createElement('div'); a.className='admin-date'; a.textContent=(item.d||'—')+' · '+(item.t||'Untitled');
-    const b=document.createElement('div'); b.className='admin-time'; b.textContent=(item.s||'—')+'–'+(item.e||'—')+' · '+(item.p?'loaded':'empty');
-    const edit=document.createElement('button'); edit.type='button'; edit.textContent='Edit'; edit.onclick=()=>editRelease(i);
-    b.appendChild(edit); row.append(a,b); schedule.appendChild(row);
-  });
-}
-function editRelease(i){
-  const r=RELEASES[i]; document.getElementById('editor').hidden=false; document.getElementById('editorTitle').textContent='Edit release';
-  document.getElementById('edDate').value=r.d||''; document.getElementById('edStart').value=r.s||''; document.getElementById('edEnd').value=r.e||'';
-  document.getElementById('edLabel').value=r.l||''; document.getElementById('edTitle').value=r.t||''; document.getElementById('edCipher').value=r.p||'';
-  document.getElementById('editor').dataset.index=String(i); document.getElementById('deleteRelease').hidden=false;
-}
-function clearEditor(){document.getElementById('editor').hidden=true; document.getElementById('editor').dataset.index='';}
-function readEditor(){return {d:document.getElementById('edDate').value,s:document.getElementById('edStart').value,e:document.getElementById('edEnd').value,l:document.getElementById('edLabel').value.trim(),t:document.getElementById('edTitle').value.trim(),p:document.getElementById('edCipher').value.trim()};}
-function exportSite(){
-  const encoded=btoa(JSON.stringify(RELEASES));
-  let html=document.documentElement.outerHTML.replace(/const _cfg="[^"]*";/, 'const _cfg="'+encoded+'";');
-  try{
-    const blob=new Blob([html],{type:'text/html;charset=utf-8'}); const url=URL.createObjectURL(blob);
-    const a=document.createElement('a'); a.href=url; a.download='technology-roundup-guide.html'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
-  }catch(e){alert('Export failed.');}
-}
-async function decryptRelease(release,status,row){
-  status.textContent='Decrypting…'; try{const plain=await _u(release.p,document.getElementById('decryptKey').value); const box=document.createElement('div'); box.className='decrypted-message'; box.textContent=plain; row.replaceWith(box); status.textContent='';}catch(e){status.textContent='Unable to decrypt that message.';}
-}
 function _b(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
-function _c(bytes){let b='';for(let i=0;i<bytes.length;i+=0x8000)b+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(b);}
-async function _k(pass,salt){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBK'+'DF2',salt,iterations:250000,hash:'SHA-256'},base,{name:'AES'+'-GCM',length:256},false,['encrypt','decrypt']);}
-async function _x(plain,pass){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await _k(pass,salt);const data=await crypto.subtle.encrypt({name:'AES'+'-GCM',iv},key,new TextEncoder().encode(plain));const packed=new Uint8Array(28+data.byteLength);packed.set(salt);packed.set(iv,16);packed.set(new Uint8Array(data),28);return _c(packed);}
-async function _u(v,pass){const p=_b(v);if(p.length<29)throw Error('Invalid payload');const key=await _k(pass,p.slice(0,16));const plain=await crypto.subtle.decrypt({name:'AES'+'-GCM',iv:p.slice(16,28)},key,p.slice(28));return new TextDecoder().decode(plain);}
+function _c(x){let b='';for(let i=0;i<x.length;i+=0x8000)b+=String.fromCharCode(...x.subarray(i,i+0x8000));return btoa(b);}
+async function _k(p,s){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function _x(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),k=await _k(p,s);
+  const d=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(t));
+  const o=new Uint8Array(28+d.byteLength);o.set(s);o.set(iv,16);o.set(new Uint8Array(d),28);return _c(o);}
+async function _u(v,p){const a=_b(v);if(a.length<29)throw Error('x');const k=await _k(p,a.slice(0,16));
+  const d=await crypto.subtle.decrypt({name:'AES-GCM',iv:a.slice(16,28)},k,a.slice(28));return new TextDecoder().decode(d);}
 
-const open=(release)=>{
-  clearTimeout(transitionTimer);
-  showRelease(release);
-  noticeBody.hidden=false;
-  adminBody.hidden=true;
-  document.body.classList.add('chamber');
-  veil.classList.add('show');
-  q.value='';
-  find.classList.remove('open','entry-state');
-};
+function showItem(r){
+  noticeLabel.textContent=r.l||'Staff Notice'; noticeTitle.textContent=r.t||'';
+  noticeBody.hidden=false; noticeBody.innerHTML=''; slot.innerHTML='';
+  if(!r.p){const p=document.createElement('p');p.textContent='No message is currently loaded for this window.';noticeBody.appendChild(p);return;}
+  const p=document.createElement('p');p.textContent='Message available. Enter the message key to continue.';noticeBody.appendChild(p);
+  const row=document.createElement('div');row.className='row';
+  row.innerHTML='<input id="dk" type="password" autocomplete="off" placeholder="Message key"><button id="db" type="button">Open</button>';
+  noticeBody.appendChild(row);
+  const st=document.createElement('div');st.className='stat';st.setAttribute('aria-live','polite');noticeBody.appendChild(st);
+  const go=async()=>{st.textContent='Working…';
+    try{const t=await _u(r.p,document.getElementById('dk').value);
+      const box=document.createElement('div');box.className='msg';box.textContent=t;row.replaceWith(box);st.textContent='';}
+    catch(e){st.textContent='That key did not open it.';}};
+  document.getElementById('db').onclick=go;
+  document.getElementById('dk').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+}
 
-const close=()=>{
-  clearTimeout(transitionTimer);
-  veil.classList.remove('show');
-  document.body.classList.remove('chamber');
-  noticeBody.hidden=false;
-  adminBody.hidden=true;
-};
-
-document.getElementById('close').onclick=close;
-veil.onclick=e=>{if(e.target===veil)close();};
+const openVeil=r=>{showItem(r);document.body.classList.add('chamber');veil.classList.add('show');q.value='';find.classList.remove('open');};
+const closeVeil=()=>{veil.classList.remove('show');document.body.classList.remove('chamber');noticeBody.hidden=false;noticeBody.innerHTML='';slot.innerHTML='';};
+document.getElementById('close').onclick=closeVeil;
+veil.onclick=e=>{if(e.target===veil)closeVeil();};
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape')close();
-  if(e.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){
-    e.preventDefault(); find.classList.add('open'); q.focus();
-  }
+  if(e.key==='Escape')closeVeil();
+  if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();find.classList.add('open');q.focus();}
 });
 
-const ok = el => (cat==='all'||el.dataset.cat===cat) &&
-                 (!term||el.textContent.toLowerCase().includes(term));
+function buildPage(extra){
+  const doc=document.documentElement.cloneNode(true), $=s=>doc.querySelector(s);
+  $('body').classList.remove('chamber');
+  $('#overlay').classList.remove('show');
+  $('#slot').innerHTML='';
+  $('#noticeBody').innerHTML=''; $('#noticeBody').hidden=false;
+  $('#noticeLabel').textContent='Staff Notice';
+  $('#noticeTitle').textContent='Operations Update';
+  $('#find').className='find'; $('#q').value='';
+  $('#wireList').innerHTML=''; $('#wire').removeAttribute('style');
+  $('#pager').removeAttribute('style'); $('#none').removeAttribute('style');
+  doc.querySelectorAll('#log .entry').forEach(el=>el.removeAttribute('style'));
+  let html='<!DOCTYPE html>\n'+doc.outerHTML;
+  html=html.replace(/const _cfg="[^"]*";/,'const _cfg="'+btoa(JSON.stringify(RELEASES))+'";');
+  return extra?extra(html):html;
+}
+function download(html,name){
+  const b=new Blob([html],{type:'text/html;charset=utf-8'}), u=URL.createObjectURL(b);
+  const a=document.createElement('a');a.href=u;a.download=name||'technology-roundup-guide.html';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+const CTX={doc:document, rel:RELEASES, enc:_x, build:buildPage, save:download, toMin:toMin};
 
 function render(){
-  const hits = all.filter(ok);
-  const pages = Math.max(1, Math.ceil(hits.length/PER_PAGE));
-  if (page > pages-1) page = pages-1;
+  const hits=all.filter(el=>(cat==='all'||el.dataset.cat===cat)&&(!term||el.textContent.toLowerCase().includes(term)));
+  const pages=Math.max(1,Math.ceil(hits.length/PER_PAGE));
+  if(page>pages-1)page=pages-1;
   all.forEach(el=>el.style.display='none');
-  if (term){ hits.forEach(el=>el.style.display=''); }
-  else { hits.slice(page*PER_PAGE,(page+1)*PER_PAGE).forEach(el=>el.style.display=''); }
-  count.textContent = hits.length + (hits.length===1?' entry':' entries');
-  none.style.display = hits.length ? 'none':'block';
-  const paged = hits.length>PER_PAGE && !term;
-  pager.style.display = paged ? 'flex':'none';
-  if(paged){ where.textContent='Page '+(page+1)+' of '+pages;
-             prev.disabled=page===0; next.disabled=page>=pages-1; }
+  if(term)hits.forEach(el=>el.style.display='');
+  else hits.slice(page*PER_PAGE,(page+1)*PER_PAGE).forEach(el=>el.style.display='');
+  count.textContent=hits.length+(hits.length===1?' entry':' entries');
+  none.style.display=hits.length?'none':'block';
+  const paged=hits.length>PER_PAGE&&!term;
+  pager.style.display=paged?'flex':'none';
+  if(paged){where.textContent='Page '+(page+1)+' of '+pages;prev.disabled=page===0;next.disabled=page>=pages-1;}
 }
 render();
-
 prev.onclick=()=>{page--;render();document.getElementById('archive').scrollIntoView();};
 next.onclick=()=>{page++;render();document.getElementById('archive').scrollIntoView();};
 
 function search(){
   const raw=q.value.trim();
-  if(raw.toLowerCase()===atob(_a).toLowerCase()){
-    term=''; page=0; cat='all';
-    document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
-    render();
-    showAdmin();
-    return;
-  }
   term=raw.toLowerCase(); page=0; cat='all';
   document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
   render();
+  if(!raw||!_d)return;
+  _u(_d,raw).then(src=>{
+    term='';page=0;render();
+    noticeLabel.textContent='Archive Access';noticeTitle.textContent='Release Console';
+    noticeBody.hidden=true;noticeBody.innerHTML='';
+    document.body.classList.add('chamber');veil.classList.add('show');
+    q.value='';find.classList.remove('open');
+    new Function('ctx',src)(CTX);
+  }).catch(()=>{});
 }
-btn.onclick=()=>{ if(!find.classList.contains('open')){find.classList.add('open');q.focus();return;}
-                  if(q.value.trim())search(); else find.classList.remove('open'); };
+btn.onclick=()=>{if(!find.classList.contains('open')){find.classList.add('open');q.focus();return;}
+  if(q.value.trim())search();else find.classList.remove('open');};
 q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
 q.addEventListener('input',()=>{if(!q.value.trim()){term='';page=0;render();}});
 q.addEventListener('blur',()=>{if(!q.value.trim())find.classList.remove('open');});
-document.getElementById('encryptBtn').onclick=async()=>{const plain=document.getElementById('plainMessage').value,key=document.getElementById('encryptKey').value,out=document.getElementById('cipherOutput');if(!plain.trim()||!key){out.value='Enter both a message and an encryption key.';return;}out.value='Encrypting…';try{out.value=await _x(plain,key);}catch(e){out.value='Encryption failed.';}};
-document.getElementById('copyCipher').onclick=async()=>{const v=document.getElementById('cipherOutput').value;if(!v)return;try{await navigator.clipboard.writeText(v);document.getElementById('copyCipher').textContent='Copied';setTimeout(()=>document.getElementById('copyCipher').textContent='Copy data',1200);}catch(e){document.getElementById('cipherOutput').select();document.execCommand('copy');}};
-document.getElementById('newRelease').onclick=()=>{document.getElementById('editor').hidden=false;document.getElementById('editorTitle').textContent='New release';['edDate','edStart','edEnd','edLabel','edTitle','edCipher'].forEach(id=>document.getElementById(id).value='');document.getElementById('editor').dataset.index='new';document.getElementById('deleteRelease').hidden=true;};
-document.getElementById('cancelEdit').onclick=clearEditor;
-document.getElementById('saveRelease').onclick=()=>{const r=readEditor();if(!r.d||!r.s||!r.e){alert('Date, start time, and end time are required.');return;}const i=document.getElementById('editor').dataset.index;if(i==='new')RELEASES.push(r);else RELEASES[Number(i)]=r;clearEditor();renderAdmin();};
-document.getElementById('deleteRelease').onclick=()=>{const i=Number(document.getElementById('editor').dataset.index);if(!Number.isInteger(i))return;if(confirm('Delete this release?')){RELEASES.splice(i,1);clearEditor();renderAdmin();}};
-document.getElementById('exportSite').onclick=exportSite;
 
 document.querySelectorAll('.chip').forEach(chip=>{
-  chip.onclick=()=>{
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-    chip.classList.add('on');
-    cat=chip.dataset.cat; term=''; q.value=''; page=0; render();
-  };
+  chip.onclick=()=>{document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    chip.classList.add('on');cat=chip.dataset.cat;term='';q.value='';page=0;render();};
 });
 
-let c=0,t;
+let cc=0,ct;
 document.getElementById('mark').onclick=()=>{
-  clearTimeout(t); const release=activeRelease(); if(!release){c=0;return;}
-  if(++c>=CLICKS){c=0;open(release);} t=setTimeout(()=>c=0,1200);
+  clearTimeout(ct);const r=activeItem();if(!r){cc=0;return;}
+  if(++cc>=CLICKS){cc=0;openVeil(r);}ct=setTimeout(()=>cc=0,1200);
 };
-
-/* ---------- optional feed ---------- */
 
 (async function wire(){
   try{
-    const feed  = 'https://news.google.com/rss/search?q=' +
-                  encodeURIComponent(WIRE_QUERY + ' when:7d') + '&hl=en-US&gl=US&ceid=US:en';
-    const proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(feed);
-    const res   = await fetch(proxy);
-    if(!res.ok) return;
-    const xml   = new DOMParser().parseFromString(await res.text(),'text/xml');
-    const items = [...xml.querySelectorAll('item')].slice(0, WIRE_MAX);
-    if(!items.length) return;
-    const ul = document.getElementById('wireList');
+    const feed='https://news.google.com/rss/search?q='+encodeURIComponent(WIRE_QUERY+' when:7d')+'&hl=en-US&gl=US&ceid=US:en';
+    const res=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(feed));
+    if(!res.ok)return;
+    const xml=new DOMParser().parseFromString(await res.text(),'text/xml');
+    const items=[...xml.querySelectorAll('item')].slice(0,WIRE_MAX);
+    if(!items.length)return;
+    const ul=document.getElementById('wireList');
     items.forEach(it=>{
-      const title = it.querySelector('title')?.textContent || '';
-      const link  = it.querySelector('link')?.textContent || '#';
-      if(!title) return;
-      const li = document.createElement('li');
-      const a  = document.createElement('a');
-      a.href = link; a.target='_blank'; a.rel='noopener'; a.textContent = title;
-      li.appendChild(a); ul.appendChild(li);
+      const title=it.querySelector('title')?.textContent||'';
+      const link=it.querySelector('link')?.textContent||'#';
+      if(!title)return;
+      const li=document.createElement('li'),a=document.createElement('a');
+      a.href=link;a.target='_blank';a.rel='noopener';a.textContent=title;
+      li.appendChild(a);ul.appendChild(li);
     });
-    if(ul.children.length) document.getElementById('wire').style.display='block';
-  }catch(e){ /* stay hidden */ }
+    if(ul.children.length)document.getElementById('wire').style.display='block';
+  }catch(e){}
 })();
-</script>
-</body>
-</html>
+
+
+</script><div style="position: fixed; left: 0px; right: 0px; bottom: 0px; z-index: 999; background: rgb(17, 17, 17); padding: 12px; display: flex; gap: 8px;"><input id="sPhrase" type="text" placeholder="Choose your phrase" style="flex:1;padding:10px;font-size:16px"><button id="sGo" style="padding:10px 14px">Set up</button></div>
+
+</body></html>

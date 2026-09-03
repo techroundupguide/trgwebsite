@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fbfaf7">
+<meta name="theme-color" content="#f1f3f4">
 <title>Technology Roundup Guide</title>
 <meta name="description" content="A dated archive of developments in technology, defense, policy, energy and trade — summarized and sourced.">
 <style>
@@ -170,6 +170,85 @@
     .ref{grid-template-columns:1fr auto}.ref a{padding:0}
     .panel{padding:36px}.panel::before{left:36px;right:36px}
     .panel>button{width:auto}
+  }
+
+  /* ---------- news layout ---------- */
+  body{background:#f1f3f4;color:#3c4043;
+    font-family:Roboto,Arial,-apple-system,system-ui,sans-serif;font-size:16px;line-height:1.5}
+  .col{max-width:840px}
+  header{background:#fff;border-bottom:1px solid #dadce0}
+  .mast{padding:18px 0 10px;text-align:left}
+  .mono{display:none}
+  .name{font-size:clamp(21px,5vw,28px);font-weight:500;color:#202124;letter-spacing:0;margin:0 0 3px}
+  .tag{font-family:inherit;font-size:12px;letter-spacing:0;text-transform:none;color:#5f6368;line-height:1.5}
+  .tag .sec{display:inline-block;padding:12px 10px;margin:-12px -6px;
+    cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .bar{background:#fff;border-top:1px solid #f1f3f4;justify-content:flex-start;gap:6px 20px;
+    font-family:inherit;font-size:14px;letter-spacing:0;text-transform:none;color:#5f6368}
+  .bar a:hover{color:#1a73e8}
+  .find.open input{border:1px solid #dadce0;border-radius:4px;font-family:inherit}
+  .find button:hover{color:#1a73e8}
+  .intro{background:#fff;border:1px solid #dadce0;border-radius:8px;
+    padding:16px;margin:16px auto 0;max-width:840px;width:calc(100% - 36px)}
+  .intro p{font-size:15px;line-height:1.5;color:#5f6368}
+  #wire{background:#fff;border:1px solid #dadce0;border-radius:8px;padding:16px;margin-top:16px}
+  #wire h3{font-family:inherit;font-size:15px;font-weight:500;color:#202124;
+    letter-spacing:0;text-transform:none;margin-bottom:8px}
+  #wire li{border-bottom:1px solid #f1f3f4;padding:11px 0;font-size:15px;line-height:1.4}
+  #wire li:last-child{border-bottom:0}
+  #wire li a{border:0;padding:0;color:#202124}
+  #wire li a:hover{color:#1a73e8;text-decoration:underline;border:0}
+  #wire .via{font-family:inherit;font-size:12px;letter-spacing:0;text-transform:none;color:#80868b;margin-top:12px}
+  #archive{padding-top:0}
+  .controls{padding:16px 0 10px}
+  .chip{border:1px solid #dadce0;border-radius:16px;background:#fff;color:#5f6368;
+    font-family:inherit;font-size:13px;letter-spacing:0;text-transform:none;padding:7px 14px}
+  .chip:hover{border-color:#bdc1c6;color:#202124}
+  .chip.on{background:#e8f0fe;color:#1967d2;border-color:#d2e3fc}
+  .count{font-family:inherit;font-size:13px;letter-spacing:0;color:#80868b;padding-top:9px}
+  .entry{background:#fff;border:1px solid #dadce0;border-radius:8px;padding:16px;margin-bottom:10px}
+  .dateline{font-family:inherit;font-size:12px;letter-spacing:0;text-transform:none;
+    color:#5f6368;margin-bottom:5px}
+  .dateline b{color:#1a73e8;font-weight:500}
+  .entry h2{font-size:18px;font-weight:400;line-height:1.35;color:#202124;letter-spacing:0;margin-bottom:7px}
+  .entry p{font-size:14px;line-height:1.5;color:#5f6368}
+  .entry .src{font-family:inherit;font-size:13px;letter-spacing:0;text-transform:none;
+    color:#1a73e8;border:0;padding:6px 0 0;margin-top:6px}
+  .entry .src:hover{text-decoration:underline;border:0}
+  .none{background:#fff;border:1px solid #dadce0;border-radius:8px;padding:24px;
+    font-size:15px;color:#5f6368}
+  .pager button{border:1px solid #dadce0;border-radius:18px;background:#fff;color:#1a73e8;
+    font-family:inherit;font-size:13px;letter-spacing:0;text-transform:none}
+  .pager button:hover:not(:disabled){border-color:#1a73e8;background:#f8fbff}
+  .pager button:disabled{color:#bdc1c6;border-color:#e8eaed}
+  .pager .where{font-family:inherit;font-size:13px;letter-spacing:0;text-transform:none;color:#80868b}
+  .block{background:#fff;border:1px solid #dadce0;border-radius:8px;padding:16px 16px 4px;margin-top:16px}
+  .block h3{font-family:inherit;font-size:15px;font-weight:500;color:#202124;
+    letter-spacing:0;text-transform:none;margin-bottom:6px}
+  .ref{border-bottom:1px solid #f1f3f4;padding:14px 0}
+  .ref:last-child{border-bottom:0}
+  .ref h4{font-size:16px;font-weight:400;color:#202124}
+  .ref p{font-size:14px;color:#5f6368}
+  .ref a{font-family:inherit;font-size:13px;letter-spacing:0;text-transform:none;color:#1a73e8}
+  .block p.body{font-size:14px;line-height:1.55;color:#5f6368;margin-bottom:12px}
+  footer{background:transparent;border:0;font-family:inherit;font-size:12px;
+    letter-spacing:0;color:#80868b;padding:22px 0 40px;margin-top:8px}
+
+  #toTop{position:fixed;right:16px;bottom:16px;z-index:100;
+    width:44px;height:44px;border:1px solid #dadce0;border-radius:50%;
+    background:#fff;color:#5f6368;font-size:19px;line-height:1;cursor:pointer;
+    box-shadow:0 1px 4px rgba(60,64,67,.28);
+    opacity:0;pointer-events:none;transition:opacity .2s,color .2s,border-color .2s;
+    -webkit-tap-highlight-color:transparent}
+  #toTop.on{opacity:1;pointer-events:auto}
+  #toTop:hover{color:#1a73e8;border-color:#1a73e8}
+  body.chamber #toTop{opacity:0;pointer-events:none}
+
+  @media(min-width:700px){
+    .mast{padding-top:22px}
+    .intro{width:auto;padding:18px}
+    .entry{padding:18px}.entry h2{font-size:19px}.dateline{font-size:12px}
+    #toTop{right:24px;bottom:24px}
   }
 </style>
 </head>
@@ -646,6 +725,8 @@
 
 <footer><div class="col">Technology Roundup Guide · <span id="yr">2026</span></div></footer>
 
+<button id="toTop" type="button" aria-label="Back to top">↑</button>
+
 <div class="veil" id="overlay">
   <div class="panel">
     <div class="t" id="noticeLabel">Staff Notice</div>
@@ -673,6 +754,7 @@ const find=document.getElementById('find'), q=document.getElementById('q'),
       noticeLabel=document.getElementById('noticeLabel'),
       noticeTitle=document.getElementById('noticeTitle'),
       noticeBody=document.getElementById('noticeBody'),
+      toTop=document.getElementById('toTop'),
       slot=document.getElementById('slot');
 
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -722,6 +804,9 @@ document.addEventListener('keydown',e=>{
   if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();find.classList.add('open');q.focus();}
 });
 
+toTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+window.addEventListener('scroll',()=>{toTop.classList.toggle('on',window.scrollY>400);},{passive:true});
+
 function buildPage(extra){
   const doc=document.documentElement.cloneNode(true), $=s=>doc.querySelector(s);
   $('body').classList.remove('chamber');
@@ -733,13 +818,15 @@ function buildPage(extra){
   $('#find').className='find'; $('#q').value='';
   $('#wireList').innerHTML=''; $('#wire').removeAttribute('style');
   $('#pager').removeAttribute('style'); $('#none').removeAttribute('style');
+  $('#toTop').className='';
+  $('#count').textContent=''; $('#where').textContent='';
   doc.querySelectorAll('#log .entry').forEach(el=>el.removeAttribute('style'));
   let html='<!DOCTYPE html>\n'+doc.outerHTML;
   html=html.replace(/const _cfg="[^"]*";/,'const _cfg="'+btoa(JSON.stringify(RELEASES))+'";');
   return extra?extra(html):html;
 }
 
-  function download(html,name){
+function download(html,name){
   const b=new Blob([html],{type:'text/html;charset=utf-8'}), u=URL.createObjectURL(b);
   const a=document.createElement('a');a.href=u;a.download=name||'index.html';
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
@@ -793,7 +880,7 @@ document.querySelectorAll('.chip').forEach(chip=>{
 let cc=0,ct;
 document.getElementById('mark').onclick=()=>{
   clearTimeout(ct);const r=activeItem();if(!r){cc=0;return;}
-  if(++cc>=CLICKS){cc=0;openVeil(r);}ct=setTimeout(()=>cc=0,1200);
+  if(++cc>=CLICKS){cc=0;openVeil(r);}ct=setTimeout(()=>cc=0,2500);
 };
 
 (async function wire(){
@@ -817,6 +904,5 @@ document.getElementById('mark').onclick=()=>{
   }catch(e){}
 })();
 </script>
-
 
 </body></html>

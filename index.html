@@ -736,11 +736,13 @@ function buildPage(extra){
   html=html.replace(/const _cfg="[^"]*";/,'const _cfg="'+btoa(JSON.stringify(RELEASES))+'";');
   return extra?extra(html):html;
 }
-function download(html,name){
+
+  function download(html,name){
   const b=new Blob([html],{type:'text/html;charset=utf-8'}), u=URL.createObjectURL(b);
-  const a=document.createElement('a');a.href=u;a.download=name||'technology-roundup-guide.html';
+  const a=document.createElement('a');a.href=u;a.download=name||'index.html';
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
 }
+
 const CTX={doc:document, rel:RELEASES, enc:_x, build:buildPage, save:download, toMin:toMin};
 
 function render(){

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#fbfaf7">
 <title>Technology Roundup Guide</title>
 <meta name="description" content="A dated archive of developments in technology, defense, policy, energy and trade — summarized and sourced.">
@@ -97,7 +97,7 @@
   footer{border-top:1px solid var(--line);padding:28px 0 60px;
     font:11px/1.9 var(--mono);letter-spacing:.08em;color:var(--dim);text-align:center;margin-top:42px}
 
-  /* ---------- secret chamber ---------- */
+  /* ---------- alternate view ---------- */
   body.chamber{background:#0c0d0e;color:#b8b3aa}
   body.chamber header,body.chamber .intro,body.chamber #wire,body.chamber #archive,body.chamber footer{
     opacity:0;transform:scale(.985);pointer-events:none;
@@ -130,7 +130,7 @@
     color:#c9c4bb;font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
     transition:border-color .2s,color .2s,background .2s}
   .panel button:hover{border-color:rgba(214,205,190,.6);color:#f0ece4;background:rgba(255,255,255,.035)}
-  .find.secret-entry input{border-color:rgba(154,86,40,.55);box-shadow:0 0 0 3px rgba(154,86,40,.08)}
+  .find.entry-state input{border-color:rgba(154,86,40,.55);box-shadow:0 0 0 3px rgba(154,86,40,.08)}
   @keyframes chamberFade{0%{background:rgba(4,5,6,0)}35%{background:rgba(4,5,6,.48)}100%{background:rgba(4,5,6,.94)}}
   @keyframes chamberAtmosphere{0%{opacity:0;transform:scale(1.18)}45%{opacity:.35}100%{opacity:1;transform:scale(1)}}
   @keyframes chamberTexture{0%{opacity:0}100%{opacity:.07}}
@@ -142,15 +142,72 @@
     .veil.show,.veil::before,.veil::after,.panel,.panel::before{animation:none}
     .veil.show{background:rgba(4,5,6,.94)}.veil::before{opacity:1}.panel{opacity:1;transform:none}.panel::before{transform:scaleX(1)}
   }
+
+  /* mobile-first layout */
+  html{font-size:16px}
+  body{overflow-x:hidden}
+  .col{width:100%;max-width:740px;padding-left:18px;padding-right:18px}
+  .mast{padding:28px 0 16px}
+  .mono{font-size:10px;letter-spacing:.24em}
+  .name{font-size:clamp(28px,9vw,46px);margin:9px 0 10px}
+  .tag{font-size:9px;letter-spacing:.11em}
+  .bar{gap:8px 16px;padding:11px 0 13px}
+  .bar a{padding:7px 0}
+  .find{min-height:32px}
+  .find input{font-size:16px}
+  .find.open input{width:min(52vw,180px)}
+  .intro{padding:30px 0 24px}
+  .intro p{font-size:18px;line-height:1.55}
+  .intro p+p{font-size:15px}
+  .controls{padding:20px 0 4px;align-items:flex-start}
+  .chips{gap:7px}
+  .chip{min-height:34px;padding:7px 10px;font-size:10px}
+  .count{padding-top:8px}
+  .entry{padding:23px 0}
+  .dateline{font-size:10px}
+  .entry h2{font-size:21px;line-height:1.3}
+  .entry p{font-size:16px;line-height:1.62}
+  .entry .src{padding:8px 0 5px;margin-top:9px}
+  .pager{padding:22px 0 2px}
+  .pager button{min-height:40px;padding:10px 13px}
+  .block{padding:38px 0 6px;margin-top:32px}
+  .block h3{font-size:12px;margin-bottom:16px}
+  .ref{padding:17px 0;gap:10px}
+  .ref h4{font-size:17px}
+  .ref p{font-size:14.5px;line-height:1.55}
+  .ref a{display:inline-block;padding:7px 0}
+  footer{padding:24px 0 48px;margin-top:32px}
+  .veil{padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right))
+          max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
+  .panel{width:min(100%,520px);padding:27px 22px}
+  .panel h3{font-size:23px}
+  .panel p{font-size:16px;line-height:1.62}
+  .panel button{width:100%;min-height:42px}
+
+  @media(min-width:700px){
+    .col{padding-left:26px;padding-right:26px}
+    .mast{padding-top:36px}
+    .bar{gap:18px}
+    .intro{padding:40px 0 30px}
+    .intro p{font-size:19px}
+    .controls{align-items:baseline}
+    .entry{padding:28px 0}
+    .entry h2{font-size:23px}
+    .ref{grid-template-columns:1fr auto}
+    .ref a{padding:0}
+    .panel{padding:36px}
+    .panel button{width:auto}
+  }
+
 </style>
-</head>
+<style>.encrypt-tool{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}.encrypt-tool textarea,.encrypt-tool input{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:10px 11px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:inherit;font:12px/1.45 var(--mono);outline:none}.encrypt-tool textarea{resize:vertical}.encrypt-tool button{border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;padding:10px 14px;font:10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}.encrypt-note{font:10px/1.5 var(--mono);opacity:.45;margin-top:8px}.decrypt-row{display:flex;gap:8px;margin-top:12px}.decrypt-row input{flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:inherit;font:12px var(--mono)}.decrypt-row button{border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;padding:10px 14px;font:10px var(--mono)}.decrypt-status{font:10px var(--mono);opacity:.6;margin-top:8px}.decrypted-message{white-space:pre-wrap;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}</style></head>
 <body id="top">
 
 <header>
   <div class="col mast">
     <div class="mono">Est. 2026</div>
     <div class="name"><a href="#top">Technology Roundup&nbsp;Guide</a></div>
-    <div class="tag">A dated archive <span class="sec" id="egg">§</span> techroundupguide.com</div>
+    <div class="tag">A dated archive <span class="sec" id="mark">§</span> techroundupguide.com</div>
   </div>
   <div class="col bar">
     <a href="#archive">Archive</a>
@@ -158,7 +215,7 @@
     <a href="#about">About</a>
     <div class="find" id="find">
       <input id="q" type="text" placeholder="Search" autocomplete="off" spellcheck="false" aria-label="Search the archive">
-      <button id="findBtn" aria-label="Search">
+      <button id="findAction" aria-label="Search">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </button>
@@ -172,7 +229,7 @@
      up to all of it.</p>
 </div>
 
-<!-- live wire: populated by JS, hidden entirely if the fetch fails -->
+<!-- optional feed -->
 <div class="col" id="wire">
   <h3>On the wire</h3>
   <ul id="wireList"></ul>
@@ -624,61 +681,148 @@
 
 <footer><div class="col">Technology Roundup Guide · <span id="yr"></span></div></footer>
 
-<div class="veil" id="veil">
+<div class="veil" id="overlay">
   <div class="panel">
-    <div class="t">Staff Notice</div>
-    <h3>Operations Update</h3>
-    <p>This channel is unsecure, proceed with caution. The contents below remain unverified except by the intended recipient per standard protocol for message receipt. </p>
-    <p class="sig">Meeting confirmed for Friday afternoon. Patrols should be limited. Meet me at the marina. Don't bring any mutual friends.</p>
+    <div class="t" id="noticeLabel">Staff Notice</div>
+    <h3 id="noticeTitle">Operations Update</h3>
+    <div id="noticeBody"></div>
+    <div id="adminBody" hidden>
+      <div class="admin-head">Release Schedule</div>
+      <div id="adminSchedule"></div>
+      <div class="encrypt-tool">
+        <div class="admin-head">Offline Encryption</div>
+        <textarea id="plainMessage" rows="6" placeholder="Enter plaintext here"></textarea>
+        <input id="encryptKey" type="password" autocomplete="off" placeholder="Encryption key">
+        <button id="encryptBtn" type="button">Encrypt locally</button>
+        <textarea id="cipherOutput" rows="5" readonly placeholder="Ciphertext appears here"></textarea>
+        <div class="encrypt-note">Copy the ciphertext into the release record. Plaintext stays in this browser.</div>
+      </div>
+    </div>
     <button id="close">Close</button>
   </div>
 </div>
 
+<style>
+  #adminBody{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+  .admin-head{font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:12px}
+  .admin-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:10px 0;border-top:1px solid rgba(255,255,255,.08);font:12px/1.5 var(--mono)}
+  .admin-row:first-of-type{border-top:0}
+  .admin-date{opacity:.85}.admin-time{opacity:.55;white-space:nowrap}
+  @media(max-width:699px){.admin-row{grid-template-columns:1fr;gap:3px}.admin-time{white-space:normal}}
+</style>
+
 <script>
-/* ================= CONFIG ================= */
-const SECRET   = "casino";   // typed into the search field
-const CLICKS   = 7;              // backup: click the § in the masthead
-const PER_PAGE = 10;
-const WIRE_QUERY = "semiconductor OR drone OR \"data center\" OR \"rare earth\" OR quantum";
-const WIRE_MAX   = 6;
+/* ================= SETTINGS ================= */
+const ADMIN_KEY = "preciserapiddiscreet";
+const CLICKS    = 7;
+const PER_PAGE  = 10;
+
+/*
+  Release schedule — edit this section only.
+  Times use the visitor's local browser time.
+
+  Add one entry per day. To make an unexpected message available,
+  add another release with its own date and time window.
+*/
+const DAILY_WINDOW = { start: "16:00", end: "16:30" };
+
+const RELEASES = [
+  { date:"2026-09-03", start:DAILY_WINDOW.start, end:DAILY_WINDOW.end,
+    label:"Staff Notice", title:"Operations Update", ciphertext:"" }
+];
 /* ========================================== */
 
 const find=document.getElementById('find'), q=document.getElementById('q'),
-      btn=document.getElementById('findBtn'), log=document.getElementById('log'),
+      btn=document.getElementById('findAction'), log=document.getElementById('log'),
       none=document.getElementById('none'), count=document.getElementById('count'),
       pager=document.getElementById('pager'), where=document.getElementById('where'),
       prev=document.getElementById('prev'), next=document.getElementById('next'),
-      veil=document.getElementById('veil'), all=[...log.querySelectorAll('.entry')];
+      veil=document.getElementById('overlay'), all=[...log.querySelectorAll('.entry')],
+      noticeLabel=document.getElementById('noticeLabel'),
+      noticeTitle=document.getElementById('noticeTitle'),
+      noticeBody=document.getElementById('noticeBody'),
+      adminBody=document.getElementById('adminBody');
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 let page=0, cat='all', term='';
-  let chamberTimer;
+let transitionTimer;
 
-  const open=()=>{
-    clearTimeout(chamberTimer);
-    document.body.classList.add('chamber');
-    veil.classList.add('show');
-    q.value='';
-    find.classList.remove('open','secret-entry');
-  };
+function timeToMinutes(value){
+  const parts=value.split(':').map(Number);
+  return (parts[0] * 60) + (parts[1] || 0);
+}
 
-  const close=()=>{
-    clearTimeout(chamberTimer);
-    veil.classList.remove('show');
-    document.body.classList.remove('chamber');
-  };
+function dateKey(date=new Date()){
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,'0');
+  const d=String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
 
-  document.getElementById('close').onclick=close;
-  veil.onclick=e=>{if(e.target===veil)close();};
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape')close();
-    if(e.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){
-      e.preventDefault(); find.classList.add('open'); q.focus();
-    }
-  });
+function activeRelease(now=new Date()){
+  const today=dateKey(now);
+  const minutes=now.getHours()*60+now.getMinutes();
+  return RELEASES.find(item =>
+    item.date===today &&
+    minutes>=timeToMinutes(item.start) &&
+    minutes<timeToMinutes(item.end)
+  );
+}
 
-  const ok = el => (cat==='all'||el.dataset.cat===cat) &&
+function showRelease(release){
+  noticeLabel.textContent=release.label||"Staff Notice"; noticeTitle.textContent=release.title||""; noticeBody.hidden=false; noticeBody.innerHTML='';
+  if(!release.ciphertext){const p=document.createElement('p');p.textContent='No message is currently loaded for this window.';noticeBody.appendChild(p);return;}
+  const p=document.createElement('p');p.textContent='Message available. Enter the message key to continue.';noticeBody.appendChild(p);
+  const row=document.createElement('div');row.className='decrypt-row';row.innerHTML='<input id="decryptKey" type="password" autocomplete="off" placeholder="Message key"><button id="decryptBtn" type="button">Decrypt</button>';noticeBody.appendChild(row);
+  const status=document.createElement('div');status.id='decryptStatus';status.className='decrypt-status';status.setAttribute('aria-live','polite');noticeBody.appendChild(status);
+  document.getElementById('decryptBtn').onclick=()=>decryptRelease(release,status,row);
+  document.getElementById('decryptKey').addEventListener('keydown',e=>{if(e.key==='Enter')decryptRelease(release,status,row);});
+}
+function showAdmin(){
+  noticeLabel.textContent='Archive Access';noticeTitle.textContent='Release Schedule';noticeBody.hidden=true;adminBody.hidden=false;
+  const schedule=document.getElementById('adminSchedule');schedule.innerHTML='';
+  RELEASES.forEach(item=>{const row=document.createElement('div');row.className='admin-row';const a=document.createElement('div');a.className='admin-date';a.textContent=(item.date||'—')+' · '+(item.title||'Untitled');const b=document.createElement('div');b.className='admin-time';b.textContent=(item.start||'—')+'–'+(item.end||'—')+' · '+(item.ciphertext?'encrypted':'empty');row.append(a,b);schedule.appendChild(row);});
+  document.body.classList.add('chamber');veil.classList.add('show');q.value='';find.classList.remove('open','entry-state');
+}
+async function decryptRelease(release,status,row){
+  status.textContent='Decrypting…';try{const plain=await decryptText(release.ciphertext,document.getElementById('decryptKey').value);const box=document.createElement('div');box.className='decrypted-message';box.textContent=plain;row.replaceWith(box);status.textContent='';}catch(e){status.textContent='Unable to decrypt that message.';}
+}
+function b64ToBytes(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
+function bytesToB64(bytes){let b='';for(let i=0;i<bytes.length;i+=0x8000)b+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(b);}
+async function deriveKey(pass,salt){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function encryptText(plain,pass){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await deriveKey(pass,salt);const data=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(plain));const packed=new Uint8Array(28+data.byteLength);packed.set(salt);packed.set(iv,16);packed.set(new Uint8Array(data),28);return bytesToB64(packed);}
+async function decryptText(cipher,pass){const p=b64ToBytes(cipher);if(p.length<29)throw Error('Invalid ciphertext');const key=await deriveKey(pass,p.slice(0,16));const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:p.slice(16,28)},key,p.slice(28));return new TextDecoder().decode(plain);}
+
+const open=(release)=>{
+  clearTimeout(transitionTimer);
+  showRelease(release);
+  noticeBody.hidden=false;
+  adminBody.hidden=true;
+  document.body.classList.add('chamber');
+  veil.classList.add('show');
+  q.value='';
+  find.classList.remove('open','entry-state');
+};
+
+const close=()=>{
+  clearTimeout(transitionTimer);
+  veil.classList.remove('show');
+  document.body.classList.remove('chamber');
+  noticeBody.hidden=false;
+  adminBody.hidden=true;
+};
+
+document.getElementById('close').onclick=close;
+veil.onclick=e=>{if(e.target===veil)close();};
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')close();
+  if(e.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){
+    e.preventDefault(); find.classList.add('open'); q.focus();
+  }
+});
+
+const ok = el => (cat==='all'||el.dataset.cat===cat) &&
                  (!term||el.textContent.toLowerCase().includes(term));
 
 function render(){
@@ -701,32 +845,24 @@ prev.onclick=()=>{page--;render();document.getElementById('archive').scrollIntoV
 next.onclick=()=>{page++;render();document.getElementById('archive').scrollIntoView();};
 
 function search(){
-    const raw=q.value.trim();
-
-    if(raw.toLowerCase()===SECRET.toLowerCase()){
-      find.classList.add('secret-entry');
-      q.setAttribute('aria-label','Search resolved');
-      q.blur();
-
-      /* A short recognition beat before the ordinary interface gives way. */
-      chamberTimer=setTimeout(()=>{
-        q.removeAttribute('aria-label');
-        open();
-        term='';
-        render();
-      },520);
-      return;
-    }
-
-    term=raw.toLowerCase(); page=0; cat='all';
+  const raw=q.value.trim();
+  if(raw.toLowerCase()===ADMIN_KEY.toLowerCase()){
+    term=''; page=0; cat='all';
     document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
     render();
+    showAdmin();
+    return;
   }
+  term=raw.toLowerCase(); page=0; cat='all';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
+  render();
+}
 btn.onclick=()=>{ if(!find.classList.contains('open')){find.classList.add('open');q.focus();return;}
                   if(q.value.trim())search(); else find.classList.remove('open'); };
 q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
 q.addEventListener('input',()=>{if(!q.value.trim()){term='';page=0;render();}});
 q.addEventListener('blur',()=>{if(!q.value.trim())find.classList.remove('open');});
+document.getElementById('encryptBtn').onclick=async()=>{const plain=document.getElementById('plainMessage').value,key=document.getElementById('encryptKey').value,out=document.getElementById('cipherOutput');if(!plain.trim()||!key){out.value='Enter both a message and an encryption key.';return;}out.value='Encrypting…';try{out.value=await encryptText(plain,key);}catch(e){out.value='Encryption failed.';}};
 
 document.querySelectorAll('.chip').forEach(chip=>{
   chip.onclick=()=>{
@@ -737,11 +873,13 @@ document.querySelectorAll('.chip').forEach(chip=>{
 });
 
 let c=0,t;
-document.getElementById('egg').onclick=()=>{
-  clearTimeout(t); if(++c>=CLICKS){c=0;open();} t=setTimeout(()=>c=0,1200);
+document.getElementById('mark').onclick=()=>{
+  clearTimeout(t); const release=activeRelease(); if(!release){c=0;return;}
+  if(++c>=CLICKS){c=0;open(release);} t=setTimeout(()=>c=0,1200);
 };
 
-/* ---------- live wire: fails silently if unavailable ---------- */
+/* ---------- optional feed ---------- */
+
 (async function wire(){
   try{
     const feed  = 'https://news.google.com/rss/search?q=' +

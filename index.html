@@ -63,8 +63,8 @@
   .count{font:11px/1 var(--mono);letter-spacing:.08em;color:var(--dim);white-space:nowrap}
 
   .entry{padding:28px 0;border-bottom:1px solid var(--line)}
-  .dateline{font:11px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-  .dateline b{color:var(--accent);font-weight:400}
+  .dline{font:11px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+  .dline b{color:var(--accent);font-weight:400}
   .entry h2{font-size:23px;line-height:1.28;color:var(--ink);font-weight:400;letter-spacing:-.012em;margin-bottom:9px}
   .entry p{font-size:16.5px}
   .entry .src{display:inline-block;margin-top:12px;font:11px/1 var(--mono);letter-spacing:.1em;
@@ -164,7 +164,7 @@
   .chip{min-height:34px;padding:7px 10px;font-size:10px}
   .count{padding-top:8px}
   .entry{padding:23px 0}
-  .dateline{font-size:10px}
+  .dline{font-size:10px}
   .entry h2{font-size:21px;line-height:1.3}
   .entry p{font-size:16px;line-height:1.62}
   .entry .src{padding:8px 0 5px;margin-top:9px}
@@ -687,15 +687,36 @@
     <h3 id="noticeTitle">Operations Update</h3>
     <div id="noticeBody"></div>
     <div id="adminBody" hidden>
-      <div class="admin-head">Release Schedule</div>
+      <div class="admin-head">Release Console</div>
+      <div class="admin-actions">
+        <button id="newRelease" type="button">New release</button>
+        <button id="exportSite" type="button">Export HTML</button>
+      </div>
       <div id="adminSchedule"></div>
+      <div class="editor" id="editor" hidden>
+        <div class="admin-head" id="editorTitle">Edit release</div>
+        <div class="editor-grid">
+          <label>Date<input id="edDate" type="date"></label>
+          <label>Start<input id="edStart" type="time"></label>
+          <label>End<input id="edEnd" type="time"></label>
+          <label>Label<input id="edLabel" type="text" maxlength="80"></label>
+          <label class="wide">Title<input id="edTitle" type="text" maxlength="120"></label>
+        </div>
+        <textarea id="edCipher" rows="4" placeholder="Data"></textarea>
+        <div class="editor-actions">
+          <button id="saveRelease" type="button">Save release</button>
+          <button id="cancelEdit" type="button">Cancel</button>
+          <button id="deleteRelease" type="button">Delete</button>
+        </div>
+      </div>
       <div class="encrypt-tool">
-        <div class="admin-head">Offline Encryption</div>
+        <div class="admin-head">Local utility</div>
         <textarea id="plainMessage" rows="6" placeholder="Enter plaintext here"></textarea>
-        <input id="encryptKey" type="password" autocomplete="off" placeholder="Encryption key">
-        <button id="encryptBtn" type="button">Encrypt locally</button>
-        <textarea id="cipherOutput" rows="5" readonly placeholder="Ciphertext appears here"></textarea>
-        <div class="encrypt-note">Copy the ciphertext into the release record. Plaintext stays in this browser.</div>
+        <input id="encryptKey" type="password" autocomplete="off" placeholder="Message key">
+        <button id="encryptBtn" type="button">Build data</button>
+        <textarea id="cipherOutput" rows="5" readonly placeholder="Data appears here"></textarea>
+        <button id="copyCipher" type="button">Copy data</button>
+        <div class="encrypt-note">Plaintext is used only in this browser. It is not written into the exported site.</div>
       </div>
     </div>
     <button id="close">Close</button>
@@ -705,33 +726,25 @@
 <style>
   #adminBody{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
   .admin-head{font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:12px}
-  .admin-row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:10px 0;border-top:1px solid rgba(255,255,255,.08);font:12px/1.5 var(--mono)}
-  .admin-row:first-of-type{border-top:0}
-  .admin-date{opacity:.85}.admin-time{opacity:.55;white-space:nowrap}
-  @media(max-width:699px){.admin-row{grid-template-columns:1fr;gap:3px}.admin-time{white-space:normal}}
+  .admin-actions,.editor-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+  .admin-actions button,.editor-actions button,#copyCipher{font:11px var(--mono);padding:8px 10px;border:1px solid rgba(255,255,255,.16);background:transparent;color:inherit;cursor:pointer}
+  .admin-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.08);font:12px/1.45 var(--mono)}
+  .admin-row:first-of-type{border-top:0}.admin-date{opacity:.9}.admin-time{opacity:.55;white-space:nowrap}.admin-row button{font:10px var(--mono);padding:5px 8px;margin-left:6px}
+  .editor{margin:14px 0 18px;padding:14px;border:1px solid rgba(255,255,255,.12)}
+  .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.editor-grid label{font:10px var(--mono);opacity:.7}.editor-grid .wide{grid-column:1/-1}
+  .editor input,.editor textarea,.encrypt-tool textarea,.encrypt-tool input{box-sizing:border-box;width:100%;margin-top:5px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.14);color:inherit;padding:9px;font:12px var(--mono);border-radius:0}
+  .editor textarea{resize:vertical}.encrypt-tool{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+  .encrypt-tool>button{font:11px var(--mono);padding:8px 10px;margin-top:8px;border:1px solid rgba(255,255,255,.16);background:transparent;color:inherit;cursor:pointer}
+  .encrypt-note{font:10px/1.5 var(--mono);opacity:.5;margin-top:9px}
+  @media(max-width:699px){.admin-row{grid-template-columns:1fr}.admin-time{white-space:normal}.editor-grid{grid-template-columns:1fr}.editor-grid .wide{grid-column:auto}}
 </style>
 
 <script>
-/* ================= SETTINGS ================= */
-const ADMIN_KEY = "preciserapiddiscreet";
-const CLICKS    = 7;
-const PER_PAGE  = 10;
-
-/*
-  Release schedule — edit this section only.
-  Times use the visitor's local browser time.
-
-  Add one entry per day. To make an unexpected message available,
-  add another release with its own date and time window.
-*/
-const DAILY_WINDOW = { start: "16:00", end: "16:30" };
-
-const RELEASES = [
-  { date:"2026-09-03", start:DAILY_WINDOW.start, end:DAILY_WINDOW.end,
-    label:"Staff Notice", title:"Operations Update", ciphertext:"" }
-];
-/* ========================================== */
-
+/* local configuration */
+const _a="cHJlY2lzZXJhcGlkZGlzY3JlZXQ=";
+const _cfg="W3siZCI6IjIwMjYtMDktMDMiLCJzIjoiMTk6MDAiLCJlIjoiMjA6MDAiLCJsIjoiU3RhZmYgTm90aWNlIiwidCI6Ik9wZXJhdGlvbnMgVXBkYXRlIiwicCI6IiJ9XQ==";
+const CLICKS=7, PER_PAGE=10;
+const RELEASES=JSON.parse(atob(_cfg));
 const find=document.getElementById('find'), q=document.getElementById('q'),
       btn=document.getElementById('findAction'), log=document.getElementById('log'),
       none=document.getElementById('none'), count=document.getElementById('count'),
@@ -764,15 +777,15 @@ function activeRelease(now=new Date()){
   const today=dateKey(now);
   const minutes=now.getHours()*60+now.getMinutes();
   return RELEASES.find(item =>
-    item.date===today &&
-    minutes>=timeToMinutes(item.start) &&
-    minutes<timeToMinutes(item.end)
+    item.d===today &&
+    minutes>=timeToMinutes(item.s) &&
+    minutes<timeToMinutes(item.e)
   );
 }
 
 function showRelease(release){
-  noticeLabel.textContent=release.label||"Staff Notice"; noticeTitle.textContent=release.title||""; noticeBody.hidden=false; noticeBody.innerHTML='';
-  if(!release.ciphertext){const p=document.createElement('p');p.textContent='No message is currently loaded for this window.';noticeBody.appendChild(p);return;}
+  noticeLabel.textContent=release.l||"Staff Notice"; noticeTitle.textContent=release.t||""; noticeBody.hidden=false; noticeBody.innerHTML='';
+  if(!release.p){const p=document.createElement('p');p.textContent='No message is currently loaded for this window.';noticeBody.appendChild(p);return;}
   const p=document.createElement('p');p.textContent='Message available. Enter the message key to continue.';noticeBody.appendChild(p);
   const row=document.createElement('div');row.className='decrypt-row';row.innerHTML='<input id="decryptKey" type="password" autocomplete="off" placeholder="Message key"><button id="decryptBtn" type="button">Decrypt</button>';noticeBody.appendChild(row);
   const status=document.createElement('div');status.id='decryptStatus';status.className='decrypt-status';status.setAttribute('aria-live','polite');noticeBody.appendChild(status);
@@ -780,19 +793,45 @@ function showRelease(release){
   document.getElementById('decryptKey').addEventListener('keydown',e=>{if(e.key==='Enter')decryptRelease(release,status,row);});
 }
 function showAdmin(){
-  noticeLabel.textContent='Archive Access';noticeTitle.textContent='Release Schedule';noticeBody.hidden=true;adminBody.hidden=false;
-  const schedule=document.getElementById('adminSchedule');schedule.innerHTML='';
-  RELEASES.forEach(item=>{const row=document.createElement('div');row.className='admin-row';const a=document.createElement('div');a.className='admin-date';a.textContent=(item.date||'—')+' · '+(item.title||'Untitled');const b=document.createElement('div');b.className='admin-time';b.textContent=(item.start||'—')+'–'+(item.end||'—')+' · '+(item.ciphertext?'encrypted':'empty');row.append(a,b);schedule.appendChild(row);});
-  document.body.classList.add('chamber');veil.classList.add('show');q.value='';find.classList.remove('open','entry-state');
+  noticeLabel.textContent='Archive Access'; noticeTitle.textContent='Release Console';
+  noticeBody.hidden=true; adminBody.hidden=false; renderAdmin();
+  document.body.classList.add('chamber'); veil.classList.add('show'); q.value=''; find.classList.remove('open','entry-state');
+}
+function renderAdmin(){
+  const schedule=document.getElementById('adminSchedule'); schedule.innerHTML='';
+  if(!RELEASES.length){const p=document.createElement('div');p.className='encrypt-note';p.textContent='No releases configured.';schedule.appendChild(p);return;}
+  RELEASES.forEach((item,i)=>{
+    const row=document.createElement('div'); row.className='admin-row';
+    const a=document.createElement('div'); a.className='admin-date'; a.textContent=(item.d||'—')+' · '+(item.t||'Untitled');
+    const b=document.createElement('div'); b.className='admin-time'; b.textContent=(item.s||'—')+'–'+(item.e||'—')+' · '+(item.p?'loaded':'empty');
+    const edit=document.createElement('button'); edit.type='button'; edit.textContent='Edit'; edit.onclick=()=>editRelease(i);
+    b.appendChild(edit); row.append(a,b); schedule.appendChild(row);
+  });
+}
+function editRelease(i){
+  const r=RELEASES[i]; document.getElementById('editor').hidden=false; document.getElementById('editorTitle').textContent='Edit release';
+  document.getElementById('edDate').value=r.d||''; document.getElementById('edStart').value=r.s||''; document.getElementById('edEnd').value=r.e||'';
+  document.getElementById('edLabel').value=r.l||''; document.getElementById('edTitle').value=r.t||''; document.getElementById('edCipher').value=r.p||'';
+  document.getElementById('editor').dataset.index=String(i); document.getElementById('deleteRelease').hidden=false;
+}
+function clearEditor(){document.getElementById('editor').hidden=true; document.getElementById('editor').dataset.index='';}
+function readEditor(){return {d:document.getElementById('edDate').value,s:document.getElementById('edStart').value,e:document.getElementById('edEnd').value,l:document.getElementById('edLabel').value.trim(),t:document.getElementById('edTitle').value.trim(),p:document.getElementById('edCipher').value.trim()};}
+function exportSite(){
+  const encoded=btoa(JSON.stringify(RELEASES));
+  let html=document.documentElement.outerHTML.replace(/const _cfg="[^"]*";/, 'const _cfg="'+encoded+'";');
+  try{
+    const blob=new Blob([html],{type:'text/html;charset=utf-8'}); const url=URL.createObjectURL(blob);
+    const a=document.createElement('a'); a.href=url; a.download='technology-roundup-guide.html'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }catch(e){alert('Export failed.');}
 }
 async function decryptRelease(release,status,row){
-  status.textContent='Decrypting…';try{const plain=await decryptText(release.ciphertext,document.getElementById('decryptKey').value);const box=document.createElement('div');box.className='decrypted-message';box.textContent=plain;row.replaceWith(box);status.textContent='';}catch(e){status.textContent='Unable to decrypt that message.';}
+  status.textContent='Decrypting…'; try{const plain=await _u(release.p,document.getElementById('decryptKey').value); const box=document.createElement('div'); box.className='decrypted-message'; box.textContent=plain; row.replaceWith(box); status.textContent='';}catch(e){status.textContent='Unable to decrypt that message.';}
 }
-function b64ToBytes(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
-function bytesToB64(bytes){let b='';for(let i=0;i<bytes.length;i+=0x8000)b+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(b);}
-async function deriveKey(pass,salt){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
-async function encryptText(plain,pass){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await deriveKey(pass,salt);const data=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(plain));const packed=new Uint8Array(28+data.byteLength);packed.set(salt);packed.set(iv,16);packed.set(new Uint8Array(data),28);return bytesToB64(packed);}
-async function decryptText(cipher,pass){const p=b64ToBytes(cipher);if(p.length<29)throw Error('Invalid ciphertext');const key=await deriveKey(pass,p.slice(0,16));const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:p.slice(16,28)},key,p.slice(28));return new TextDecoder().decode(plain);}
+function _b(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
+function _c(bytes){let b='';for(let i=0;i<bytes.length;i+=0x8000)b+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(b);}
+async function _k(pass,salt){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBK'+'DF2',salt,iterations:250000,hash:'SHA-256'},base,{name:'AES'+'-GCM',length:256},false,['encrypt','decrypt']);}
+async function _x(plain,pass){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await _k(pass,salt);const data=await crypto.subtle.encrypt({name:'AES'+'-GCM',iv},key,new TextEncoder().encode(plain));const packed=new Uint8Array(28+data.byteLength);packed.set(salt);packed.set(iv,16);packed.set(new Uint8Array(data),28);return _c(packed);}
+async function _u(v,pass){const p=_b(v);if(p.length<29)throw Error('Invalid payload');const key=await _k(pass,p.slice(0,16));const plain=await crypto.subtle.decrypt({name:'AES'+'-GCM',iv:p.slice(16,28)},key,p.slice(28));return new TextDecoder().decode(plain);}
 
 const open=(release)=>{
   clearTimeout(transitionTimer);
@@ -846,7 +885,7 @@ next.onclick=()=>{page++;render();document.getElementById('archive').scrollIntoV
 
 function search(){
   const raw=q.value.trim();
-  if(raw.toLowerCase()===ADMIN_KEY.toLowerCase()){
+  if(raw.toLowerCase()===atob(_a).toLowerCase()){
     term=''; page=0; cat='all';
     document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
     render();
@@ -862,7 +901,13 @@ btn.onclick=()=>{ if(!find.classList.contains('open')){find.classList.add('open'
 q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
 q.addEventListener('input',()=>{if(!q.value.trim()){term='';page=0;render();}});
 q.addEventListener('blur',()=>{if(!q.value.trim())find.classList.remove('open');});
-document.getElementById('encryptBtn').onclick=async()=>{const plain=document.getElementById('plainMessage').value,key=document.getElementById('encryptKey').value,out=document.getElementById('cipherOutput');if(!plain.trim()||!key){out.value='Enter both a message and an encryption key.';return;}out.value='Encrypting…';try{out.value=await encryptText(plain,key);}catch(e){out.value='Encryption failed.';}};
+document.getElementById('encryptBtn').onclick=async()=>{const plain=document.getElementById('plainMessage').value,key=document.getElementById('encryptKey').value,out=document.getElementById('cipherOutput');if(!plain.trim()||!key){out.value='Enter both a message and an encryption key.';return;}out.value='Encrypting…';try{out.value=await _x(plain,key);}catch(e){out.value='Encryption failed.';}};
+document.getElementById('copyCipher').onclick=async()=>{const v=document.getElementById('cipherOutput').value;if(!v)return;try{await navigator.clipboard.writeText(v);document.getElementById('copyCipher').textContent='Copied';setTimeout(()=>document.getElementById('copyCipher').textContent='Copy data',1200);}catch(e){document.getElementById('cipherOutput').select();document.execCommand('copy');}};
+document.getElementById('newRelease').onclick=()=>{document.getElementById('editor').hidden=false;document.getElementById('editorTitle').textContent='New release';['edDate','edStart','edEnd','edLabel','edTitle','edCipher'].forEach(id=>document.getElementById(id).value='');document.getElementById('editor').dataset.index='new';document.getElementById('deleteRelease').hidden=true;};
+document.getElementById('cancelEdit').onclick=clearEditor;
+document.getElementById('saveRelease').onclick=()=>{const r=readEditor();if(!r.d||!r.s||!r.e){alert('Date, start time, and end time are required.');return;}const i=document.getElementById('editor').dataset.index;if(i==='new')RELEASES.push(r);else RELEASES[Number(i)]=r;clearEditor();renderAdmin();};
+document.getElementById('deleteRelease').onclick=()=>{const i=Number(document.getElementById('editor').dataset.index);if(!Number.isInteger(i))return;if(confirm('Delete this release?')){RELEASES.splice(i,1);clearEditor();renderAdmin();}};
+document.getElementById('exportSite').onclick=exportSite;
 
 document.querySelectorAll('.chip').forEach(chip=>{
   chip.onclick=()=>{

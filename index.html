@@ -158,7 +158,9 @@
   .lrow button{font:10px var(--mono);padding:4px 8px;border:1px solid rgba(255,255,255,.16);
     background:transparent;color:inherit;cursor:pointer}
   .note{font:10px/1.5 var(--mono);opacity:.5;margin-top:10px}
-
+.veil{align-items:flex-start}
+.panel{max-height:calc(100vh - 36px);max-height:calc(100dvh - 36px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch}
   @media(min-width:700px){
     .col{padding-left:26px;padding-right:26px}
     .mast{padding-top:36px}.bar{gap:18px}

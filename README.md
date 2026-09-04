@@ -3,7 +3,9 @@
 # Receiving: 
 1. If you know **where** to look
 2. If you know **when** to look
-3. If you have the **key** you can view messages sent by your friends. 
+3. If you have the **key**...
+
+then you can view messages sent by your friends. 
 
 # Sending:
 **One Time Setup** (or whenever you want to change your admin key)

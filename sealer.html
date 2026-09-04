@@ -88,9 +88,9 @@ function list(){
     var left=D.createElement('div');
     if(localTxt){
       left.innerHTML=(dead?'<span style="opacity:.7">Expired &middot; </span>':'')+
-        'Key: <b>'+String(item.label||'—').replace(/[&<>"]/g,'')+'</b><br>'+
+        'Key: <b>'+String(item.label||'-').replace(/[&<>"]/g,'')+'</b><br>'+
         'Opens '+localTxt+' your time<br>'+
-        '<span style="opacity:.55">'+utcTxt+' &ndash; '+endTxt+'</span>';
+        '<span style="opacity:.55">'+utcTxt+' to '+endTxt+'</span>';
     } else {
       left.innerHTML='Stored message '+(i+1)+'<br>'+
         '<span style="opacity:.55">Details not kept after publishing</span>';
@@ -112,7 +112,7 @@ D.getElementById('pGo').onclick=async function(){
   var len=Number(D.getElementById('pL').value);
   var out=D.getElementById('pOut');
   if(!msg||!key||!day||!tim){out.innerHTML='<div class="note">Fill in all four boxes first.</div>';return;}
-  out.innerHTML='<div class="note">Working…</div>';
+  out.innerHTML='<div class="note">Working...</div>';
   var p=day.split('-').map(Number), c=tim.split(':').map(Number);
   var start=new Date(p[0],p[1]-1,p[2],c[0],c[1]);
   var w=windowFor(start,len);
@@ -137,16 +137,18 @@ D.getElementById('pGo').onclick=async function(){
 };
 
 D.getElementById('pDl').onclick=function(){ctx.save(ctx.build(),'index.html');};
+
 D.getElementById('pCp').onclick=async function(){
   var b=D.getElementById('pCp');
   try{
     await navigator.clipboard.writeText(ctx.build());
-    b.textContent='Copied — paste into GitHub';
+    b.textContent='Copied - paste into GitHub';
   }catch(e){
-    b.textContent='Clipboard blocked — use Download';
+    b.textContent='Clipboard blocked - use Download';
   }
   setTimeout(function(){b.textContent='Copy full HTML to clipboard';},2500);
 };
+
 D.getElementById('pWipe').onclick=function(){
   if(confirm('Remove every stored message?')){V.length=0;list();}
 };
@@ -154,64 +156,11 @@ D.getElementById('pWipe').onclick=function(){
 list();
 `;
 
-D.getElementById('pGo').onclick=async function(){
-  var msg=D.getElementById('pM').value.trim();
-  var key=D.getElementById('pK').value.trim();
-  var day=D.getElementById('pD').value;
-  var tim=D.getElementById('pT').value;
-  var len=Number(D.getElementById('pL').value);
-  var out=D.getElementById('pOut');
-  if(!msg||!key||!day||!tim){out.innerHTML='<div class="note">Fill in all four boxes first.</div>';return;}
-  out.innerHTML='<div class="note">Working…</div>';
-
-  var p=day.split('-').map(Number), c=tim.split(':').map(Number);
-  var start=new Date(p[0],p[1]-1,p[2],c[0],c[1]);
-  var end=new Date(start.getTime()+len*60000);
-  var packet=JSON.stringify({from:start.toISOString(),to:end.toISOString(),text:msg});
-
-  var blob;
-  try{blob=await ctx.enc(packet,key);}catch(e){out.innerHTML='<div class="note">Could not prepare that.</div>';return;}
-
-  V.push({label:key,from:start.toISOString(),to:end.toISOString(),blob:blob});
-
-  var utc=utcLabel(start.toISOString());
-  var human=start.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
-  var safe=key.replace(/[&<>"]/g,'');
-  out.innerHTML='<div class="hand">Send your friends this:<br><br>'+
-    'Key: <b>'+safe+'</b><br>Opens: <b>'+utc+'</b><br>'+
-    '(that is '+human+' where you are)<br>Click the &sect; seven times</div>'+
-    '<button class="lite" id="pCopy" type="button">Copy that</button>'+
-    '<div class="note">Now use Download or Copy below to publish it.</div>';
-  D.getElementById('pCopy').onclick=function(){
-    navigator.clipboard.writeText('Key: '+key+'\\nOpens: '+utc+'\\nClick the section mark seven times');
-    D.getElementById('pCopy').textContent='Copied';
-  };
-  D.getElementById('pM').value='';D.getElementById('pK').value='';
-  list();
-};
-
-D.getElementById('pDl').onclick=function(){ctx.save(ctx.build(),'index.html');};
-D.getElementById('pCp').onclick=async function(){
-  var b=D.getElementById('pCp');
-  try{
-    await navigator.clipboard.writeText(ctx.build());
-    b.textContent='Copied — paste into GitHub';
-    setTimeout(function(){b.textContent='Copy full HTML to clipboard';},2500);
-  }catch(e){
-    b.textContent='Clipboard blocked — use Download';
-    setTimeout(function(){b.textContent='Copy full HTML to clipboard';},2500);
-  }
-};
-D.getElementById('pWipe').onclick=function(){
-  if(confirm('Remove every stored message?')){V.length=0;list();}
-};
-`;
-
 document.getElementById('go').onclick=async()=>{
   const v=document.getElementById('p').value.trim();
   if(v.length<8){alert('Use at least 8 characters.');return;}
   const out=document.getElementById('out');
-  out.value='Working…';
+  out.value='Working...';
   try{out.value=await _x(_PANEL,v);}catch(e){out.value='Failed. Try again.';}
 };
 document.getElementById('cp').onclick=async()=>{

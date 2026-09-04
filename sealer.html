@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sealer</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;background:#111;color:#ddd;margin:0;padding:20px}
+h1{font-size:18px;font-weight:400;margin:0 0 16px;color:#fff}
+label{display:block;font-size:13px;opacity:.7;margin:14px 0 4px}
+input,textarea,button{width:100%;box-sizing:border-box;padding:12px;font-size:16px;
+  background:#1c1c1c;border:1px solid #333;color:#ddd;border-radius:0}
+textarea{font:11px monospace;resize:vertical}
+button{margin-top:10px;cursor:pointer;background:#252525}
+.note{font-size:13px;opacity:.55;margin-top:16px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<h1>Console sealer</h1>
+
+<label>Your phrase</label>
+<input id="p" type="text" autocomplete="off" placeholder="Type your phrase">
+<button id="go">Seal</button>
+
+<label>Sealed text — paste this between the quotes of const _d="" in index.html</label>
+<textarea id="out" rows="6" readonly></textarea>
+<button id="cp">Copy sealed text</button>
+
+<div class="note">Keep this file private and off your web host. Using a different phrase here changes your admin phrase — the new one takes effect once you paste the result into index.html.</div>
+
+<script>
+function _c(x){let b='';for(let i=0;i<x.length;i+=0x8000)b+=String.fromCharCode(...x.subarray(i,i+0x8000));return btoa(b);}
+async function _k(p,s){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function _x(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),k=await _k(p,s);
+  const d=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(t));
+  const o=new Uint8Array(28+d.byteLength);o.set(s);o.set(iv,16);o.set(new Uint8Array(d),28);return _c(o);}
+
+const _PANEL=`
+var D=ctx.doc, R=ctx.rel, host=D.getElementById('slot');
+function localOf(r){
+  var dt=new Date(r.d+'T'+r.s+':00Z');
+  return dt.toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+}
+function isPast(r){ return new Date(r.d+'T'+r.e+':00Z').getTime() < Date.now(); }
+function windows(start,mins){
+  var out=[],cur=new Date(start.getTime()),left=mins;
+  while(left>0){
+    var dayEnd=Date.UTC(cur.getUTCFullYear(),cur.getUTCMonth(),cur.getUTCDate()+1,0,0,0);
+    var chunk=Math.min(left,(dayEnd-cur.getTime())/60000);
+    var end=new Date(cur.getTime()+chunk*60000);
+    out.push({d:cur.toISOString().slice(0,10),
+              s:cur.toISOString().slice(11,16),
+              e:end.getTime()===dayEnd?'23:59':end.toISOString().slice(11,16)});
+    cur=end;left-=chunk;
+  }
+  return out;
+}
+host.innerHTML=
+ '<div class="sh">Write a message</div>'+
+ '<label>1 &middot; What you want to say<textarea id="pM" rows="5"></textarea></label>'+
+ '<label>2 &middot; Key your friends will type<input id="pK" type="text" autocomplete="off"></label>'+
+ '<label>3 &middot; Day it opens (your own time)<input id="pD" type="date"></label>'+
+ '<label>Time it opens (your own time)<input id="pT" type="time"></label>'+
+ '<label>Stays open for<select id="pL">'+
+   '<option value="30">30 minutes</option><option value="60" selected>1 hour</option>'+
+   '<option value="90">1.5 hours</option><option value="180">3 hours</option>'+
+   '<option value="360">6 hours</option><option value="720">12 hours</option>'+
+   '<option value="1440">24 hours</option></select></label>'+
+ '<button class="go" id="pGo" type="button">4 &middot; Prepare</button>'+
+ '<div id="pOut"></div>'+
+ '<div class="sh" style="margin-top:22px">Scheduled</div><div id="pList"></div>'+
+ '<button class="lite" id="pDl" type="button">Download index.html</button>'+
+ '<button class="lite" id="pCp" type="button">Copy full HTML to clipboard</button>'+
+ '<button class="lite" id="pWipe" type="button">Clear everything</button>'+
+ '<div class="note">Nothing is saved until you download or copy, then update the live site.</div>';
+
+function list(){
+  var box=D.getElementById('pList');box.innerHTML='';
+  if(!R.length){box.innerHTML='<div class="note">Nothing scheduled.</div>';return;}
+  R.slice().sort(function(a,b){return (a.d+a.s)<(b.d+b.s)?-1:1;}).forEach(function(r){
+    var i=R.indexOf(r), dead=isPast(r);
+    var row=D.createElement('div');row.className='lrow';
+    if(dead) row.style.opacity='.45';
+    var left=D.createElement('div');
+    left.innerHTML=(dead?'<span style="opacity:.7">Expired &middot; </span>':'')+
+      'Opens '+localOf(r)+' your time<br><span style="opacity:.55">'+r.d+' '+r.s+'-'+r.e+' UTC</span>';
+    var right=D.createElement('div');
+    var del=D.createElement('button');del.type='button';del.textContent='Remove';
+    del.onclick=function(){if(confirm('Remove this one?')){R.splice(i,1);list();}};
+    right.appendChild(del);row.append(left,right);box.appendChild(row);
+  });
+}
+list();
+
+D.getElementById('pGo').onclick=async function(){
+  var msg=D.getElementById('pM').value.trim();
+  var key=D.getElementById('pK').value.trim();
+  var day=D.getElementById('pD').value;
+  var tim=D.getElementById('pT').value;
+  var len=Number(D.getElementById('pL').value);
+  var out=D.getElementById('pOut');
+  if(!msg||!key||!day||!tim){out.innerHTML='<div class="note">Fill in all four boxes first.</div>';return;}
+  out.innerHTML='<div class="note">Working…</div>';
+  var p=day.split('-').map(Number), c=tim.split(':').map(Number);
+  var start=new Date(p[0],p[1]-1,p[2],c[0],c[1]);
+  var blob;
+  try{blob=await ctx.enc(msg,key);}catch(e){out.innerHTML='<div class="note">Could not prepare that.</div>';return;}
+  windows(start,len).forEach(function(w){
+    R.push({d:w.d,s:w.s,e:w.e,l:'Staff Notice',t:'Operations Update',p:blob});
+  });
+  var utc=start.toISOString().slice(0,16).replace('T',' ')+' UTC';
+  var human=start.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
+  var safe=key.replace(/[&<>"]/g,'');
+  out.innerHTML='<div class="hand">Send your friends this:<br><br>'+
+    'Key: <b>'+safe+'</b><br>Opens: <b>'+utc+'</b><br>'+
+    '(that is '+human+' where you are)<br>Click the &sect; seven times</div>'+
+    '<button class="lite" id="pCopy" type="button">Copy that</button>'+
+    '<div class="note">Now use Download or Copy below to publish it.</div>';
+  D.getElementById('pCopy').onclick=function(){
+    navigator.clipboard.writeText('Key: '+key+'\\nOpens: '+utc+'\\nClick the section mark seven times');
+    D.getElementById('pCopy').textContent='Copied';
+  };
+  D.getElementById('pM').value='';D.getElementById('pK').value='';
+  list();
+};
+D.getElementById('pDl').onclick=function(){ctx.save(ctx.build(),'index.html');};
+D.getElementById('pCp').onclick=async function(){
+  var b=D.getElementById('pCp');
+  try{
+    await navigator.clipboard.writeText(ctx.build());
+    b.textContent='Copied — paste into GitHub';
+    setTimeout(function(){b.textContent='Copy full HTML to clipboard';},2500);
+  }catch(e){
+    b.textContent='Clipboard blocked — use Download';
+    setTimeout(function(){b.textContent='Copy full HTML to clipboard';},2500);
+  }
+};
+D.getElementById('pWipe').onclick=function(){
+  if(confirm('Remove every scheduled message?')){R.length=0;list();}
+};
+`;
+
+document.getElementById('go').onclick=async()=>{
+  const v=document.getElementById('p').value.trim();
+  if(v.length<8){alert('Use at least 8 characters.');return;}
+  const out=document.getElementById('out');
+  out.value='Working…';
+  try{out.value=await _x(_PANEL,v);}catch(e){out.value='Failed. Try again.';}
+};
+document.getElementById('cp').onclick=async()=>{
+  const t=document.getElementById('out');
+  if(!t.value)return;
+  try{await navigator.clipboard.writeText(t.value);
+      document.getElementById('cp').textContent='Copied';
+      setTimeout(()=>document.getElementById('cp').textContent='Copy sealed text',1500);}
+  catch(e){t.select();document.execCommand('copy');}
+};
+</script>
+</body>
+</html>

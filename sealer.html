@@ -38,25 +38,16 @@ async function _x(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=cry
   const o=new Uint8Array(28+d.byteLength);o.set(s);o.set(iv,16);o.set(new Uint8Array(d),28);return _c(o);}
 
 const _PANEL=`
-var D=ctx.doc, R=ctx.rel, host=D.getElementById('slot');
-function localOf(r){
-  var dt=new Date(r.d+'T'+r.s+':00Z');
-  return dt.toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+var D=ctx.doc, V=ctx.vault, host=D.getElementById('slot');
+
+function pad(n){return String(n).padStart(2,'0');}
+function localLabel(iso){
+  return new Date(iso).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 }
-function isPast(r){ return new Date(r.d+'T'+r.e+':00Z').getTime() < Date.now(); }
-function windows(start,mins){
-  var out=[],cur=new Date(start.getTime()),left=mins;
-  while(left>0){
-    var dayEnd=Date.UTC(cur.getUTCFullYear(),cur.getUTCMonth(),cur.getUTCDate()+1,0,0,0);
-    var chunk=Math.min(left,(dayEnd-cur.getTime())/60000);
-    var end=new Date(cur.getTime()+chunk*60000);
-    out.push({d:cur.toISOString().slice(0,10),
-              s:cur.toISOString().slice(11,16),
-              e:end.getTime()===dayEnd?'23:59':end.toISOString().slice(11,16)});
-    cur=end;left-=chunk;
-  }
-  return out;
+function utcLabel(iso){
+  return new Date(iso).toISOString().slice(0,16).replace('T',' ')+' UTC';
 }
+
 host.innerHTML=
  '<div class="sh">Write a message</div>'+
  '<label>1 &middot; What you want to say<textarea id="pM" rows="5"></textarea></label>'+
@@ -67,10 +58,10 @@ host.innerHTML=
    '<option value="30">30 minutes</option><option value="60" selected>1 hour</option>'+
    '<option value="90">1.5 hours</option><option value="180">3 hours</option>'+
    '<option value="360">6 hours</option><option value="720">12 hours</option>'+
-   '<option value="1440">24 hours</option></select></label>'+
+   '<option value="1440">24 hours</option><option value="10080">7 days</option></select></label>'+
  '<button class="go" id="pGo" type="button">4 &middot; Prepare</button>'+
  '<div id="pOut"></div>'+
- '<div class="sh" style="margin-top:22px">Scheduled</div><div id="pList"></div>'+
+ '<div class="sh" style="margin-top:22px">Stored</div><div id="pList"></div>'+
  '<button class="lite" id="pDl" type="button">Download index.html</button>'+
  '<button class="lite" id="pCp" type="button">Copy full HTML to clipboard</button>'+
  '<button class="lite" id="pWipe" type="button">Clear everything</button>'+
@@ -78,17 +69,19 @@ host.innerHTML=
 
 function list(){
   var box=D.getElementById('pList');box.innerHTML='';
-  if(!R.length){box.innerHTML='<div class="note">Nothing scheduled.</div>';return;}
-  R.slice().sort(function(a,b){return (a.d+a.s)<(b.d+b.s)?-1:1;}).forEach(function(r){
-    var i=R.indexOf(r), dead=isPast(r);
+  if(!V.length){box.innerHTML='<div class="note">Nothing stored.</div>';return;}
+  V.forEach(function(item,i){
+    var dead=new Date(item.to).getTime()<Date.now();
     var row=D.createElement('div');row.className='lrow';
     if(dead) row.style.opacity='.45';
     var left=D.createElement('div');
     left.innerHTML=(dead?'<span style="opacity:.7">Expired &middot; </span>':'')+
-      'Opens '+localOf(r)+' your time<br><span style="opacity:.55">'+r.d+' '+r.s+'-'+r.e+' UTC</span>';
+      'Key: <b>'+String(item.label).replace(/[&<>"]/g,'')+'</b><br>'+
+      'Opens '+localLabel(item.from)+' your time<br>'+
+      '<span style="opacity:.55">'+utcLabel(item.from)+' &ndash; '+utcLabel(item.to)+'</span>';
     var right=D.createElement('div');
     var del=D.createElement('button');del.type='button';del.textContent='Remove';
-    del.onclick=function(){if(confirm('Remove this one?')){R.splice(i,1);list();}};
+    del.onclick=function(){if(confirm('Remove this one?')){V.splice(i,1);list();}};
     right.appendChild(del);row.append(left,right);box.appendChild(row);
   });
 }
@@ -103,14 +96,18 @@ D.getElementById('pGo').onclick=async function(){
   var out=D.getElementById('pOut');
   if(!msg||!key||!day||!tim){out.innerHTML='<div class="note">Fill in all four boxes first.</div>';return;}
   out.innerHTML='<div class="note">Working…</div>';
+
   var p=day.split('-').map(Number), c=tim.split(':').map(Number);
   var start=new Date(p[0],p[1]-1,p[2],c[0],c[1]);
+  var end=new Date(start.getTime()+len*60000);
+  var packet=JSON.stringify({from:start.toISOString(),to:end.toISOString(),text:msg});
+
   var blob;
-  try{blob=await ctx.enc(msg,key);}catch(e){out.innerHTML='<div class="note">Could not prepare that.</div>';return;}
-  windows(start,len).forEach(function(w){
-    R.push({d:w.d,s:w.s,e:w.e,l:'Staff Notice',t:'Operations Update',p:blob});
-  });
-  var utc=start.toISOString().slice(0,16).replace('T',' ')+' UTC';
+  try{blob=await ctx.enc(packet,key);}catch(e){out.innerHTML='<div class="note">Could not prepare that.</div>';return;}
+
+  V.push({label:key,from:start.toISOString(),to:end.toISOString(),blob:blob});
+
+  var utc=utcLabel(start.toISOString());
   var human=start.toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
   var safe=key.replace(/[&<>"]/g,'');
   out.innerHTML='<div class="hand">Send your friends this:<br><br>'+
@@ -125,6 +122,7 @@ D.getElementById('pGo').onclick=async function(){
   D.getElementById('pM').value='';D.getElementById('pK').value='';
   list();
 };
+
 D.getElementById('pDl').onclick=function(){ctx.save(ctx.build(),'index.html');};
 D.getElementById('pCp').onclick=async function(){
   var b=D.getElementById('pCp');
@@ -138,7 +136,7 @@ D.getElementById('pCp').onclick=async function(){
   }
 };
 D.getElementById('pWipe').onclick=function(){
-  if(confirm('Remove every scheduled message?')){R.length=0;list();}
+  if(confirm('Remove every stored message?')){V.length=0;list();}
 };
 `;
 

@@ -13,7 +13,7 @@ you can read the message. Miss any one of the three and there's nothing there.
 *(repeat only if you want to change your admin phrase)*
 
 1. Open `sealer.html` in a browser and enter your phrase
-2. Copy the output over the `const _d="..."` line in `index.html`
+2. Copy the output over a certain obfuscated line in `index.html`
 3. Publish `index.html`
 
 ### Every message

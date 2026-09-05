@@ -687,8 +687,8 @@ document.getElementById('mark').onclick=()=>{
   const panel=document.getElementById('adminPanel');
   if(!toggle||!box||!f||!u||!p||!s||!panel)return;
 
-  const editorFingerprint="0000000000000000000000000000000000000000000000000000000000000000";
-  const SETUP=true;
+  const editorFingerprint="7b7a47998cfabbbdd5bd5a96e9125f7d9a1909e43d59782315e4df889be318fe";
+  const SETUP=false;
 
   const digest=async(user,pass)=>{
     const material=new TextEncoder().encode(user+'\u0000'+pass);

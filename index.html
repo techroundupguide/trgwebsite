@@ -687,8 +687,7 @@ document.getElementById('mark').onclick=()=>{
   const panel=document.getElementById('adminPanel');
   if(!toggle||!box||!f||!u||!p||!s||!panel)return;
 
-  const editorFingerprint="7b7a47998cfabbbdd5bd5a96e9125f7d9a1909e43d59782315e4df889be318fe";
-  const SETUP=false;
+  const editorToken="7b7a47998cfabbbdd5bd5a96e9125f7d9a1909e43d59782315e4df889be318fe";
 
   const digest=async(user,pass)=>{
     const material=new TextEncoder().encode(user+'\u0000'+pass);
@@ -718,14 +717,7 @@ document.getElementById('mark').onclick=()=>{
     panel.hidden=true;
     s.textContent='Checking credentials…';
     const fp=await digest(u.value.trim(),p.value);
-    if(SETUP){
-      panel.innerHTML='<div style="word-break:break-all;user-select:all">'+fp+'</div>';
-      panel.hidden=false;
-      s.textContent='Setup: copy the value below into editorFingerprint, then set SETUP to false.';
-      p.value='';
-      return;
-    }
-    if(fp===editorFingerprint){
+    if(fp===editorToken){
       s.textContent='Signed in.';
       panel.innerHTML=summary();
       panel.hidden=false;

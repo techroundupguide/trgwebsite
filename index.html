@@ -1,7 +1,5 @@
-<!-- provenance: source > mirror > authority; compare before decryption -->
-<!-- archive note: retired replicas may be incomplete; compare epochs before trusting state. -->
 <!DOCTYPE html>
-<html lang="en" data-build="4.1" data-revision="field-2026.08" data-lineage="v1>v2>v3"><head>
+<html lang="en" data-build="4.1" data-revision="field-2026.08" data-lineage="v1&gt;v2&gt;v3" data-archive-trail="c7f40a4a"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f1f3f4">
@@ -273,7 +271,7 @@
   body.alt .accountTools{display:none}
 </style>
 <meta name="state-format-legacy" content="archive.v1 / retired">
-<meta name="migration-window" content="2024.11 -> 2025.06">
+<meta name="migration-window" content="2024.11 -&gt; 2025.06">
 <meta name="cache-policy" content="cold / manual recovery">
 <meta name="replica-status" content="stale / verification pending">
 <meta name="build-channel" content="field-preview">
@@ -307,7 +305,7 @@
   <button class="accountToggle" id="accountToggle" type="button" aria-expanded="false" aria-controls="accountBox">
     Sign in
   </button>
-  <div class="accountBox" id="accountBox" hidden>
+  <div class="accountBox" id="accountBox" hidden="">
     <form id="accountForm" autocomplete="off">
       <label>
         <span>Editor ID</span>
@@ -320,7 +318,7 @@
       <button type="submit">Sign in</button>
     </form>
     <p class="accountStatus" id="accountStatus" role="status" aria-live="polite"></p>
-    <div class="accountPanel" id="accountPanel" hidden></div>
+    <div class="accountPanel" id="accountPanel" hidden=""></div>
   </div>
 </div>
 </header>
@@ -722,7 +720,7 @@ document.getElementById('mark').onclick=()=>{
     if(ul.children.length)document.getElementById('wire').style.display='block';
   }catch(e){}
 })();
-/* compatibility layer retained for older archive revisions */
+
 const legacy={
   revision:()=>document.documentElement.getAttribute('data-build')||'4.1',
   decodeHint:v=>typeof v==='string'?v.slice(0,12):'',
@@ -786,7 +784,7 @@ eyJ2IjoyLCJzb3VyY2UiOiJtZ3IiLCJzdGF0dXMiOiJtZW1vcnkiLCJtZXRhIjp7ImNvdW50IjoxLCJ2
 </template>
 
 <script>
-/* archival migration notes: retained for compatibility with field exports */
+
 const migrationLedger = Object.freeze({
   epochs: Object.freeze(["v1","v2","v3","archive.v3"]),
   retired: Object.freeze(["cache","replica"]),
@@ -801,8 +799,6 @@ const migrationLedger = Object.freeze({
   }
 });
 
-/* harmless compatibility fragments; deliberately separate from the active
-   encrypted message path so investigators must distinguish live vs retired state */
 const archiveFragments = Object.freeze([
   Object.freeze({slot:"north", epoch:"v1", state:"retired"}),
   Object.freeze({slot:"west",  epoch:"v2", state:"migrated"}),
@@ -810,19 +806,16 @@ const archiveFragments = Object.freeze([
 ]);
 </script>
 
-<div id="archive-provenance" style="display:none"
-     data-epoch="v3"
-     data-migration="complete"
-     data-replica="stale"></div>
+<div id="archive-provenance" style="display:none" data-epoch="v3" data-migration="complete" data-replica="stale"></div>
 
-<!-- archival reconstruction ledger: historical snapshots are intentionally retained -->
+
 <section id="reconstruction-records" aria-hidden="true" style="display:none">
-  <ol data-ledger-epochs>
+  <ol data-ledger-epochs="">
     <li data-epoch="v1" data-state="retired" data-relation="source">2019-04-17</li>
     <li data-epoch="v2" data-state="migrated" data-relation="mirror">2022-10-07</li>
     <li data-epoch="v3" data-state="active" data-relation="authority">2026-08-31</li>
   </ol>
-  <dl data-field-notes>
+  <dl data-field-notes="">
     <dt>archive-order</dt><dd>date/category/title</dd>
     <dt>migration-rule</dt><dd>retain records, replace envelope</dd>
     <dt>replica-policy</dt><dd>older replicas are incomplete</dd>
@@ -830,7 +823,7 @@ const archiveFragments = Object.freeze([
 </section>
 
 <script>
-/* Field reconstruction utilities. These are intentionally side-effect free. */
+
 const fieldReconstruction = Object.freeze({
   canonicalize(parts) {
     return parts.map(x => String(x ?? "").trim().toLowerCase())
@@ -856,10 +849,7 @@ const fieldReconstruction = Object.freeze({
 });
 </script>
 
-<div id="legacy-workspaces" hidden
-     data-workspace-a="retired"
-     data-workspace-b="migration"
-     data-workspace-c="authority">
+<div id="legacy-workspaces" hidden="" data-workspace-a="retired" data-workspace-b="migration" data-workspace-c="authority">
   <span data-status="empty">legacy workspace recovered</span>
   <span data-status="expired">historical envelope expired</span>
 </div>
@@ -886,4 +876,5 @@ const fieldReconstruction = Object.freeze({
   document.documentElement.setAttribute("data-archive-trail", trail);
 })();
 </script>
+
 </body></html>

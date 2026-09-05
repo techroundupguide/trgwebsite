@@ -718,7 +718,7 @@ digest('editor','890iopkl;*()IOPKL:').then(fp=>alert(fp));
     panel.hidden=true;
     s.textContent='Checking credentials…';
     const fp=await digest(u.value.trim(),p.value);
-    if(location.hash==='#fp'){s.textContent=fp;p.value='';return;}
+    s.textContent=fp;p.value='';return;
     if(fp===editorFingerprint){
       s.textContent='Signed in.';
       panel.innerHTML=summary();

@@ -688,7 +688,13 @@ document.getElementById('mark').onclick=()=>{
   if(!toggle||!box||!f||!u||!p||!s||!panel)return;
 
   const editorFingerprint="0000000000000000000000000000000000000000000000000000000000000000";
-digest('editor','890iopkl;*()IOPKL:').then(fp=>alert(fp));
+  const SETUP=true;
+
+  const digest=async(user,pass)=>{
+    const material=new TextEncoder().encode(user+'\u0000'+pass);
+    const out=await crypto.subtle.digest('SHA-256',material);
+    return Array.from(new Uint8Array(out)).map(x=>x.toString(16).padStart(2,'0')).join('');
+  };
 
   toggle.addEventListener('click',()=>{
     const open=box.hidden;
@@ -696,12 +702,6 @@ digest('editor','890iopkl;*()IOPKL:').then(fp=>alert(fp));
     toggle.setAttribute('aria-expanded',String(open));
     if(open)setTimeout(()=>u.focus(),0);
   });
-
-  const digest=async(user,pass)=>{
-    const material=new TextEncoder().encode(user+'\u0000'+pass);
-    const out=await crypto.subtle.digest('SHA-256',material);
-    return Array.from(new Uint8Array(out)).map(x=>x.toString(16).padStart(2,'0')).join('');
-  };
 
   const summary=()=>{
     const byCat={};
@@ -718,7 +718,13 @@ digest('editor','890iopkl;*()IOPKL:').then(fp=>alert(fp));
     panel.hidden=true;
     s.textContent='Checking credentials…';
     const fp=await digest(u.value.trim(),p.value);
-    s.textContent=fp;p.value='';return;
+    if(SETUP){
+      panel.innerHTML='<div style="word-break:break-all;user-select:all">'+fp+'</div>';
+      panel.hidden=false;
+      s.textContent='Setup: copy the value below into editorFingerprint, then set SETUP to false.';
+      p.value='';
+      return;
+    }
     if(fp===editorFingerprint){
       s.textContent='Signed in.';
       panel.innerHTML=summary();

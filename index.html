@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-build="4.1" data-revision="field-2026.08" data-lineage="v1&gt;v2&gt;v3" data-archive-trail="c7f40a4a"><head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f1f3f4">
@@ -18,7 +18,7 @@
   .col{width:100%;max-width:740px;margin:0 auto;padding:0 18px}
   a{color:inherit}
 
-  header{border-bottom:3px double var(--line-2);position:relative}
+  header{border-bottom:3px double var(--line-2)}
   .mast{padding:28px 0 16px;text-align:center}
   .mono{font-size:10px;font-family:var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
   .name{font-size:clamp(28px,9vw,46px);color:var(--ink);line-height:1.08;font-weight:400;letter-spacing:-.015em;margin:9px 0 10px}
@@ -87,47 +87,47 @@
   footer{border-top:1px solid var(--line);padding:24px 0 48px;font:11px/1.9 var(--mono);
     letter-spacing:.08em;color:var(--dim);text-align:center;margin-top:32px}
 
-  body.alt{background:#0c0d0e;color:#b8b3aa}
-  body.alt header,body.alt .intro,body.alt #wire,body.alt #archive,body.alt footer{
+  body.chamber{background:#0c0d0e;color:#b8b3aa}
+  body.chamber header,body.chamber .intro,body.chamber #wire,body.chamber #archive,body.chamber footer{
     opacity:0;transform:scale(.985);pointer-events:none;
     transition:opacity .45s ease,transform .9s cubic-bezier(.22,1,.36,1)}
-  .ov{position:fixed;inset:0;background:rgba(4,5,6,0);display:none;align-items:center;justify-content:center;
+  .veil{position:fixed;inset:0;background:rgba(4,5,6,0);display:none;align-items:center;justify-content:center;
     padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
     z-index:200;overflow:auto}
-  .ov.show{display:flex;animation:kf1 .8s cubic-bezier(.22,1,.36,1) forwards}
-  .ov::before{content:"";position:absolute;inset:-10%;
+  .veil.show{display:flex;animation:chamberFade .8s cubic-bezier(.22,1,.36,1) forwards}
+  .veil::before{content:"";position:absolute;inset:-10%;
     background:radial-gradient(circle at 50% 46%,rgba(255,255,255,.055),transparent 25%),
       radial-gradient(circle at 50% 50%,transparent 0,rgba(0,0,0,.88) 68%,rgba(0,0,0,.98) 100%);
-    opacity:0;animation:kf2 1.35s ease forwards;pointer-events:none}
-  .ov::after{content:"";position:absolute;inset:0;
+    opacity:0;animation:chamberAtmosphere 1.35s ease forwards;pointer-events:none}
+  .veil::after{content:"";position:absolute;inset:0;
     background:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:5px 100%;opacity:0;mix-blend-mode:screen;animation:kf3 1.2s ease .25s forwards;pointer-events:none}
-  .bx{position:relative;z-index:2;max-width:520px;width:min(100%,520px);
+    background-size:5px 100%;opacity:0;mix-blend-mode:screen;animation:chamberTexture 1.2s ease .25s forwards;pointer-events:none}
+  .panel{position:relative;z-index:2;max-width:520px;width:min(100%,520px);
     background:#111315;color:#aaa59d;border:1px solid rgba(214,205,190,.18);
     border-top:1px solid rgba(214,205,190,.38);padding:27px 22px;
     box-shadow:0 38px 110px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.02) inset;
     opacity:0;transform:translateY(24px) scale(.97);
-    animation:kf4 1s cubic-bezier(.16,1,.3,1) .35s forwards}
-  .bx::before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:1px;
+    animation:panelEnter 1s cubic-bezier(.16,1,.3,1) .35s forwards}
+  .panel::before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:1px;
     background:rgba(210,198,180,.72);transform:scaleX(0);transform-origin:left;
-    animation:kf5 .9s cubic-bezier(.16,1,.3,1) .6s forwards}
-  .bx .t{font:10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#8e8a83}
-  .bx h3{font-size:23px;color:#e1ddd5;font-weight:400;margin:14px 0;letter-spacing:-.015em}
-  .bx p{font-size:16px;line-height:1.62;margin-bottom:13px;color:#aaa59d}
-  .bx>button{margin-top:22px;width:100%;min-height:42px;padding:10px 18px;
+    animation:lineReveal .9s cubic-bezier(.16,1,.3,1) .6s forwards}
+  .panel .t{font:10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#8e8a83}
+  .panel h3{font-size:23px;color:#e1ddd5;font-weight:400;margin:14px 0;letter-spacing:-.015em}
+  .panel p{font-size:16px;line-height:1.62;margin-bottom:13px;color:#aaa59d}
+  .panel>button{margin-top:22px;width:100%;min-height:42px;padding:10px 18px;
     border:1px solid rgba(214,205,190,.24);background:none;color:#c9c4bb;
     font:11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
     transition:border-color .2s,color .2s,background .2s}
-  .bx>button:hover{border-color:rgba(214,205,190,.6);color:#f0ece4;background:rgba(255,255,255,.035)}
-  @keyframes kf1{0%{background:rgba(4,5,6,0)}35%{background:rgba(4,5,6,.48)}100%{background:rgba(4,5,6,.94)}}
-  @keyframes kf2{0%{opacity:0;transform:scale(1.18)}45%{opacity:.35}100%{opacity:1;transform:scale(1)}}
-  @keyframes kf3{0%{opacity:0}100%{opacity:.07}}
-  @keyframes kf4{0%{opacity:0;transform:translateY(24px) scale(.97);filter:blur(4px)}55%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
-  @keyframes kf5{to{transform:scaleX(1)}}
+  .panel>button:hover{border-color:rgba(214,205,190,.6);color:#f0ece4;background:rgba(255,255,255,.035)}
+  @keyframes chamberFade{0%{background:rgba(4,5,6,0)}35%{background:rgba(4,5,6,.48)}100%{background:rgba(4,5,6,.94)}}
+  @keyframes chamberAtmosphere{0%{opacity:0;transform:scale(1.18)}45%{opacity:.35}100%{opacity:1;transform:scale(1)}}
+  @keyframes chamberTexture{0%{opacity:0}100%{opacity:.07}}
+  @keyframes panelEnter{0%{opacity:0;transform:translateY(24px) scale(.97);filter:blur(4px)}55%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes lineReveal{to{transform:scaleX(1)}}
   @media (prefers-reduced-motion:reduce){
-    body.alt header,body.alt .intro,body.alt #wire,body.alt #archive,body.alt footer{transition:none;transform:none}
-    .ov.show,.ov::before,.ov::after,.bx,.bx::before{animation:none}
-    .ov.show{background:rgba(4,5,6,.94)}.ov::before{opacity:1}.bx{opacity:1;transform:none}.bx::before{transform:scaleX(1)}
+    body.chamber header,body.chamber .intro,body.chamber #wire,body.chamber #archive,body.chamber footer{transition:none;transform:none}
+    .veil.show,.veil::before,.veil::after,.panel,.panel::before{animation:none}
+    .veil.show{background:rgba(4,5,6,.94)}.veil::before{opacity:1}.panel{opacity:1;transform:none}.panel::before{transform:scaleX(1)}
   }
 
   .row{display:flex;gap:8px;margin-top:12px}
@@ -158,8 +158,8 @@
   .lrow button{font:10px var(--mono);padding:4px 8px;border:1px solid rgba(255,255,255,.16);
     background:transparent;color:inherit;cursor:pointer}
   .note{font:10px/1.5 var(--mono);opacity:.5;margin-top:10px}
-.ov{align-items:flex-start}
-.bx{max-height:calc(100vh - 36px);max-height:calc(100dvh - 36px);
+.veil{align-items:flex-start}
+.panel{max-height:calc(100vh - 36px);max-height:calc(100dvh - 36px);
   overflow-y:auto;-webkit-overflow-scrolling:touch}
   @media(min-width:700px){
     .col{padding-left:26px;padding-right:26px}
@@ -168,10 +168,11 @@
     .controls{align-items:baseline}
     .entry{padding:28px 0}.entry h2{font-size:23px}.dateline{font-size:11px}
     .ref{grid-template-columns:1fr auto}.ref a{padding:0}
-    .bx{padding:36px}.bx::before{left:36px;right:36px}
-    .bx>button{width:auto}
+    .panel{padding:36px}.panel::before{left:36px;right:36px}
+    .panel>button{width:auto}
   }
 
+  /* ---------- news layout ---------- */
   body{background:#f1f3f4;color:#3c4043;
     font-family:Roboto,Arial,-apple-system,system-ui,sans-serif;font-size:16px;line-height:1.5}
   .col{max-width:840px}
@@ -241,7 +242,7 @@
     -webkit-tap-highlight-color:transparent}
   #toTop.on{opacity:1;pointer-events:auto}
   #toTop:hover{color:#1a73e8;border-color:#1a73e8}
-  body.alt #toTop{opacity:0;pointer-events:none}
+  body.chamber #toTop{opacity:0;pointer-events:none}
 
   @media(min-width:700px){
     .mast{padding-top:22px}
@@ -249,36 +250,7 @@
     .entry{padding:18px}.entry h2{font-size:19px}.dateline{font-size:12px}
     #toTop{right:24px;bottom:24px}
   }
-
-  .accountTools{position:absolute;top:10px;right:16px;z-index:20}
-  .accountToggle{padding:6px 9px;border:0;background:transparent;color:#80868b;
-    font-family:inherit;font-size:12px;cursor:pointer}
-  .accountToggle:hover{color:#1a73e8}
-  .accountBox{position:absolute;right:0;top:30px;width:250px;padding:14px;
-    border:1px solid #dadce0;border-radius:8px;background:#fff;
-    box-shadow:0 2px 10px rgba(60,64,67,.15)}
-  .accountBox form{display:grid;gap:10px}
-  .accountBox label span{display:block;margin-bottom:4px;color:#5f6368;font-size:11px}
-  .accountBox input{box-sizing:border-box;width:100%;padding:8px;border:1px solid #dadce0;
-    border-radius:4px;background:#fff;color:#202124;font-family:inherit;font-size:14px}
-  .accountBox button[type="submit"]{padding:8px 10px;border:1px solid #dadce0;border-radius:4px;
-    background:#f8f9fa;color:#1a73e8;font-family:inherit;font-size:13px;cursor:pointer}
-  .accountBox button[type="submit"]:hover{background:#f1f3f4}
-  .accountStatus{margin:9px 0 0;color:#5f6368;font-size:11px;line-height:1.4;min-height:1.4em}
-  .accountPanel{margin-top:10px;padding-top:10px;border-top:1px solid #f1f3f4;
-    font-size:11px;line-height:1.6;color:#5f6368}
-  .accountPanel b{font-weight:500;color:#202124}
-  body.alt .accountTools{display:none}
 </style>
-<meta name="state-format-legacy" content="archive.v1 / retired">
-<meta name="migration-window" content="2024.11 -&gt; 2025.06">
-<meta name="cache-policy" content="cold / manual recovery">
-<meta name="replica-status" content="stale / verification pending">
-<meta name="build-channel" content="field-preview">
-
-<template id="state-mirror-a">eyJzY2hlbWEiOiIxIiwicm9sZSI6InJldGlyZWQiLCJ0cnVzdCI6ImxvdyIsInJlY29yZHMiOltdfQ==</template>
-<template id="state-mirror-b">eyJzY2hlbWEiOiIyIiwicm9sZSI6Im1pZ3JhdGVkIiwidHJ1c3QiOiJtZWRpdW0iLCJyZWNvcmRzIjpbXX0=</template>
-<template id="state-mirror-c">eyJzY2hlbWEiOiIzIiwicm9sZSI6ImF1dGhvcml0eSIsInRydXN0IjoiaGlnaCIsInJlY29yZHMiOlsiYWN0aXZlIl19</template>
 </head>
 <body id="top" class="">
 
@@ -286,7 +258,7 @@
   <div class="col mast">
     <div class="mono">Est. 2026</div>
     <div class="name"><a href="#top">Technology Roundup&nbsp;Guide</a></div>
-    <div class="tag">A dated archive <span class="sec" id="mark" data-surface="archive-index">§</span> techroundupguide.com</div>
+    <div class="tag">A dated archive <span class="sec" id="mark">§</span> techroundupguide.com</div>
   </div>
   <div class="col bar">
     <a href="#archive">Archive</a>
@@ -300,27 +272,6 @@
       </button>
     </div>
   </div>
-
-<div class="accountTools" id="accountTools" aria-label="Editor sign-in">
-  <button class="accountToggle" id="accountToggle" type="button" aria-expanded="false" aria-controls="accountBox">
-    Sign in
-  </button>
-  <div class="accountBox" id="accountBox" hidden="">
-    <form id="accountForm" autocomplete="off">
-      <label>
-        <span>Editor ID</span>
-        <input id="accountId" name="username" type="text" autocomplete="username">
-      </label>
-      <label>
-        <span>Passphrase</span>
-        <input id="accountPass" name="password" type="password" autocomplete="current-password">
-      </label>
-      <button type="submit">Sign in</button>
-    </form>
-    <p class="accountStatus" id="accountStatus" role="status" aria-live="polite"></p>
-    <div class="accountPanel" id="accountPanel" hidden=""></div>
-  </div>
-</div>
 </header>
 
 <div class="col intro">
@@ -350,7 +301,490 @@
     <div class="count" id="count"></div>
   </div>
 
-  <div id="log"></div>
+  <div id="log">
+
+  <div class="entry" data-cat="trade"><div class="dateline">3 Sept 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>Four years of export curbs, and China built around the chokepoints</h2>
+    <p>A new report traces how sweeping controls since 2022 — advanced compute, manufacturing
+       equipment, chip-design software, high-bandwidth memory — reshaped China's tech sector
+       around the specific points where pressure was applied. Some restrictions have since
+       eased, but the structural response is already baked in.</p>
+    <a class="src" href="https://scmp.com/tech/tech-trends/article/3366164/us-export-curbs-have-reshaped-chinas-tech-scene-around-chokepoints-report" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">3 Sept 2026 <b>/ Field</b></div>
+    <h2>Multispectral payload adds higher-resolution radiometric thermal</h2>
+    <p>A flagship sensor launched at CUAV pairs synchronized multispectral and panchromatic
+       capture with a radiometric thermal module, pixel-aligned to simplify processing.
+       Radiometric claims are easy to publish and hard to hold across a full field season.</p>
+    <a class="src" href="https://stocktitan.net/news/UAVS/eagle-nxt-launches-new-flagship-sensor-altum-pt-pro-with-enhanced-97i1778ozx9p.html" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">1 Sept 2026 <b>/ Energy</b></div>
+    <h2>California puts large data center loads on a cost-causation track</h2>
+    <p>A negotiated package passed both houses on the session's final day, placing qualifying
+       data centers under dedicated interconnection, transmission and generation-service
+       frameworks designed to prevent stranded costs and cost shifts onto other ratepayers —
+       stopping short of a development moratorium.</p>
+    <a class="src" href="https://pillsburylaw.com/en/news-and-insights/california-data-center-deal-large-loads-cost-causation-track.html" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">1 Sept 2026 <b>/ Field</b></div>
+    <h2>Oceanside moves to make its drone-response pilot permanent</h2>
+    <p>The department wants its drone-as-first-responder pilot converted to a standing program,
+       over objections from a privacy group. As usual the fight is about scope and retention
+       policy, not what the aircraft can do.</p>
+    <a class="src" href="https://www.kpbs.org/news/public-safety/2026/09/01/oceanside-looks-to-expand-drone-as-first-responder-program-despite-privacy-concerns" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">1 Sept 2026 <b>/ Policy</b></div>
+    <h2>Twenty-nine states, no federal AI statute</h2>
+    <p>Executive orders and policy frameworks can't displace state law on their own — that takes
+       congressional preemption legislation, which hadn't passed as of late August. Companies
+       are advised to keep complying with the state regimes already in force.</p>
+    <a class="src" href="https://tech-insider.org/us-ai-policy-crisis-federal-state-patchwork-2026/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="defense"><div class="dateline">31 Aug 2026 <b>/ Defense</b></div>
+    <h2>Seven-year deals to triple PAC-3 and quadruple THAAD interceptor output</h2>
+    <p>Agreements with two primes initiate multiyear procurement for interceptor components and
+       establish faster delivery schedules, covering specialized hardware supporting both
+       programs. Production rate, not design, is the constraint being addressed.</p>
+    <a class="src" href="https://defence-industry.eu/u-s-department-of-war-signs-seven-year-deals-with-general-dynamics-and-lockheed-martin-to-triple-pac-3-mse-and-quadruple-thaad-interceptor-production/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">31 Aug 2026 <b>/ Quantum</b></div>
+    <h2>A photonic roadmap to a thousand logical qubits by 2031</h2>
+    <p>The plan moves from current photonic chip manufacturing toward networked fault-tolerant
+       quantum data centers, with milestones in photon-loss reduction and logical error rates
+       and a data center targeted for 2029–30. Well capitalized, but every date is a forecast.</p>
+    <a class="src" href="https://quantumcomputingreport.com/news/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">31 Aug 2026 <b>/ Infrastructure</b></div>
+    <h2>Four subsea faults knock out 30% of Vietnam's international capacity</h2>
+    <p>Half of the country's eight international cable systems went down, with two suffering
+       faults almost simultaneously on 25 August. Causes weren't disclosed; operators activated
+       contingency routing.</p>
+    <a class="src" href="https://lightreading.com/cable-technology/four-subsea-cable-faults-hit-vietnam-s-internet" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">31 Aug 2026 <b>/ Policy</b></div>
+    <h2>Florida DOT revokes plate-reader permits; sheriffs pull the cameras</h2>
+    <p>State transportation officials revoked permits for readers on state roads, citing rapid
+       proliferation, public outcry and reports of misuse. Jacksonville halted use countywide;
+       Clay County began removing hardware, with one sheriff calling the tools valuable and
+       discontinuing them anyway.</p>
+    <a class="src" href="https://www.news4jax.com/news/local/2026/08/31/jso-ends-license-plate-reader-use-following-fdots-directive/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">31 Aug 2026 <b>/ Policy</b></div>
+    <h2>A sheriff cancels a plate-reader contract over the regulation gap</h2>
+    <p>Putnam County discontinued its program, with the sheriff framing it as governance rather
+       than technology failure: capability is advancing faster than the rules, and internal
+       safeguards alone weren't enough.</p>
+    <a class="src" href="https://news4jax.com/news/local/2026/08/31/putnam-county-sheriff-pulls-plug-on-license-plate-readers-amid-privacy-debate" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">31 Aug 2026 <b>/ Field</b></div>
+    <h2>Remote pilots, offered as a service</h2>
+    <p>A firm launched remote staffing pairing pilot-management software with a bench of trained
+       operators, aimed at agencies that can stand up a program but can't cover every shift.
+       Staffing, not hardware, is where these programs strain.</p>
+    <a class="src" href="https://dronedj.com/2026/08/31/flying-lion-remote-drone-pilot" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">30 Aug 2026 <b>/ Energy</b></div>
+    <h2>Data centers bet on small reactors that don't exist yet</h2>
+    <p>As of August there were no fully deployed commercial SMRs in the United States, even as
+       operators lean on them as the answer to gas turbines. Texas paused data center approvals
+       in early August over energy and water; a reactor vendor's earnings call the next day
+       offered partnerships but no specifics.</p>
+    <a class="src" href="https://insideclimatenews.org/news/30082026/data-center-small-modular-nuclear-reactors" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">29 Aug 2026 <b>/ Policy</b></div>
+    <h2>Part 108 is still a proposal</h2>
+    <p>The FAA's beyond-line-of-sight framework remained at the proposed-rule stage — no final
+       rule, no operator able to claim authority under it. A further phase of the agency's
+       BEYOND test-team program opened 27 August, which changes nothing about the rule.</p>
+    <a class="src" href="https://droneauthority.org/laws/part-108" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">29 Aug 2026 <b>/ Policy</b></div>
+    <h2>Virginia localities switch off plate readers, partly over cost</h2>
+    <p>Several counties and cities suspended use in a single month, citing resident privacy
+       concerns and annual costs smaller departments struggle to carry. Letting contracts lapse
+       is the cheapest exit — cost is doing quiet work in decisions reported as purely about
+       privacy.</p>
+    <a class="src" href="https://www.wdbj7.com/2026/08/29/localities-disable-license-plate-readers-amid-cost-privacy-concerns/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">27 Aug 2026 <b>/ Field</b></div>
+    <h2>What early wildfire detection looks like when it works</h2>
+    <p>Inside a statewide camera network whose AI continuously analyzes live feeds for the
+       earliest smoke, cross-references angles to verify location, and alerts within minutes.
+       The engineering that matters is filtering — drifting cloud, rising fog and shifting
+       canyon light all look like smoke until a system learns otherwise.</p>
+    <a class="src" href="https://unlocked.microsoft.com/alertcalifornia-ai-wildfire-detection" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">26 Aug 2026 <b>/ Field</b></div>
+    <h2>Army effort targets uncooled thermal at lower size, weight and power</h2>
+    <p>A development initiative selected an infrared vendor to advance uncooled thermal sensing
+       with reduced SWaP-C, plus expanded domestic manufacturing of infrared components.
+       Small-pixel-pitch architecture is the enabling piece; sensitivity as pitch shrinks is
+       the open question.</p>
+    <a class="src" href="https://militaryembedded.com/unmanned/counter-uas/uncooled-thermal-imaging-technology-selected-for-us-army-development-effort" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">25 Aug 2026 <b>/ Field</b></div>
+    <h2>Evansville launches with a docked aircraft and an indoor platform</h2>
+    <p>A docked response aircraft paired with a small platform for interior use in confined
+       spaces, both with zoom and thermal cameras. Officials cite roughly seventy seconds from
+       call to aerial video — a number worth revisiting after a winter.</p>
+    <a class="src" href="https://www.14news.com/2026/08/25/epd-launches-drone-first-responder-program/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">25 Aug 2026 <b>/ Energy</b></div>
+    <h2>A colocation provider pre-buys 6GW of reactors that haven't broken ground</h2>
+    <p>A non-binding agreement for up to six gigawatts of nuclear capacity targeted at 2040 —
+       a statement of intent rather than an offtake contract, but at a scale that would make a
+       rack-space company one of the largest private nuclear buyers in the country. The read:
+       operators looked at June's grid-interconnection fix and decided to route around the
+       public queue entirely.</p>
+    <a class="src" href="https://scienceshot.com/post/equinix-nuclear-power-deal" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">24 Aug 2026 <b>/ Quantum</b></div>
+    <h2>Japan's first full-stack neutral-atom machine goes operational</h2>
+    <p>Built with industrial and vendor partners, the system starts at 50 qubits with a stated
+       target of 10,000 by 2031, using neutral rubidium atoms and optical tweezers at room
+       temperature with reconfigurable connectivity.</p>
+    <a class="src" href="https://quantumcomputingreport.com/news/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">21 Aug 2026 <b>/ Quantum</b></div>
+    <h2>First permanent US free-space quantum link, thirteen miles</h2>
+    <p>A national lab and university established a free-space optical quantum link transmitting
+       single and entangled photons, integrated with an existing fiber quantum network — a step
+       toward satellite-based quantum communication.</p>
+    <a class="src" href="https://quantumcomputingreport.com/news/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">19 Aug 2026 <b>/ Quantum</b></div>
+    <h2>Two cryogenic modules, joined and cooled as one</h2>
+    <p>New fridges designed to link hundreds of quantum chips were successfully joined and cooled
+       below 15 millikelvin — more than 180 times colder than deep space. Framed as engineering
+       groundwork toward a fault-tolerant machine targeted for 2029.</p>
+    <a class="src" href="https://newsroom.ibm.com/2026-08-19-ibm-connects-its-first-modular-cryogenic-systems-in-milestone-toward-fault-tolerant-quantum-computing" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">19 Aug 2026 <b>/ Field</b></div>
+    <h2>A mountain lookout post gets its job back, automated</h2>
+    <p>Two high-resolution cameras went up on a Vancouver Island peak, scanning up to fifty
+       kilometres for smoke with 40× optical zoom and models trained to separate smoke from
+       cloud, fog and dust. Built to work in low light, on roughly the same hilltop where human
+       lookouts once sat.</p>
+    <a class="src" href="https://www.ctvnews.ca/vancouver/vancouver-island/article/new-ai-powered-wildfire-detection-technology-installed-on-vancouver-island/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="defense"><div class="dateline">17 Aug 2026 <b>/ Defense</b></div>
+    <h2>$46M for an autonomous hybrid VTOL cargo aircraft</h2>
+    <p>A Phase III small-business research contract funds development of a group-IV autonomous
+       hybrid vertical-takeoff aircraft for modular multi-mission payload delivery, with
+       completion estimated in early 2029. One bid solicited, one received.</p>
+    <a class="src" href="https://www.globalsecurity.org/military/library/news/2026/08/dod-contracts_4575681.htm" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">14 Aug 2026 <b>/ Infrastructure</b></div>
+    <h2>Two Australian subsea cables fault on the same day</h2>
+    <p>Both experienced shunt faults — short circuits from damaged insulation — in close
+       proximity and within a short window. The operator flagged the coincidence publicly and
+       federal police said they were still examining the information.</p>
+    <a class="src" href="https://www.bgr.com/2237002/australia-underwater-internet-cable-damage-targeted-attack/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">12 Aug 2026 <b>/ Policy</b></div>
+    <h2>Cleveland opens bidding across readers, acoustics and drones at once</h2>
+    <p>After hearings and a six-month contract extension, the city issued an RFP covering plate
+       readers, gunshot sensors and drones together at council's urging to look beyond the
+       incumbent. Bundling three unlike technologies into one procurement is convenient and
+       makes each harder to judge on its own.</p>
+    <a class="src" href="https://signalcleveland.org/cleveland-police-technology-license-plate-readers-gunshot-detection-drone-debate/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">11 Aug 2026 <b>/ Infrastructure</b></div>
+    <h2>Seabed chokepoints move from contingency to operational concern</h2>
+    <p>An assessment of submarine cable vulnerability notes over 99% of transoceanic traffic
+       rides these lines, with seventeen cables through the Red Sea alone, and catalogues recent
+       incidents including a research vessel loitering above a trans-Pacific system. Attribution
+       stays deliberately unresolved.</p>
+    <a class="src" href="https://www.specialeurasia.com/2026/08/11/submarine-cables-chokepoints/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">11 Aug 2026 <b>/ Policy</b></div>
+    <h2>Records show the waiver volume behind the drone-response boom</h2>
+    <p>FOIA documents indicate more than a thousand agencies held the waivers needed to automate
+       drone operations as of February 2026, with more issued in ten months than in the previous
+       seven years combined. Deployment is well ahead of the policy conversation.</p>
+    <a class="src" href="https://www.techdirt.com/2026/08/11/hundreds-of-drone-as-first-responder-programs-could-soon-be-launched-across-the-country/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">10 Aug 2026 <b>/ Field</b></div>
+    <h2>GPS-denied navigation software courts public safety buyers</h2>
+    <p>A vendor stood up a dedicated federal and public safety team, positioning software-only
+       positioning as an alternative to hardware retrofits. Performance validated in one theatre
+       doesn't transfer automatically to cluttered domestic environments with different failure
+       modes.</p>
+    <a class="src" href="https://www.streetwisereports.com/article/2026/08/10/ai-drone-firm-launches-dedicated-u-s-federal-team-for-gps-denied-navigation.html" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">9 Aug 2026 <b>/ Policy</b></div>
+    <h2>A city writes the policy before switching anything on</h2>
+    <p>A proposed ordinance covers authorized and prohibited uses, retention, sharing, oversight,
+       audits and enforcement across live cameras, plate readers, drone response, acoustic
+       detection and AI investigative software — with searches requiring name, time, stated
+       reason and case number. Nothing activates until policy and training are in place. Rarer
+       than it should be.</p>
+    <a class="src" href="https://www.herald-dispatch.com/news/committee-to-get-first-look-at-policy-for-public-safety-technology/article_c34a66b5-4e68-4ab7-bdf7-9930467a5788.html" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">4 Aug 2026 <b>/ Policy</b></div>
+    <h2>Bipartisan appetite in Michigan for plate-reader limits</h2>
+    <p>Legislation from a Republican state senator would restrict how local agencies use
+       automated readers, arguing continuous passive collection exceeds any public safety need.
+       The vendor's public position is support for regulation with safeguards, which changes
+       what the fight is actually about.</p>
+    <a class="src" href="https://www.michiganpublic.org/politics-government/2026-08-04/bipartisan-push-grows-for-stricter-rules-on-license-plate-reader-cameras-in-michigan" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">2 Aug 2026 <b>/ Policy</b></div>
+    <h2>California adds watermarking and latent-disclosure duties</h2>
+    <p>New provisions layer provenance requirements for generative content on top of the state's
+       earlier frontier-model framework — deepening California's regulatory footprint precisely
+       as the federal preemption push intensifies.</p>
+    <a class="src" href="https://tech-insider.org/us-ai-policy-crisis-federal-state-patchwork-2026/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">July 2026 <b>/ Policy</b></div>
+    <h2>Fifty frameworks is the operating reality</h2>
+    <p>A legislative wrap-up notes state AI laws have moved past disclosure into auditing,
+       reporting and affirmative anti-discrimination duties — and that a business integrating a
+       third-party tool into hiring or clinical workflows is a deployer bearing compliance
+       responsibility under most frameworks.</p>
+    <a class="src" href="https://natlawreview.com/article/ai-legislation-2026-legislative-wrap" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">July 2026 <b>/ Policy</b></div>
+    <h2>Where the AI obligations actually bind, by state</h2>
+    <p>A tracker showing federal executive orders and procurement memoranda setting direction
+       while binding private-sector duties sit in state law — California, Texas, Illinois and
+       Utah in force, Colorado's replacement framework starting January 2027, with staggered
+       Connecticut effective dates through 2028.</p>
+    <a class="src" href="https://vorplabs.com/ai-regulatory-updates/united-states" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">20 July 2026 <b>/ Field</b></div>
+    <h2>Chesterfield County writes the limits into the announcement</h2>
+    <p>The program is framed around assessing conditions, locating people and vehicles, and
+       giving fire crews an overhead read on structure involvement — and states up front that
+       aircraft won't be used for routine patrol or continuous surveillance. Written scope is
+       what makes a program evaluable later.</p>
+    <a class="src" href="https://www.wric.com/news/local-news/chesterfield-county/chesterfield-to-launch-drone-as-first-responder-program/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">7 July 2026 <b>/ Policy</b></div>
+    <h2>Counter-drone rule and companion spectrum actions arrive together</h2>
+    <p>An interim final rule plus four FCC actions on spectrum, equipment authorization and
+       related legal questions began translating new counter-drone authorities into something
+       state and local agencies can operate under — subject to training, certification, an
+       authorized systems list, and mandatory reporting of any mitigation.</p>
+    <a class="src" href="https://dronelife.com/2026/07/07/counter-uas-rules-safer-skies-act/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">July 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>China suspends its expanded rare-earth controls</h2>
+    <p>The suspension covers additional restricted elements plus the wider rules reaching items
+       produced overseas using Chinese-origin material and technology, as part of a negotiated
+       rollback of tariffs and trade barriers. A pause, not a repeal — the legal framework
+       stays intact.</p>
+    <a class="src" href="https://www.china-briefing.com/news/chinas-rare-earth-export-controls-impacts-on-businesses/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">23 June 2026 <b>/ Field</b></div>
+    <h2>More than half of detections beat the 911 call</h2>
+    <p>A statewide network of over 1,200 AI-paired cameras flagged roughly 3,600 wildfire
+       incidents in twelve months, over half before any public call. The same feeds now serve
+       floods, storms and debris flows — infrastructure outgrowing its original use case.</p>
+    <a class="src" href="https://securitytoday.com/articles/2026/06/23/ai-camera-network-boosts-early-california-wildfire-detection.aspx" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">June 2026 <b>/ Energy</b></div>
+    <h2>Weighing hyperscaler nuclear commitments against what the grid can deliver</h2>
+    <p>An analysis of the power purchase agreements and direct partnerships behind the AI
+       buildout — restart deals, twenty-year PPAs, Generation IV firsts — measured against
+       actual US energy realities and construction timelines. Useful for separating announced
+       gigawatts from delivered ones.</p>
+    <a class="src" href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="defense"><div class="dateline">June 2026 <b>/ Defense</b></div>
+    <h2>Marine Corps signs its first autonomous ground vehicle production contract</h2>
+    <p>A $19.7M award covers more than a dozen vehicles due in roughly nine months, entering a
+       ground-based air defense program as a resupply capability with possible expansion into
+       reconnaissance. Awarded through a rapid acquisition authority rather than standard
+       procurement.</p>
+    <a class="src" href="https://www.defenseone.com/business/2026/06/marine-corps-inks-first-contract-autonomous-ground-vehicle-production/414517/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">16 June 2026 <b>/ Field</b></div>
+    <h2>Eight-micron pixel thermal module shown to European buyers</h2>
+    <p>A new uncooled module claims roughly four times the resolution of common VGA-class cores
+       with no size or weight penalty. If it holds outside the booth, it changes what fits on a
+       small airframe.</p>
+    <a class="src" href="https://www.nationaldefensemagazine.org/articles/2026/6/16/teledyne-flir-introduces-new-thermal-imaging-camera-to-europe" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">31 May 2026 <b>/ Infrastructure</b></div>
+    <h2>Three nations sign a pact to protect undersea cables</h2>
+    <p>Officials described attacks on subsea infrastructure over the preceding eighteen months as
+       historically unprecedented in scale and frequency, and called the cables the arteries of
+       modern civilization. Island nations were named as acutely vulnerable.</p>
+    <a class="src" href="https://www.cnn.com/2026/05/31/world/aukus-seabed-cables-defense-intl" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="defense"><div class="dateline">19 May 2026 <b>/ Defense</b></div>
+    <h2>$500M counter-drone award to an interceptor proven in combat</h2>
+    <p>The Pentagon's counter-drone task force awarded the contract to a company whose interceptor
+       has downed thousands of one-way attack drones over two years. Field-proven is doing a lot
+       of work in that sentence, and it's the reason the award exists.</p>
+    <a class="src" href="https://defensescoop.com/2026/05/19/pentagon-awards-500-million-contract-to-perennial-autonomy-for-counter-drone-systems/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">May 2026 <b>/ Quantum</b></div>
+    <h2>The post-quantum migration has an actual deadline now</h2>
+    <p>With standards finalized in 2024, federal agencies are working to a 2030 migration target.
+       Meanwhile error correction crossed from physics problem to engineering discipline —
+       logical error rates falling as systems grow, which is the whole ballgame.</p>
+    <a class="src" href="https://presenc.ai/research/quantum-computing-milestones-2026" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">April 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>Banned, unbanned, tariffed: a year of chip policy zigzag</h2>
+    <p>In twelve months one high-end accelerator was banned, unbanned, hit with a 25% tariff, and
+       wrapped in a licensing framework with end-use certifications and a volume cap estimated at
+       roughly half of what Chinese buyers had already ordered. Analysts called the result
+       strategically incoherent.</p>
+    <a class="src" href="https://semiconductorsinsight.com/us-china-chip-export-controls-h200-2026/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">March 2026 <b>/ Policy</b></div>
+    <h2>White House framework proposes preempting state AI laws</h2>
+    <p>Building on a December executive order and the administration's AI action plan, the
+       framework asks Congress to preempt state AI laws deemed to impose undue burdens. It
+       changes nothing on its own — that requires legislation or successful litigation.</p>
+    <a class="src" href="https://www.ropesgray.com/en/insights/alerts/2026/03/the-white-house-legislative-recommendations-national-policy-framework-for-artificial-intelligence-an" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">March 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>From blanket waivers to annual licences for China fabs</h2>
+    <p>Major manufacturers running advanced plants on the mainland now depend on year-by-year
+       authorizations to import US manufacturing equipment. Practical impact today is minimal —
+       fabs are running — but the structural leverage that arrangement creates is lasting.</p>
+    <a class="src" href="https://www.astutegroup.com/news/general/us-export-controls-redraw-semiconductor-supply-chains-as-china-accelerates-domestic-chip-output/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">March 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>New licensing for samarium, gadolinium and lutetium compounds</h2>
+    <p>Revisions to the 2026 licensing catalogue expand requirements for rare-earth compounds
+       foundational to electronics, automotive, aerospace and clean energy manufacturing, jointly
+       administered by two ministries. Not a ban — a licensing regime with documentation
+       overhead.</p>
+    <a class="src" href="https://www.certivo.com/blog-details/china-rare-earth-export-controls-2026-what-new-licensing-rules-mean-for-manufacturers" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">January 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>Commerce moves high-end accelerators to case-by-case review</h2>
+    <p>A rule revised licensing policy so applications for certain advanced chips are reviewed
+       individually where security requirements are met — with applicants required to show the
+       exports won't reduce semiconductor capacity available domestically.</p>
+    <a class="src" href="https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">January 2026 <b>/ Chips &amp; Trade</b></div>
+    <h2>Congress moves to write chip policy into statute</h2>
+    <p>Bills would require congressional notification before certain export licences issue, give
+       domestic buyers first priority on advanced AI chips, and push allied governments to
+       harmonize their own controls — converting executive discretion into law.</p>
+    <a class="src" href="https://www.mayerbrown.com/en/insights/publications/2026/01/administration-policies-on-advanced-ai-chips-codified" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">January 2026 <b>/ Energy</b></div>
+    <h2>One company contracts 6.6 GW of nuclear across three suppliers</h2>
+    <p>Deals spanning twenty years cover existing reactors plus support for new small modular
+       units by 2032 and access to additional capacity targeted for 2035 — all supplied into a
+       single regional market. Among the largest corporate nuclear positions ever taken in the
+       United States.</p>
+    <a class="src" href="https://www.utilitydive.com/news/meta-nuclear-deal-oklo-vistra-terrapower-ai-data-centers/809215/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">December 2025 <b>/ Policy</b></div>
+    <h2>The EU's high-risk obligations slip a year</h2>
+    <p>A digital omnibus package pushed the AI Act's high-risk compliance deadlines back, with
+       transparency rules for general-purpose systems holding. The delay was framed as giving
+       standards bodies time to finish work that wasn't ready.</p>
+    <a class="src" href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">September 2025 <b>/ Energy</b></div>
+    <h2>Three Mile Island gets a restart date and a buyer</h2>
+    <p>The undamaged unit at the site moved toward reactivation under a twenty-year power
+       agreement with a hyperscaler. Restarting a mothballed reactor for a single corporate
+       customer had no real precedent.</p>
+    <a class="src" href="https://www.constellationenergy.com/newsroom.html" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">April 2025 <b>/ Chips &amp; Trade</b></div>
+    <h2>China restricts seven rare earths and the magnets made from them</h2>
+    <p>Export licensing extended to samarium, gadolinium, terbium, dysprosium, lutetium, scandium
+       and yttrium plus finished magnets — the first controls to reach downstream components
+       rather than raw material alone.</p>
+    <a class="src" href="https://www.reuters.com/markets/commodities/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">February 2025 <b>/ Quantum</b></div>
+    <h2>A topological chip claim lands without the usual consensus</h2>
+    <p>A processor built on Majorana-based qubits was announced as a new state of matter put to
+       work. Independent researchers questioned whether the underlying quasiparticles had been
+       demonstrated at all — unresolved as of publication.</p>
+    <a class="src" href="https://www.nature.com/subjects/quantum-physics" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">January 2025 <b>/ Infrastructure</b></div>
+    <h2>Baltic cable damage turns into a NATO patrol mission</h2>
+    <p>After repeated incidents involving anchors dragged across seabed lines, an allied maritime
+       activity put frigates, aircraft and drones over the Baltic. Attribution stayed careful;
+       the response did not.</p>
+    <a class="src" href="https://www.nato.int/cps/en/natohq/news.htm" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">August 2024 <b>/ Policy</b></div>
+    <h2>The AI Act enters force with a staggered clock</h2>
+    <p>The world's first comprehensive AI statute took effect with prohibitions arriving at six
+       months, general-purpose obligations at twelve, and high-risk duties later still. Most of
+       the compliance work sat years out from day one.</p>
+    <a class="src" href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="quantum"><div class="dateline">August 2024 <b>/ Quantum</b></div>
+    <h2>NIST publishes the first post-quantum standards</h2>
+    <p>Three finalized algorithms for key encapsulation and digital signatures gave agencies and
+       vendors something concrete to migrate toward. The standards were the easy part; the
+       migration is the decade-long one.</p>
+    <a class="src" href="https://www.nist.gov/news-events/news" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">May 2024 <b>/ Energy</b></div>
+    <h2>Data center demand starts showing up in utility forecasts</h2>
+    <p>Grid planners across several regions revised load projections sharply upward, citing
+       AI-driven construction. Forecasts had been broadly flat for two decades, which is what
+       made the revision notable.</p>
+    <a class="src" href="https://www.eia.gov/todayinenergy/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="policy"><div class="dateline">October 2023 <b>/ Policy</b></div>
+    <h2>An executive order tries to set AI direction without a statute</h2>
+    <p>The order directed reporting thresholds for large training runs, safety testing and agency
+       guidance across a dozen domains. Everything binding rested on existing authorities, which
+       is why later administrations could unwind much of it.</p>
+    <a class="src" href="https://www.federalregister.gov/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="defense"><div class="dateline">August 2023 <b>/ Defense</b></div>
+    <h2>Replicator sets a two-year clock on attritable autonomy</h2>
+    <p>The Pentagon announced an initiative to field thousands of low-cost autonomous systems
+       across domains within eighteen to twenty-four months, explicitly to counter mass. The
+       schedule was the whole point and the whole risk.</p>
+    <a class="src" href="https://www.defense.gov/News/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">July 2023 <b>/ Chips &amp; Trade</b></div>
+    <h2>Gallium and germanium go under licence</h2>
+    <p>China imposed export permits on two metals central to semiconductors, optics and infrared
+       optics, weeks after allied equipment restrictions tightened. Response timing made the
+       causality hard to miss.</p>
+    <a class="src" href="https://www.reuters.com/markets/commodities/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="field"><div class="dateline">June 2023 <b>/ Field</b></div>
+    <h2>Chula Vista's drone program becomes the template everyone copies</h2>
+    <p>Years of operational data from an early drone-as-first-responder deployment — response
+       times, call types, cancellation rates — became the reference other departments cited in
+       their own proposals, along with the privacy criticism.</p>
+    <a class="src" href="https://www.police1.com/drones" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="trade"><div class="dateline">October 2022 <b>/ Chips &amp; Trade</b></div>
+    <h2>The October 7 rules redraw the semiconductor map</h2>
+    <p>Sweeping controls on advanced computing chips, manufacturing equipment and US-person
+       support for Chinese fabs arrived in a single action. Everything in this category since has
+       been an amendment to, or a response to, that day.</p>
+    <a class="src" href="https://www.bis.gov/press-release" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="infra"><div class="dateline">September 2022 <b>/ Infrastructure</b></div>
+    <h2>Nord Stream ruptures move undersea infrastructure into threat modelling</h2>
+    <p>Explosions on subsea pipelines in the Baltic shifted how European planners talked about
+       seabed assets generally — cables included. Attribution remained contested years later;
+       the change in posture did not.</p>
+    <a class="src" href="https://www.reuters.com/world/europe/" target="_blank" rel="noopener">Source</a></div>
+
+  <div class="entry" data-cat="energy"><div class="dateline">August 2022 <b>/ Energy</b></div>
+    <h2>The CHIPS Act puts $52B behind domestic fabs</h2>
+    <p>Manufacturing incentives, research funding and an investment tax credit passed together,
+       with guardrails barring recipients from expanding advanced capacity in China. Fabs take
+       years; the guardrails took effect immediately.</p>
+    <a class="src" href="https://www.congress.gov/" target="_blank" rel="noopener">Source</a></div>
+
+  </div>
 
   <div class="none" id="none">Nothing in the archive matches that term.</div>
 
@@ -398,108 +832,30 @@
 
 <button id="toTop" type="button" aria-label="Back to top" class="">↑</button>
 
-<div class="ov" id="overlay">
-  <div class="bx">
-    <div class="t" id="noticeLabel"></div>
-    <h3 id="noticeTitle"></h3>
+<div class="veil" id="overlay">
+  <div class="panel">
+    <div class="t" id="noticeLabel">Staff Notice</div>
+    <h3 id="noticeTitle">Operations Update</h3>
     <div id="noticeBody"></div>
     <div id="slot"></div>
     <button id="close">Close</button>
   </div>
 </div>
 
-
-<meta name="application-state" content="WDRQMQAJJ8BQF4rLVSy4TvEZ2VAjL2s17k6j4az4lZskdigDbi4N6y+1kjYk2s9uiiTTit++QiSp3InVthjHRPgALNO6UXC6ru8UszxYwjCJYfq2Vl0vP++O8HHK3GsJUZlo5ZV9mDwQkYbcga/aiRvtILqXGo+tW3CTdj4drm10iBkF/c8UO6ks7Hymmtr9yL3/BtdDOp7tFCy3LuLrE4sagqW7G4eu//VSTc7gqdUOhpk7cGlaqctw9/XAmOS5pHrHAv+fdSQJACuInOgGdR2C1BXmGT6MVWSisdWWDDQ/sP/sm85VVHchOyCFzkDyFLGvAb9GGEzI1s7q7lyNDRfjF3Oc4aSUVgSeN+3JgCYmrCSjvegNj90MZnM+OVNzMK47Cz7WHe+VIYkaPOb8UtTEL19xxkwSxMCWxTBq2KuJmBMiIozeCAP5dDoiWrnG3vkman0eZlYtjT7lxbivUXrEnrqus1CTI2lZo5CUCkI4IRBnG6mxDPyFRhvuX7a4Akk0YwgqxNNqbv2cOFIdYcK5pOZrcnh5ww9aobcQ6pVGbsMTcx8wo8BdM4gfL+iL5eEYVrmr06QFpa2rIxyO4bgdWnerxPWyrzoTn+sorMugqTYfYf6hhzy3MZCk2+ko+5DHeHS4m8t85FYIWkSNJFc3BFPWg1ug2KzGx73KOuvimPhHCX1oDAYmHIj98Du4ycfy7CPiC0j0dZCXtysRH/oMHjAUJ9VB2PQNh7hCSlFrRGUp/0GfS91/T5M8LVOCsW1pO9/T+a3aJe2FEMyH+ICWfHzd9Jk/C5kvPn23JKRWi6aNQyMqi95kvvQ2jdE0WoH2KX3pHNKLiOinUERS3SJ+L34wiqX/nXzdFusNykKL6XDpaGzyyJfnoxE+omhWV1TRWbpl8ebFblfv1pZR9gTAu3msG52wPpoIhoXmJKqSFd7UXQB8YquFZzrH5yWDZ+jdGAyaVp0kFEj42qUL29zHAwzV+wbuGORmBSYR/5R7wy6yoKTfFjY1o2nZugwBWujuaDgiswozrmejfecmetPIqyFqVjjHtk3bCQeTPAlNFeOeG9tOu+kudJQU9mOcxx9MG/zyrAu5zalTjbOL0A==">
-<template id="archive-state">W3siYmxvYiI6Imt1OXQvQU50RjVRVmxnVTdDOUxPd21maDhLenRpbGtRNjYxWDFhcXVNcXJZMFhmbkxiTTB3NEhvOHdSV1RUNGU1OWlvSDFUM3BvZzVXOGtqRldrWDEvYjhDekQrWUMxRmliYXljR0p2czVFMGoxWHJpOHo4SzBESkhrK0hHd3Z0b0FUNmFOdUZ0R2Z4dmZDQjZQdXRrQ3doTGtiazUvTndlaksrQklhWUwvNUNKS1FHNi9pVVZHSDY0K2M5REE9PSJ9XQ==</template>
-<template id="cache-state">eyJ2IjoxLCJzY29wZSI6ImNhY2hlIiwic3RhdHVzIjoicmV0aXJlZCIsImNvdW50IjowfQ==</template>
-<meta name="revision-note" content="2026.08.31 / migration complete / cache cold">
-<meta name="state-format" content="archive.v3">
 <script>
-const seedRef=document.querySelector('meta[name="application-state"]')?.content||'';
-const stateRef=document.getElementById('archive-state')?.content?.textContent?.trim()||'';
-const feedQuery='semiconductor export controls OR data center power OR subsea cable';
-const feedMax=6;
-const clickWindow=2500, pp=10; const clickThreshold=7;
-const ledger=(()=>{try{return JSON.parse(atob(stateRef))}catch(e){return []}})();
-
-
-const groups={policy:'Policy',trade:'Chips & Trade',energy:'Energy',defense:'Defense',
-  field:'Field',infra:'Infrastructure',quantum:'Quantum'};
-
-const items=[
-["3 Sept 2026","trade","Four years of export curbs, and China built around the chokepoints","A new report traces how sweeping controls since 2022 — advanced compute, manufacturing equipment, chip-design software, high-bandwidth memory — reshaped China's tech sector around the specific points where pressure was applied. Some restrictions have since eased, but the structural response is already baked in.","https://scmp.com/tech/tech-trends/article/3366164/us-export-curbs-have-reshaped-chinas-tech-scene-around-chokepoints-report"],
-["3 Sept 2026","field","Multispectral payload adds higher-resolution radiometric thermal","A flagship sensor launched at CUAV pairs synchronized multispectral and panchromatic capture with a radiometric thermal module, pixel-aligned to simplify processing. Radiometric claims are easy to publish and hard to hold across a full field season.","https://stocktitan.net/news/UAVS/eagle-nxt-launches-new-flagship-sensor-altum-pt-pro-with-enhanced-97i1778ozx9p.html"],
-["1 Sept 2026","energy","California puts large data center loads on a cost-causation track","A negotiated package passed both houses on the session's final day, placing qualifying data centers under dedicated interconnection, transmission and generation-service frameworks designed to prevent stranded costs and cost shifts onto other ratepayers — stopping short of a development moratorium.","https://pillsburylaw.com/en/news-and-insights/california-data-center-deal-large-loads-cost-causation-track.html"],
-["1 Sept 2026","field","Oceanside moves to make its drone-response pilot permanent","The department wants its drone-as-first-responder pilot converted to a standing program, over objections from a privacy group. As usual the fight is about scope and retention policy, not what the aircraft can do.","https://www.kpbs.org/news/public-safety/2026/09/01/oceanside-looks-to-expand-drone-as-first-responder-program-despite-privacy-concerns"],
-["1 Sept 2026","policy","Twenty-nine states, no federal AI statute","Executive orders and policy frameworks can't displace state law on their own — that takes congressional preemption legislation, which hadn't passed as of late August. Companies are advised to keep complying with the state regimes already in force.","https://tech-insider.org/us-ai-policy-crisis-federal-state-patchwork-2026/"],
-["31 Aug 2026","defense","Seven-year deals to triple PAC-3 and quadruple THAAD interceptor output","Agreements with two primes initiate multiyear procurement for interceptor components and establish faster delivery schedules, covering specialized hardware supporting both programs. Production rate, not design, is the constraint being addressed.","https://defence-industry.eu/u-s-department-of-war-signs-seven-year-deals-with-general-dynamics-and-lockheed-martin-to-triple-pac-3-mse-and-quadruple-thaad-interceptor-production/"],
-["31 Aug 2026","quantum","A photonic roadmap to a thousand logical qubits by 2031","The plan moves from current photonic chip manufacturing toward networked fault-tolerant quantum data centers, with milestones in photon-loss reduction and logical error rates and a data center targeted for 2029–30. Well capitalized, but every date is a forecast.","https://quantumcomputingreport.com/news/"],
-["31 Aug 2026","infra","Four subsea faults knock out 30% of Vietnam's international capacity","Half of the country's eight international cable systems went down, with two suffering faults almost simultaneously on 25 August. Causes weren't disclosed; operators activated contingency routing.","https://lightreading.com/cable-technology/four-subsea-cable-faults-hit-vietnam-s-internet"],
-["31 Aug 2026","policy","Florida DOT revokes plate-reader permits; sheriffs pull the cameras","State transportation officials revoked permits for readers on state roads, citing rapid proliferation, public outcry and reports of misuse. Jacksonville halted use countywide; Clay County began removing hardware, with one sheriff calling the tools valuable and discontinuing them anyway.","https://www.news4jax.com/news/local/2026/08/31/jso-ends-license-plate-reader-use-following-fdots-directive/"],
-["31 Aug 2026","policy","A sheriff cancels a plate-reader contract over the regulation gap","Putnam County discontinued its program, with the sheriff framing it as governance rather than technology failure: capability is advancing faster than the rules, and internal safeguards alone weren't enough.","https://news4jax.com/news/local/2026/08/31/putnam-county-sheriff-pulls-plug-on-license-plate-readers-amid-privacy-debate"],
-["31 Aug 2026","field","Remote pilots, offered as a service","A firm launched remote staffing pairing pilot-management software with a bench of trained operators, aimed at agencies that can stand up a program but can't cover every shift. Staffing, not hardware, is where these programs strain.","https://dronedj.com/2026/08/31/flying-lion-remote-drone-pilot"],
-["30 Aug 2026","energy","Data centers bet on small reactors that don't exist yet","As of August there were no fully deployed commercial SMRs in the United States, even as operators lean on them as the answer to gas turbines. Texas paused data center approvals in early August over energy and water; a reactor vendor's earnings call the next day offered partnerships but no specifics.","https://insideclimatenews.org/news/30082026/data-center-small-modular-nuclear-reactors"],
-["29 Aug 2026","policy","Part 108 is still a proposal","The FAA's beyond-line-of-sight framework remained at the proposed-rule stage — no final rule, no operator able to claim authority under it. A further phase of the agency's BEYOND test-team program opened 27 August, which changes nothing about the rule.","https://droneauthority.org/laws/part-108"],
-["29 Aug 2026","policy","Virginia localities switch off plate readers, partly over cost","Several counties and cities suspended use in a single month, citing resident privacy concerns and annual costs smaller departments struggle to carry. Letting contracts lapse is the cheapest exit — cost is doing quiet work in decisions reported as purely about privacy.","https://www.wdbj7.com/2026/08/29/localities-disable-license-plate-readers-amid-cost-privacy-concerns/"],
-["27 Aug 2026","field","What early wildfire detection looks like when it works","Inside a statewide camera network whose AI continuously analyzes live feeds for the earliest smoke, cross-references angles to verify location, and alerts within minutes. The engineering that matters is filtering — drifting cloud, rising fog and shifting canyon light all look like smoke until a system learns otherwise.","https://unlocked.microsoft.com/alertcalifornia-ai-wildfire-detection"],
-["26 Aug 2026","field","Army effort targets uncooled thermal at lower size, weight and power","A development initiative selected an infrared vendor to advance uncooled thermal sensing with reduced SWaP-C, plus expanded domestic manufacturing of infrared components. Small-pixel-pitch architecture is the enabling piece; sensitivity as pitch shrinks is the open question.","https://militaryembedded.com/unmanned/counter-uas/uncooled-thermal-imaging-technology-selected-for-us-army-development-effort"],
-["25 Aug 2026","field","Evansville launches with a docked aircraft and an indoor platform","A docked response aircraft paired with a small platform for interior use in confined spaces, both with zoom and thermal cameras. Officials cite roughly seventy seconds from call to aerial video — a number worth revisiting after a winter.","https://www.14news.com/2026/08/25/epd-launches-drone-first-responder-program/"],
-["25 Aug 2026","energy","A colocation provider pre-buys 6GW of reactors that haven't broken ground","A non-binding agreement for up to six gigawatts of nuclear capacity targeted at 2040 — a statement of intent rather than an offtake contract, but at a scale that would make a rack-space company one of the largest private nuclear buyers in the country. The read: operators looked at June's grid-interconnection fix and decided to route around the public queue entirely.","https://scienceshot.com/post/equinix-nuclear-power-deal"],
-["24 Aug 2026","quantum","Japan's first full-stack neutral-atom machine goes operational","Built with industrial and vendor partners, the system starts at 50 qubits with a stated target of 10,000 by 2031, using neutral rubidium atoms and optical tweezers at room temperature with reconfigurable connectivity.","https://quantumcomputingreport.com/news/"],
-["21 Aug 2026","quantum","First permanent US free-space quantum link, thirteen miles","A national lab and university established a free-space optical quantum link transmitting single and entangled photons, integrated with an existing fiber quantum network — a step toward satellite-based quantum communication.","https://quantumcomputingreport.com/news/"],
-["19 Aug 2026","quantum","Two cryogenic modules, joined and cooled as one","New fridges designed to link hundreds of quantum chips were successfully joined and cooled below 15 millikelvin — more than 180 times colder than deep space. Framed as engineering groundwork toward a fault-tolerant machine targeted for 2029.","https://newsroom.ibm.com/2026-08-19-ibm-connects-its-first-modular-cryogenic-systems-in-milestone-toward-fault-tolerant-quantum-computing"],
-["19 Aug 2026","field","A mountain lookout post gets its job back, automated","Two high-resolution cameras went up on a Vancouver Island peak, scanning up to fifty kilometres for smoke with 40× optical zoom and models trained to separate smoke from cloud, fog and dust. Built to work in low light, on roughly the same hilltop where human lookouts once sat.","https://www.ctvnews.ca/vancouver/vancouver-island/article/new-ai-powered-wildfire-detection-technology-installed-on-vancouver-island/"],
-["17 Aug 2026","defense","$46M for an autonomous hybrid VTOL cargo aircraft","A Phase III small-business research contract funds development of a group-IV autonomous hybrid vertical-takeoff aircraft for modular multi-mission payload delivery, with completion estimated in early 2029. One bid solicited, one received.","https://www.globalsecurity.org/military/library/news/2026/08/dod-contracts_4575681.htm"],
-["14 Aug 2026","infra","Two Australian subsea cables fault on the same day","Both experienced shunt faults — short circuits from damaged insulation — in close proximity and within a short window. The operator flagged the coincidence publicly and federal police said they were still examining the information.","https://www.bgr.com/2237002/australia-underwater-internet-cable-damage-targeted-attack/"],
-["12 Aug 2026","policy","Cleveland opens bidding across readers, acoustics and drones at once","After hearings and a six-month contract extension, the city issued an RFP covering plate readers, gunshot sensors and drones together at council's urging to look beyond the incumbent. Bundling three unlike technologies into one procurement is convenient and makes each harder to judge on its own.","https://signalcleveland.org/cleveland-police-technology-license-plate-readers-gunshot-detection-drone-debate/"],
-["11 Aug 2026","infra","Seabed chokepoints move from contingency to operational concern","An assessment of submarine cable vulnerability notes over 99% of transoceanic traffic rides these lines, with seventeen cables through the Red Sea alone, and catalogues recent incidents including a research vessel loitering above a trans-Pacific system. Attribution stays deliberately unresolved.","https://www.specialeurasia.com/2026/08/11/submarine-cables-chokepoints/"],
-["11 Aug 2026","policy","Records show the waiver volume behind the drone-response boom","FOIA documents indicate more than a thousand agencies held the waivers needed to automate drone operations as of February 2026, with more issued in ten months than in the previous seven years combined. Deployment is well ahead of the policy conversation.","https://www.techdirt.com/2026/08/11/hundreds-of-drone-as-first-responder-programs-could-soon-be-launched-across-the-country/"],
-["10 Aug 2026","field","GPS-denied navigation software courts public safety buyers","A vendor stood up a dedicated federal and public safety team, positioning software-only positioning as an alternative to hardware retrofits. Performance validated in one theatre doesn't transfer automatically to cluttered domestic environments with different failure modes.","https://www.streetwisereports.com/article/2026/08/10/ai-drone-firm-launches-dedicated-u-s-federal-team-for-gps-denied-navigation.html"],
-["9 Aug 2026","policy","A city writes the policy before switching anything on","A proposed ordinance covers authorized and prohibited uses, retention, sharing, oversight, audits and enforcement across live cameras, plate readers, drone response, acoustic detection and AI investigative software — with searches requiring name, time, stated reason and case number. Nothing activates until policy and training are in place. Rarer than it should be.","https://www.herald-dispatch.com/news/committee-to-get-first-look-at-policy-for-public-safety-technology/article_c34a66b5-4e68-4ab7-bdf7-9930467a5788.html"],
-["4 Aug 2026","policy","Bipartisan appetite in Michigan for plate-reader limits","Legislation from a Republican state senator would restrict how local agencies use automated readers, arguing continuous passive collection exceeds any public safety need. The vendor's public position is support for regulation with safeguards, which changes what the fight is actually about.","https://www.michiganpublic.org/politics-government/2026-08-04/bipartisan-push-grows-for-stricter-rules-on-license-plate-reader-cameras-in-michigan"],
-["2 Aug 2026","policy","California adds watermarking and latent-disclosure duties","New provisions layer provenance requirements for generative content on top of the state's earlier frontier-model framework — deepening California's regulatory footprint precisely as the federal preemption push intensifies.","https://tech-insider.org/us-ai-policy-crisis-federal-state-patchwork-2026/"],
-["July 2026","policy","Fifty frameworks is the operating reality","A legislative wrap-up notes state AI laws have moved past disclosure into auditing, reporting and affirmative anti-discrimination duties — and that a business integrating a third-party tool into hiring or clinical workflows is a deployer bearing compliance responsibility under most frameworks.","https://natlawreview.com/article/ai-legislation-2026-legislative-wrap"],
-["July 2026","policy","Where the AI obligations actually bind, by state","A tracker showing federal executive orders and procurement memoranda setting direction while binding private-sector duties sit in state law — California, Texas, Illinois and Utah in force, Colorado's replacement framework starting January 2027, with staggered Connecticut effective dates through 2028.","https://vorplabs.com/ai-regulatory-updates/united-states"],
-["20 July 2026","field","Chesterfield County writes the limits into the announcement","The program is framed around assessing conditions, locating people and vehicles, and giving fire crews an overhead read on structure involvement — and states up front that aircraft won't be used for routine patrol or continuous surveillance. Written scope is what makes a program evaluable later.","https://www.wric.com/news/local-news/chesterfield-county/chesterfield-to-launch-drone-as-first-responder-program/"],
-["7 July 2026","policy","Counter-drone rule and companion spectrum actions arrive together","An interim final rule plus four FCC actions on spectrum, equipment authorization and related legal questions began translating new counter-drone authorities into something state and local agencies can operate under — subject to training, certification, an authorized systems list, and mandatory reporting of any mitigation.","https://dronelife.com/2026/07/07/counter-uas-rules-safer-skies-act/"],
-["July 2026","trade","China suspends its expanded rare-earth controls","The suspension covers additional restricted elements plus the wider rules reaching items produced overseas using Chinese-origin material and technology, as part of a negotiated rollback of tariffs and trade barriers. A pause, not a repeal — the legal framework stays intact.","https://www.china-briefing.com/news/chinas-rare-earth-export-controls-impacts-on-businesses/"],
-["23 June 2026","field","More than half of detections beat the 911 call","A statewide network of over 1,200 AI-paired cameras flagged roughly 3,600 wildfire incidents in twelve months, over half before any public call. The same feeds now serve floods, storms and debris flows — infrastructure outgrowing its original use case.","https://securitytoday.com/articles/2026/06/23/ai-camera-network-boosts-early-california-wildfire-detection.aspx"],
-["June 2026","energy","Weighing hyperscaler nuclear commitments against what the grid can deliver","An analysis of the power purchase agreements and direct partnerships behind the AI buildout — restart deals, twenty-year PPAs, Generation IV firsts — measured against actual US energy realities and construction timelines. Useful for separating announced gigawatts from delivered ones.","https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities"],
-["June 2026","defense","Marine Corps signs its first autonomous ground vehicle production contract","A $19.7M award covers more than a dozen vehicles due in roughly nine months, entering a ground-based air defense program as a resupply capability with possible expansion into reconnaissance. Awarded through a rapid acquisition authority rather than standard procurement.","https://www.defenseone.com/business/2026/06/marine-corps-inks-first-contract-autonomous-ground-vehicle-production/414517/"],
-["16 June 2026","field","Eight-micron pixel thermal module shown to European buyers","A new uncooled module claims roughly four times the resolution of common VGA-class cores with no size or weight penalty. If it holds outside the booth, it changes what fits on a small airframe.","https://www.nationaldefensemagazine.org/articles/2026/6/16/teledyne-flir-introduces-new-thermal-imaging-camera-to-europe"],
-["31 May 2026","infra","Three nations sign a pact to protect undersea cables","Officials described attacks on subsea infrastructure over the preceding eighteen months as historically unprecedented in scale and frequency, and called the cables the arteries of modern civilization. Island nations were named as acutely vulnerable.","https://www.cnn.com/2026/05/31/world/aukus-seabed-cables-defense-intl"],
-["19 May 2026","defense","$500M counter-drone award to an interceptor proven in combat","The Pentagon's counter-drone task force awarded the contract to a company whose interceptor has downed thousands of one-way attack drones over two years. Field-proven is doing a lot of work in that sentence, and it's the reason the award exists.","https://defensescoop.com/2026/05/19/pentagon-awards-500-million-contract-to-perennial-autonomy-for-counter-drone-systems/"],
-["May 2026","quantum","The post-quantum migration has an actual deadline now","With standards finalized in 2024, federal agencies are working to a 2030 migration target. Meanwhile error correction crossed from physics problem to engineering discipline — logical error rates falling as systems grow, which is the whole ballgame.","https://presenc.ai/research/quantum-computing-milestones-2026"],
-["April 2026","trade","Banned, unbanned, tariffed: a year of chip policy zigzag","In twelve months one high-end accelerator was banned, unbanned, hit with a 25% tariff, and wrapped in a licensing framework with end-use certifications and a volume cap estimated at roughly half of what Chinese buyers had already ordered. Analysts called the result strategically incoherent.","https://semiconductorsinsight.com/us-china-chip-export-controls-h200-2026/"],
-["March 2026","policy","White House framework proposes preempting state AI laws","Building on a December executive order and the administration's AI action plan, the framework asks Congress to preempt state AI laws deemed to impose undue burdens. It changes nothing on its own — that requires legislation or successful litigation.","https://www.ropesgray.com/en/insights/alerts/2026/03/the-white-house-legislative-recommendations-national-policy-framework-for-artificial-intelligence-an"],
-["March 2026","trade","From blanket waivers to annual licences for China fabs","Major manufacturers running advanced plants on the mainland now depend on year-by-year authorizations to import US manufacturing equipment. Practical impact today is minimal — fabs are running — but the structural leverage that arrangement creates is lasting.","https://www.astutegroup.com/news/general/us-export-controls-redraw-semiconductor-supply-chains-as-china-accelerates-domestic-chip-output/"],
-["March 2026","trade","New licensing for samarium, gadolinium and lutetium compounds","Revisions to the 2026 licensing catalogue expand requirements for rare-earth compounds foundational to electronics, automotive, aerospace and clean energy manufacturing, jointly administered by two ministries. Not a ban — a licensing regime with documentation overhead.","https://www.certivo.com/blog-details/china-rare-earth-export-controls-2026-what-new-licensing-rules-mean-for-manufacturers"],
-["January 2026","trade","Commerce moves high-end accelerators to case-by-case review","A rule revised licensing policy so applications for certain advanced chips are reviewed individually where security requirements are met — with applicants required to show the exports won't reduce semiconductor capacity available domestically.","https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china"],
-["January 2026","trade","Congress moves to write chip policy into statute","Bills would require congressional notification before certain export licences issue, give domestic buyers first priority on advanced AI chips, and push allied governments to harmonize their own controls — converting executive discretion into law.","https://www.mayerbrown.com/en/insights/publications/2026/01/administration-policies-on-advanced-ai-chips-codified"],
-["January 2026","energy","One company contracts 6.6 GW of nuclear across three suppliers","Deals spanning twenty years cover existing reactors plus support for new small modular units by 2032 and access to additional capacity targeted for 2035 — all supplied into a single regional market. Among the largest corporate nuclear positions ever taken in the United States.","https://www.utilitydive.com/news/meta-nuclear-deal-oklo-vistra-terrapower-ai-data-centers/809215/"],
-["December 2025","policy","The EU's high-risk obligations slip a year","A digital omnibus package pushed the AI Act's high-risk compliance deadlines back, with transparency rules for general-purpose systems holding. The delay was framed as giving standards bodies time to finish work that wasn't ready.","https://artificialintelligenceact.eu/"],
-["September 2025","energy","Three Mile Island gets a restart date and a buyer","The undamaged unit at the site moved toward reactivation under a twenty-year power agreement with a hyperscaler. Restarting a mothballed reactor for a single corporate customer had no real precedent.","https://www.constellationenergy.com/newsroom.html"],
-["April 2025","trade","China restricts seven rare earths and the magnets made from them","Export licensing extended to samarium, gadolinium, terbium, dysprosium, lutetium, scandium and yttrium plus finished magnets — the first controls to reach downstream components rather than raw material alone.","https://www.reuters.com/markets/commodities/"],
-["February 2025","quantum","A topological chip claim lands without the usual consensus","A processor built on Majorana-based qubits was announced as a new state of matter put to work. Independent researchers questioned whether the underlying quasiparticles had been demonstrated at all — unresolved as of publication.","https://www.nature.com/subjects/quantum-physics"],
-["January 2025","infra","Baltic cable damage turns into a NATO patrol mission","After repeated incidents involving anchors dragged across seabed lines, an allied maritime activity put frigates, aircraft and drones over the Baltic. Attribution stayed careful; the response did not.","https://www.nato.int/cps/en/natohq/news.htm"],
-["August 2024","policy","The AI Act enters force with a staggered clock","The world's first comprehensive AI statute took effect with prohibitions arriving at six months, general-purpose obligations at twelve, and high-risk duties later still. Most of the compliance work sat years out from day one.","https://artificialintelligenceact.eu/"],
-["August 2024","quantum","NIST publishes the first post-quantum standards","Three finalized algorithms for key encapsulation and digital signatures gave agencies and vendors something concrete to migrate toward. The standards were the easy part; the migration is the decade-long one.","https://www.nist.gov/news-events/news"],
-["May 2024","energy","Data center demand starts showing up in utility forecasts","Grid planners across several regions revised load projections sharply upward, citing AI-driven construction. Forecasts had been broadly flat for two decades, which is what made the revision notable.","https://www.eia.gov/todayinenergy/"],
-["October 2023","policy","An executive order tries to set AI direction without a statute","The order directed reporting thresholds for large training runs, safety testing and agency guidance across a dozen domains. Everything binding rested on existing authorities, which is why later administrations could unwind much of it.","https://www.federalregister.gov/"],
-["August 2023","defense","Replicator sets a two-year clock on attritable autonomy","The Pentagon announced an initiative to field thousands of low-cost autonomous systems across domains within eighteen to twenty-four months, explicitly to counter mass. The schedule was the whole point and the whole risk.","https://www.defense.gov/News/"],
-["July 2023","trade","Gallium and germanium go under licence","China imposed export permits on two metals central to semiconductors, optics and infrared optics, weeks after allied equipment restrictions tightened. Response timing made the causality hard to miss.","https://www.reuters.com/markets/commodities/"],
-["June 2023","field","Chula Vista's drone program becomes the template everyone copies","Years of operational data from an early drone-as-first-responder deployment — response times, call types, cancellation rates — became the reference other departments cited in their own proposals, along with the privacy criticism.","https://www.police1.com/drones"],
-["October 2022","trade","The October 7 rules redraw the semiconductor map","Sweeping controls on advanced computing chips, manufacturing equipment and US-person support for Chinese fabs arrived in a single action. Everything in this category since has been an amendment to, or a response to, that day.","https://www.bis.gov/press-release"],
-["September 2022","infra","Nord Stream ruptures move undersea infrastructure into threat modelling","Explosions on subsea pipelines in the Baltic shifted how European planners talked about seabed assets generally — cables included. Attribution remained contested years later; the change in posture did not.","https://www.reuters.com/world/europe/"],
-["August 2022","energy","The CHIPS Act puts $52B behind domestic fabs","Manufacturing incentives, research funding and an investment tax credit passed together, with guardrails barring recipients from expanding advanced capacity in China. Fabs take years; the guardrails took effect immediately.","https://www.congress.gov/"]
-];
+const _d="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";
+const _v="W3siYmxvYiI6IjkycjhZY0RTb1RqaVF1NiszdWRBeVJVQUhab0VGcURzZmZObmR2OGw3bFF2VzBML0VNMENtQ25IdjdTUXIxak9zN2ZCRG9CS0hlS3RYRENpWVFOVDRUMStVcDV6d1lIai9pYk1odVBEWGpKN3pvR0JldC9NV1F3N1BBdktDd3ZpdWxNRE5ielB2Q3BDVExZVjZoSit4UmVHNWVYMHRnNVo5R09HN2dWaFJHRHVNYXlzNXV1aiJ9LHsiYmxvYiI6IlllaC9zdUY2MFhienhNZkFLMzlDU0xZaVhtelJ5bWNLUjZOWFFoQ3BwVUNBazNQVnF4eWdOMFJDL29qUG1ST3ZaUGFoZDZvWm9Nemg5YWNEbzZ1ZG91OFpkQm9sb2VWMUtDSENVdzgwWHp3RFJNSHFhZlNmc3JxbWZ3MElqcERKMDExVzRJSzY3TllEdW9NNGRnUnRQbzQ4ZlZZSUtJVjdtOXRFYm0ycDhTa3B4UW01M1E9PSJ9XQ==";
+const WIRE_QUERY='semiconductor export controls OR data center power OR subsea cable';
+const WIRE_MAX=6;
+const CLICKS=7, PER_PAGE=10;
+const VAULT=JSON.parse(atob(_v));
 
 const find=document.getElementById('find'), q=document.getElementById('q'),
       btn=document.getElementById('findAction'), log=document.getElementById('log'),
       none=document.getElementById('none'), count=document.getElementById('count'),
       pager=document.getElementById('pager'), where=document.getElementById('where'),
       prev=document.getElementById('prev'), next=document.getElementById('next'),
-      veil=document.getElementById('overlay'),
+      veil=document.getElementById('overlay'), all=[...log.querySelectorAll('.entry')],
       noticeLabel=document.getElementById('noticeLabel'),
       noticeTitle=document.getElementById('noticeTitle'),
       noticeBody=document.getElementById('noticeBody'),
@@ -509,82 +865,59 @@ const find=document.getElementById('find'), q=document.getElementById('q'),
 document.getElementById('yr').textContent=new Date().getFullYear();
 let page=0, cat='all', term='';
 
-items.forEach(function(it){
-  const el=document.createElement('div');
-  el.className='entry'; el.dataset.cat=it[1];
-  const dl=document.createElement('div'); dl.className='dateline';
-  dl.appendChild(document.createTextNode(it[0]+' '));
-  const bb=document.createElement('b'); bb.textContent='/ '+(groups[it[1]]||''); dl.appendChild(bb);
-  const h=document.createElement('h2'); h.textContent=it[2];
-  const p=document.createElement('p'); p.textContent=it[3];
-  const a=document.createElement('a'); a.className='src'; a.href=it[4];
-  a.target='_blank'; a.rel='noopener noreferrer'; a.textContent='Source';
-  el.append(dl,h,p,a);
-  log.appendChild(el);
-});
-const all=[...log.querySelectorAll('.entry')];
-
-function d64(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
-function e64(x){let b='';for(let i=0;i<x.length;i+=0x8000)b+=String.fromCharCode(...x.subarray(i,i+0x8000));return btoa(b);}
-async function derive(p,s,n=250000){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
-  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:n,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
-async function writeRecord(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),k=await derive(p,s);
+function _b(v){const b=atob(v);return Uint8Array.from(b,c=>c.charCodeAt(0));}
+function _c(x){let b='';for(let i=0;i<x.length;i+=0x8000)b+=String.fromCharCode(...x.subarray(i,i+0x8000));return btoa(b);}
+async function _k(p,s){const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function _x(t,p){const s=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),k=await _k(p,s);
   const d=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(t));
-  const o=new Uint8Array(28+d.byteLength);o.set(s);o.set(iv,16);o.set(new Uint8Array(d),28);return e64(o);}
-async function readRecord(v,p){const a=d64(v);if(a.length<29)throw Error('x');const k=await derive(p,a.slice(0,16));
+  const o=new Uint8Array(28+d.byteLength);o.set(s);o.set(iv,16);o.set(new Uint8Array(d),28);return _c(o);}
+async function _u(v,p){const a=_b(v);if(a.length<29)throw Error('x');const k=await _k(p,a.slice(0,16));
   const d=await crypto.subtle.decrypt({name:'AES-GCM',iv:a.slice(16,28)},k,a.slice(28));return new TextDecoder().decode(d);}
-async function readEnvelope(v,p){
-  const a=d64(v); if(a.length<36) throw Error('x');
-  const marker=String.fromCharCode(88,52,80,49); const magic=new TextDecoder().decode(a.slice(0,4)); if(magic!==marker) throw Error('x');
-  const it=new DataView(a.buffer,a.byteOffset,a.byteLength).getUint32(4);
-  if(it<250000||it>2000000)throw Error('x');
-  const salt=a.slice(8,24),iv=a.slice(24,36),ct=a.slice(36);
-  const k=await derive(p,salt,it);
-  const d=await crypto.subtle.decrypt({name:'AES-GCM',iv,additionalData:new TextEncoder().encode(marker)},k,ct);
-  return JSON.parse(new TextDecoder().decode(d));
-}
 
-async function resolveNotice(key){
-  const now=Date.now();
-  for(const item of ledger){
-    let plain; try{plain=await readRecord(item.blob,key)}catch(e){continue;}
-    let packet; try{packet=JSON.parse(plain)}catch(e){continue;}
-    const from=Date.parse(packet.from),to=Date.parse(packet.to);
-    if(!Number.isFinite(from)||!Number.isFinite(to)||to<=from)continue;
-    if(now>=from&&now<to&&typeof packet.text==='string')return packet.text;
+async function tryKey(key){
+  for(const item of VAULT){
+    let plain;
+    try{plain=await _u(item.blob,key);}catch(e){continue;}
+    let packet;
+    try{packet=JSON.parse(plain);}catch(e){continue;}
+    const now=Date.now();
+    if(now < new Date(packet.from).getTime()) return null;
+    if(now >= new Date(packet.to).getTime()) return null;
+    return packet.text;
   }
   return null;
 }
 
-function mount(){
-  noticeLabel.textContent=atob('U3RhZmYgTm90aWNl');
-  noticeTitle.textContent=atob('T3BlcmF0aW9ucyBVcGRhdGU=');
-  noticeBody.hidden=false; noticeBody.replaceChildren(); slot.replaceChildren();
+function showItem(){
+  noticeLabel.textContent='Staff Notice'; noticeTitle.textContent='Operations Update';
+  noticeBody.hidden=false; noticeBody.innerHTML=''; slot.innerHTML='';
   const p=document.createElement('p');
-  p.textContent=atob('RW50ZXIgdGhlIG1lc3NhZ2Uga2V5IHRvIGNvbnRpbnVlLg==');
+  p.textContent='Enter the message key to continue.';
   noticeBody.appendChild(p);
   const row=document.createElement('div');row.className='row';
-  const inp=document.createElement('input');
-  inp.id='dk';inp.type='password';inp.autocomplete='off';inp.maxLength=256;inp.placeholder=atob('TWVzc2FnZSBrZXk=');
-  const ok=document.createElement('button');ok.id='db';ok.type='button';ok.textContent=atob('T3Blbg==');
-  noticeBody.append(row); row.append(inp,ok);
-  const stt=document.createElement('div');stt.className='stat';stt.setAttribute('aria-live','polite');noticeBody.appendChild(stt);
+  row.innerHTML='<input id="dk" type="password" autocomplete="off" placeholder="Message key"><button id="db" type="button">Open</button>';
+  noticeBody.appendChild(row);
+  const st=document.createElement('div');st.className='stat';st.setAttribute('aria-live','polite');noticeBody.appendChild(st);
   const go=async()=>{
-    const key=inp.value;if(!key)return;stt.textContent='Working…';
-    const text=await resolveNotice(key);
-    if(text===null){stt.textContent=atob('Tm90aGluZyBhdmFpbGFibGUgZm9yIHRoYXQga2V5IHJpZ2h0IG5vdy4=');return;}
+    const key=document.getElementById('dk').value;
+    if(!key)return;
+    st.textContent='Working…';
+    const text=await tryKey(key);
+    if(text===null){st.textContent='Nothing available for that key right now.';return;}
     const box=document.createElement('div');box.className='msg';box.textContent=text;
-    row.replaceWith(box);stt.textContent='';
+    row.replaceWith(box);st.textContent='';
   };
-  ok.onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  document.getElementById('db').onclick=go;
+  document.getElementById('dk').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
 }
 
-const openNotice=()=>{mount();document.body.classList.add('alt');veil.classList.add('show');q.value='';find.classList.remove('open');};
-const closeNotice=()=>{veil.classList.remove('show');document.body.classList.remove('alt');noticeBody.hidden=false;noticeBody.replaceChildren();slot.replaceChildren();};
-document.getElementById('close').onclick=closeNotice;
-veil.onclick=e=>{if(e.target===veil)closeNotice();};
+const openVeil=()=>{showItem();document.body.classList.add('chamber');veil.classList.add('show');q.value='';find.classList.remove('open');};
+const closeVeil=()=>{veil.classList.remove('show');document.body.classList.remove('chamber');noticeBody.hidden=false;noticeBody.innerHTML='';slot.innerHTML='';};
+document.getElementById('close').onclick=closeVeil;
+veil.onclick=e=>{if(e.target===veil)closeVeil();};
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape')closeNotice();
+  if(e.key==='Escape')closeVeil();
   if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();find.classList.add('open');q.focus();}
 });
 
@@ -593,74 +926,42 @@ window.addEventListener('scroll',()=>{toTop.classList.toggle('on',window.scrollY
 
 function buildPage(extra){
   const doc=document.documentElement.cloneNode(true), $=s=>doc.querySelector(s);
-  const body=$('body'); if(body)body.classList.remove('alt');
-  $('#overlay')?.classList.remove('show'); $('#slot')?.replaceChildren();
-  $('#noticeBody')?.replaceChildren(); if($('#noticeBody'))$('#noticeBody').hidden=false;
-  if($('#noticeLabel'))$('#noticeLabel').textContent=''; if($('#noticeTitle'))$('#noticeTitle').textContent='';
-  $('#find')?.setAttribute('class','find'); if($('#q'))$('#q').value='';
-  $('#wireList')?.replaceChildren(); $('#wire')?.removeAttribute('style');
-  $('#pager')?.removeAttribute('style'); $('#none')?.removeAttribute('style');
-  if($('#toTop'))$('#toTop').setAttribute('class',''); if($('#count'))$('#count').textContent=''; if($('#where'))$('#where').textContent='';
-  $('#log')?.replaceChildren();
-  $('#accountBox')?.setAttribute('hidden',''); $('#accountToggle')?.setAttribute('aria-expanded','false');
-  if($('#accountStatus'))$('#accountStatus').textContent=''; $('#accountPanel')?.setAttribute('hidden',''); $('#accountPanel')?.replaceChildren();
-  if($('#accountId'))$('#accountId').value=''; if($('#accountPass'))$('#accountPass').value='';
-  const lean=ledger.map(i=>({blob:i.blob}));
-  const data=doc.querySelector('#archive-state'); if(data)data.textContent=btoa(JSON.stringify(lean));
+  $('body').classList.remove('chamber');
+  $('#overlay').classList.remove('show');
+  $('#slot').innerHTML='';
+  $('#noticeBody').innerHTML=''; $('#noticeBody').hidden=false;
+  $('#noticeLabel').textContent='Staff Notice';
+  $('#noticeTitle').textContent='Operations Update';
+  $('#find').className='find'; $('#q').value='';
+  $('#wireList').innerHTML=''; $('#wire').removeAttribute('style');
+  $('#pager').removeAttribute('style'); $('#none').removeAttribute('style');
+  $('#toTop').className='';
+  $('#count').textContent=''; $('#where').textContent='';
+  doc.querySelectorAll('#log .entry').forEach(el=>el.removeAttribute('style'));
+  const lean=VAULT.map(i=>({blob:i.blob}));
   let html='<!DOCTYPE html>\n'+doc.outerHTML;
+  html=html.replace(/const _v="[^"]*";/,'const _v="'+btoa(JSON.stringify(lean))+'";');
   return extra?extra(html):html;
 }
 
 function download(html,name){
-  const b=new Blob([html],{type:'text/html;charset=utf-8'}),u=URL.createObjectURL(b);
-  const a=document.createElement('a');a.href=u;a.download=name||'index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
+  const b=new Blob([html],{type:'text/html;charset=utf-8'}), u=URL.createObjectURL(b);
+  const a=document.createElement('a');a.href=u;a.download=name||'index.html';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
 }
 
-function hydrateWorkspace(pkg){
-  const D=document, host=D.getElementById('slot');
-  if(!pkg||pkg.v!==4||pkg.k!=='x'||!pkg.ui)return;
-  const ui=pkg.ui, F=ui.f||[], A=ui.a||[];
-  const byId=id=>F.find(f=>f[0]===id);
-  const makeField=(f)=>{const w=D.createElement('label');w.textContent=f[2]||'';const i=D.createElement(f[1]==='textarea'?'textarea':f[1]==='select'?'select':'input');
-    i.id='x'+f[0];i.autocomplete='off';if(f[1]==='textarea')i.rows=5;if(f[1]==='select')(f[3]||[]).forEach(o=>{const q=D.createElement('option');q.value=o[0];q.textContent=o[1];i.appendChild(q)});else i.type=f[1];w.appendChild(i);return w;};
-  host.replaceChildren();
-  const h=D.createElement('div');h.className='sh';h.textContent=ui.t||'';host.appendChild(h);
-  F.forEach(f=>host.appendChild(makeField(f)));
-  const acts=D.createElement('div');A.forEach(a=>{const b=D.createElement('button');b.className=a[0]==='p'?'go':'lite';b.type='button';b.id='a'+a[0];b.textContent=a[1]||'';acts.appendChild(b)});host.appendChild(acts);
-  const out=D.createElement('div');out.id='xout';host.appendChild(out);
-  const sh=D.createElement('div');sh.className='sh';sh.style.marginTop='22px';sh.textContent=ui.s||'';host.appendChild(sh);
-  const listBox=D.createElement('div');listBox.id='xlist';host.appendChild(listBox);
-  const note=D.createElement('div');note.className='note';note.textContent=ui.n||'';host.appendChild(note);
-  const msg=D.getElementById('xm'),key=D.getElementById('xk'),day=D.getElementById('xd'),tim=D.getElementById('xt'),len=D.getElementById('xl');
-  const pId=D.getElementById('ap'),dlId=D.getElementById('ad'),cpId=D.getElementById('ac'),wipeId=D.getElementById('aw');
-  const records=ledger;
-  const fmt=r=>new Date(r[0]).toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
-  const list=()=>{listBox.replaceChildren();if(!records.length){const z=D.createElement('div');z.className='note';z.textContent=ui.z||'';listBox.appendChild(z);return;}
-    records.map((r,i)=>({r,i})).sort((a,b)=>a.r[0]-b.r[0]).forEach(({r,i})=>{const row=D.createElement('div');row.className='lrow';const left=D.createElement('div');left.textContent=fmt(r);const del=D.createElement('button');del.type='button';del.textContent=ui.rm||'';del.onclick=()=>{if(confirm(ui.cf||'')){records.splice(i,1);list()}};row.append(left,del);listBox.appendChild(row)})};
-  list();
-  pId&&(pId.onclick=async()=>{const text=msg.value.trim(), k=key.value.trim(), ds=day.value, ts=tim.value, mins=Number(len.value);if(!text||!k||!ds||!ts){out.textContent=ui.missing||'';return;}out.textContent=ui.work||'';
-    const [Y,M,Dd]=ds.split('-').map(Number),[H,Mi]=ts.split(':').map(Number),start=new Date(Y,M-1,Dd,H,Mi);if(!Number.isFinite(start.getTime())){out.textContent=ui.bad||'';return;}
-    const end=new Date(start.getTime()+mins*60000);let cur=start,parts=[];while(cur<end){const nxt=new Date(Math.min(cur.getTime()+mins*60000,end.getTime()));parts.push([cur.toISOString(),nxt.toISOString()]);cur=nxt;}
-    try{for(const [from,to] of parts){const blob=await writeRecord(JSON.stringify({v:2,from,to,text}),k);records.push({blob});} }catch(e){out.textContent=ui.fail||'';return;}
-    out.textContent=(ui.done||'');msg.value='';key.value='';list();
-  });
-  dlId&&(dlId.onclick=()=>download(buildPage(),'index.html'));
-  cpId&&(cpId.onclick=async()=>{try{await navigator.clipboard.writeText(buildPage());cpId.textContent=ui.copied||cpId.textContent;setTimeout(()=>cpId.textContent=A.find(a=>a[0]==='c')?.[1]||'',2000)}catch(e){}});
-  wipeId&&(wipeId.onclick=()=>{if(confirm(ui.ca||'')){records.length=0;list()}});
-}
-
-const workspaceCtx=Object.freeze({doc:document,rel:ledger,enc:writeRecord,build:buildPage,save:download});
+const CTX={doc:document, vault:VAULT, enc:_x, build:buildPage, save:download};
 
 function render(){
   const hits=all.filter(el=>(cat==='all'||el.dataset.cat===cat)&&(!term||el.textContent.toLowerCase().includes(term)));
-  const pages=Math.max(1,Math.ceil(hits.length/pp));
+  const pages=Math.max(1,Math.ceil(hits.length/PER_PAGE));
   if(page>pages-1)page=pages-1;
   all.forEach(el=>el.style.display='none');
   if(term)hits.forEach(el=>el.style.display='');
-  else hits.slice(page*pp,(page+1)*pp).forEach(el=>el.style.display='');
+  else hits.slice(page*PER_PAGE,(page+1)*PER_PAGE).forEach(el=>el.style.display='');
   count.textContent=hits.length+(hits.length===1?' entry':' entries');
   none.style.display=hits.length?'none':'block';
-  const paged=hits.length>pp&&!term;
+  const paged=hits.length>PER_PAGE&&!term;
   pager.style.display=paged?'flex':'none';
   if(paged){where.textContent='Page '+(page+1)+' of '+pages;prev.disabled=page===0;next.disabled=page>=pages-1;}
 }
@@ -668,20 +969,21 @@ render();
 prev.onclick=()=>{page--;render();document.getElementById('archive').scrollIntoView();};
 next.onclick=()=>{page++;render();document.getElementById('archive').scrollIntoView();};
 
-async function search(){
-  const raw=q.value.trim();term=raw.toLowerCase();page=0;cat='all';
-  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));render();
-  if(!raw||!seedRef||seedRef==='REPLACE_WITH_SEALED_PACKAGE')return;
-  try{
-    const pkg=await readEnvelope(seedRef,raw);
-    if(pkg.v!==4||pkg.k!=='x')return;
+function search(){
+  const raw=q.value.trim();
+  term=raw.toLowerCase(); page=0; cat='all';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat==='all'));
+  render();
+  if(!raw||!_d)return;
+  _u(_d,raw).then(src=>{
     term='';page=0;render();
-    noticeLabel.textContent=pkg.ui?.l||'';noticeTitle.textContent=pkg.ui?.t||'';
-    noticeBody.hidden=true;noticeBody.replaceChildren();document.body.classList.add('alt');veil.classList.add('show');q.value='';find.classList.remove('open');
-    hydrateWorkspace(pkg);
-  }catch(e){}
+    noticeLabel.textContent='Archive Access';noticeTitle.textContent='Release Console';
+    noticeBody.hidden=true;noticeBody.innerHTML='';
+    document.body.classList.add('chamber');veil.classList.add('show');
+    q.value='';find.classList.remove('open');
+    new Function('ctx',src)(CTX);
+  }).catch(()=>{});
 }
-
 btn.onclick=()=>{if(!find.classList.contains('open')){find.classList.add('open');q.focus();return;}
   if(q.value.trim())search();else find.classList.remove('open');};
 q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
@@ -696,187 +998,34 @@ document.querySelectorAll('.chip').forEach(chip=>{
 let cc=0,ct;
 document.getElementById('mark').onclick=()=>{
   clearTimeout(ct);
-  if(++cc>=clickThreshold){cc=0;openNotice();}
-  ct=setTimeout(()=>cc=0,clickWindow);
+  if(++cc>=CLICKS){cc=0;openVeil();}
+  ct=setTimeout(()=>cc=0,2500);
 };
 
 (async function wire(){
   try{
-    const feed='https://news.google.com/rss/search?q='+encodeURIComponent(wq+' when:7d')+'&hl=en-US&gl=US&ceid=US:en';
+    const feed='https://news.google.com/rss/search?q='+encodeURIComponent(WIRE_QUERY+' when:7d')+'&hl=en-US&gl=US&ceid=US:en';
     const res=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(feed));
     if(!res.ok)return;
     const xml=new DOMParser().parseFromString(await res.text(),'text/xml');
-    const list=[...xml.querySelectorAll('item')].slice(0,wm);
-    if(!list.length)return;
+    const items=[...xml.querySelectorAll('item')].slice(0,WIRE_MAX);
+    if(!items.length)return;
     const ul=document.getElementById('wireList');
-    list.forEach(it=>{
+    items.forEach(it=>{
       const title=it.querySelector('title')?.textContent||'';
       const link=it.querySelector('link')?.textContent||'#';
       if(!title)return;
       const li=document.createElement('li'),a=document.createElement('a');
-      if(!/^https:\/\//i.test(link))return; a.href=link;a.target='_blank';a.rel='noopener noreferrer';a.textContent=title;
+      a.href=link;a.target='_blank';a.rel='noopener';a.textContent=title;
       li.appendChild(a);ul.appendChild(li);
     });
     if(ul.children.length)document.getElementById('wire').style.display='block';
   }catch(e){}
 })();
-/* compatibility layer retained for older archive revisions */
-const legacy={
-  revision:()=>document.documentElement.getAttribute('data-build')||'4.1',
-  decodeHint:v=>typeof v==='string'?v.slice(0,12):'',
-  compare:(a,b)=>String(a)===String(b)
-};
-
 </script>
 
-<script>
-(()=>{
-  const toggle=document.getElementById('accountToggle');
-  const box=document.getElementById('accountBox');
-  const f=document.getElementById('accountForm');
-  const u=document.getElementById('accountId');
-  const p=document.getElementById('accountPass');
-  const s=document.getElementById('accountStatus');
-  const panel=document.getElementById('accountPanel');
-  if(!toggle||!box||!f||!u||!p||!s||!panel)return;
 
-  const revisionSeal="7b7a47998cfabbbdd5bd5a96e9125f7d9a1909e43d59782315e4df889be318fe";
 
-  const digest=async(user,pass)=>{
-    const material=new TextEncoder().encode(user+'\u0000'+pass);
-    const out=await crypto.subtle.digest('SHA-256',material);
-    return Array.from(new Uint8Array(out)).map(x=>x.toString(16).padStart(2,'0')).join('');
-  };
 
-  toggle.addEventListener('click',()=>{
-    const open=box.hidden;
-    box.hidden=!open;
-    toggle.setAttribute('aria-expanded',String(open));
-    if(open)setTimeout(()=>u.focus(),0);
-  });
-
-  const summary=()=>{
-    const byCat={};items.forEach(i=>{byCat[i[1]]=(byCat[i[1]]||0)+1;});
-    const box=document.createElement('div');
-    [['Entries',String(items.length)],['Latest',items[0][0]],['Sections',Object.keys(byCat).sort().map(k=>(groups[k]||k)+' '+byCat[k]).join(' · ')],['Feed',document.getElementById('wire').style.display==='block'?'live':'idle']].forEach(x=>{const d=document.createElement('div');const b=document.createElement('b');b.textContent=x[0]+' ';d.append(b,document.createTextNode(x[1]));box.appendChild(d)});
-    return box;
-  };
-
-  f.addEventListener('submit',async ev=>{
-    ev.preventDefault();
-    panel.hidden=true;
-    s.textContent='Checking credentials…';
-    const fp=await digest(u.value.trim(),p.value);
-    if(fp===revisionSeal){
-      s.textContent='Signed in.';
-      panel.replaceChildren(summary());
-      panel.hidden=false;
-    }else{
-      s.textContent='Incorrect ID or passphrase.';
-    }
-    p.value='';
-  });
-})();
-</script>
-
-<template id="historical-state">
-eyJ2IjoyLCJzb3VyY2UiOiJtZ3IiLCJzdGF0dXMiOiJtZW1vcnkiLCJtZXRhIjp7ImNvdW50IjoxLCJ2ZXJpZnkiOiJkZWZlcnJlZCJ9fQ==
-</template>
-
-<script>
-/* archival migration notes: retained for compatibility with field exports */
-const migrationLedger = Object.freeze({
-  epochs: Object.freeze(["v1","v2","v3","archive.v3"]),
-  retired: Object.freeze(["cache","replica"]),
-  normalize(v){
-    return String(v ?? "").trim().replace(/\s+/g," ");
-  },
-  stamp(v){
-    const s=this.normalize(v);
-    let h=2166136261;
-    for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}
-    return ("00000000"+(h>>>0).toString(16)).slice(-8);
-  }
-});
-
-/* harmless compatibility fragments; deliberately separate from the active
-   encrypted message path so investigators must distinguish live vs retired state */
-const archiveFragments = Object.freeze([
-  Object.freeze({slot:"north", epoch:"v1", state:"retired"}),
-  Object.freeze({slot:"west",  epoch:"v2", state:"migrated"}),
-  Object.freeze({slot:"east",  epoch:"v3", state:"active"})
-]);
-</script>
-
-<div id="archive-provenance" style="display:none" data-epoch="v3" data-migration="complete" data-replica="stale"></div>
-
-<!-- archival reconstruction ledger: historical snapshots are intentionally retained -->
-<section id="reconstruction-records" aria-hidden="true" style="display:none">
-  <ol data-ledger-epochs="">
-    <li data-epoch="v1" data-state="retired" data-relation="source">2019-04-17</li>
-    <li data-epoch="v2" data-state="migrated" data-relation="mirror">2022-10-07</li>
-    <li data-epoch="v3" data-state="active" data-relation="authority">2026-08-31</li>
-  </ol>
-  <dl data-field-notes="">
-    <dt>archive-order</dt><dd>date/category/title</dd>
-    <dt>migration-rule</dt><dd>retain records, replace envelope</dd>
-    <dt>replica-policy</dt><dd>older replicas are incomplete</dd>
-  </dl>
-</section>
-
-<script>
-/* Field reconstruction utilities. These are intentionally side-effect free. */
-const fieldReconstruction = Object.freeze({
-  canonicalize(parts) {
-    return parts.map(x => String(x ?? "").trim().toLowerCase())
-      .filter(Boolean).join("|");
-  },
-  digest32(text) {
-    let h = 0x811c9dc5;
-    const s = String(text);
-    for (let i = 0; i < s.length; i++) {
-      h ^= s.charCodeAt(i);
-      h = Math.imul(h, 0x01000193);
-    }
-    return (h >>> 0).toString(16).padStart(8, "0");
-  },
-  relation(date, category, title) {
-    return this.digest32(this.canonicalize([date, category, title]));
-  },
-  epochs: Object.freeze({
-    source: "v1",
-    mirror: "v2",
-    authority: "v3"
-  })
-});
-</script>
-
-<div id="legacy-workspaces" hidden="" data-workspace-a="retired" data-workspace-b="migration" data-workspace-c="authority">
-  <span data-status="empty">legacy workspace recovered</span>
-  <span data-status="expired">historical envelope expired</span>
-</div>
-
-<script type="application/json" id="archive-manifest">
-{
-  "schema":"archive.v3",
-  "authority":"v3",
-  "precedence":["authority","migrated","retired"],
-  "comparison":["date","category","title"],
-  "network":"advisory",
-  "secrets":"external-to-manifest"
-}
-</script>
-
-<script>
-(function(){
-  const node = document.querySelector(".archive") ||
-               document.querySelector("#archive") ||
-               document.querySelector("main");
-  if (!node) return;
-  const text = (node.textContent || "").replace(/\s+/g, " ").trim();
-  const trail = fieldReconstruction.digest32(text.slice(0, 4096));
-  document.documentElement.setAttribute("data-archive-trail", trail);
-})();
-</script>
 
 </body></html>
